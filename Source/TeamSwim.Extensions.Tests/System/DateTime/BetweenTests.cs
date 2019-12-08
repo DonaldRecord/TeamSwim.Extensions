@@ -11,7 +11,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
         [TestMethod]
         public void Char_Between_Inclusive_Value_Equals_Start_Returns_True()
         {
-            DateTime start = RandomDateTime();
+            DateTime start = Utility.RandomDateTime();
             DateTime end = start.AddDays(2);
             DateTime value = start;
 
@@ -22,7 +22,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
         [TestMethod]
         public void Char_Between_Method_Inclusive_Value_Equals_End_Returns_True()
         {
-            DateTime start = RandomDateTime();
+            DateTime start = Utility.RandomDateTime();
             DateTime end = start.AddDays(2);
             DateTime value = end;
 
@@ -33,7 +33,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
         [TestMethod]
         public void Inclusive_Value_Not_Between_Start_And_End_Returns_False()
         {
-            DateTime start = RandomDateTime();
+            DateTime start = Utility.RandomDateTime();
             DateTime end = start.AddDays(2);
             DateTime value = start.AddDays(-1);
 
@@ -44,7 +44,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
         [TestMethod]
         public void Char_Between_Method_Exclusive_Value_Equals_Start_Returns_False()
         {
-            DateTime start = RandomDateTime();
+            DateTime start = Utility.RandomDateTime();
             DateTime end = start.AddDays(2);
             DateTime value = start;
 
@@ -54,7 +54,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
         [TestMethod]
         public void Char_Between_Method_Exclusive_Value_Equals_End_Returns_False()
         {
-            DateTime start = RandomDateTime();
+            DateTime start = Utility.RandomDateTime();
             DateTime end = start.AddDays(2);
             DateTime value = end;
 

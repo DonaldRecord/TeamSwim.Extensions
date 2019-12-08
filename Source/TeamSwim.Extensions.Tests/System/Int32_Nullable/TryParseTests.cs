@@ -24,7 +24,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void Parsable_String_Returns_Nullable_Int32()
         {
-            var s = RandomString(maxLength: 4);
+            var s = Utility.RandomString(maxLength: 4);
 
             int? i;
 
@@ -37,7 +37,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void Unparsable_String_Returns_Null()
         {
-            var s = RandomString();
+            var s = Utility.RandomString();
 
             int? i;
 

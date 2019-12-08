@@ -13,7 +13,7 @@
 //        [TestMethod]
 //        public void False_Returned_When_Strings_Are_Null()
 //        {
-//            var value = RandomString();
+//            var value = Utility.RandomString();
 //            var result = value.EqualsAny(StringComparison.CurrentCulture, null);
 
 //            Assert.IsFalse(result);

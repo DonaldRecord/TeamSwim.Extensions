@@ -12,7 +12,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         public void Null_Value_Throws_Exception()
         {
             string value = null;
-            string appendText = RandomString();
+            string appendText = Utility.RandomString();
 
             Assert.IsNull(value.Prepend(appendText, false));
         }
@@ -21,7 +21,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Prepend_Text_Throws_Argument_Null_Exception()
         {
-            string value = RandomString();
+            string value = Utility.RandomString();
             string appendText = null;
 
             value.Prepend(appendText, false);
@@ -30,7 +30,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void String_Is_Not_Prepended_When_Bool_Is_True_And_Value_Ends_With()
         {
-            string actual = RandomString();
+            string actual = Utility.RandomString();
             string appendText = actual.First().ToString();
 
             string expected = actual.Prepend(appendText, true);
@@ -41,8 +41,8 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void String_Is_Prepended_When_Bool_Is_True_And_Value_Doesnt_End_With()
         {
-            string actual = RandomString();
-            string appendText = RandomString(exclusion: actual);
+            string actual = Utility.RandomString();
+            string appendText = Utility.RandomString(exclusion: actual);
 
             string expected = actual.Prepend(appendText, true);
 
@@ -52,8 +52,8 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void String_Is_Prepended_When_Bool_Is_False()
         {
-            string actual = RandomString();
-            string appendText = RandomString(exclusion: actual);
+            string actual = Utility.RandomString();
+            string appendText = Utility.RandomString(exclusion: actual);
 
             string expected = actual.Prepend(appendText, false);
 
@@ -122,8 +122,8 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void String_Is_Prepended_When_No_Bool_Is_Specified()
         {
-            string actual = RandomString();
-            string appendText = RandomString(exclusion: actual);
+            string actual = Utility.RandomString();
+            string appendText = Utility.RandomString(exclusion: actual);
 
             string expected = actual.Prepend(appendText);
 
@@ -145,8 +145,8 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void Char_Is_Prepended_When_Bool_Is_False()
         {
-            string actual = RandomString();
-            var appendChar = RandomString(exclusion: actual.Substring(0, 1)).First();
+            string actual = Utility.RandomString();
+            var appendChar = Utility.RandomString(exclusion: actual.Substring(0, 1)).First();
 
             string expected = actual.Prepend(appendChar, false);
 

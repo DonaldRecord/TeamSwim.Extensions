@@ -11,7 +11,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
         [TestMethod]
         public void Date_Time_Offset_Is_Returned()
         {
-            var dt = RandomDateTime();
+            var dt =Utility.RandomDateTime();
 
             var utc = dt.Offset();
 

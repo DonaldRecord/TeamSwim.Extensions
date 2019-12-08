@@ -7,6 +7,5 @@ namespace System
 {
     public abstract class BaseUnitTest
     {
-        
     }
 }

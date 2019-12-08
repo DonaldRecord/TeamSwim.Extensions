@@ -4,7 +4,7 @@
     <TargetFrameworks>netcoreapp3.0</TargetFrameworks>
     <RootNamespace>System</RootNamespace>
     <IsPackable>false</IsPackable>
-    <Configurations>Debug;Release;Code Analysis</Configurations>
+    <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

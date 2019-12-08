@@ -15,7 +15,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         public void Null_Value_Throws_Argument_Null_Exception()
         {
             string value = null;
-            string appendText = RandomString();
+            string appendText = Utility.RandomString();
 
             Assert.IsNull(value.Append(appendText, false));
         }
@@ -24,7 +24,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Append_Text_Throws_Argument_Null_Exception()
         {
-            string value = RandomString();
+            string value = Utility.RandomString();
             string appendText = null;
 
             var result = value.Append(appendText, false);
@@ -34,7 +34,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void String_Is_Not_Appended_When_Bool_Is_True_And_Value_Ends_With()
         {
-            string actual = RandomString();
+            string actual = Utility.RandomString();
             string appendText = actual.Last().ToString();
 
             string expected = actual.Append(appendText, true);
@@ -71,7 +71,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         public void Null_Value_Throws_Exception_Comparison_Overload()
         {
             string value = null;
-            string appendText = RandomString();
+            string appendText = Utility.RandomString();
 
             var result = value.Append(appendText, false, StringComparison.CurrentCulture);
             Assert.Fail();
@@ -81,7 +81,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Append_Text_Throws_Argument_Null_Exception_Comparison_Overload()
         {
-            string value = RandomString();
+            string value = Utility.RandomString();
             string appendText = null;
 
             var result = value.Append(appendText, false, StringComparison.CurrentCulture);
@@ -91,7 +91,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         [TestMethod]
         public void String_Is_Not_Appended_When_Bool_Is_True_And_Value_Ends_With_Comparison_Overload()
         {
-            string actual = RandomString();
+            string actual = Utility.RandomString();
             string appendText = actual.Last().ToString();
 
             string expected = actual.Append(appendText, true, StringComparison.Ordinal);

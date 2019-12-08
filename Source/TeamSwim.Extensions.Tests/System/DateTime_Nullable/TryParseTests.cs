@@ -35,7 +35,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTime_Nullable
         [TestMethod]
         public void Try_Parse_Returns_Value_And_True_When_String_Is_Date()
         {
-            var expected = RandomDateTime();
+            var expected =Utility.RandomDateTime();
 
             DateTime? dt;
             var parsed = DateTimeExt.TryParse(expected.ToString(), out dt);

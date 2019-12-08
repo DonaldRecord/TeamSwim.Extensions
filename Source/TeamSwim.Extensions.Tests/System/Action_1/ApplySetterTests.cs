@@ -24,7 +24,7 @@ namespace TeamSwim.Extensions.Tests.System.Action_1
         [TestMethod]
         public void Setter_Executes()
         {
-            var prop1 = RandomString();
+            var prop1 = Utility.RandomString();
             Action<TestType> setter = t => t.Property1 = prop1;
             var tt = setter.ApplySetter();
             Assert.IsNotNull(tt);

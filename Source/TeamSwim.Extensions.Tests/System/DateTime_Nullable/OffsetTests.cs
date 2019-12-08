@@ -11,7 +11,7 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeNullableExtensions
         [TestMethod]
         public void DateTimeOffset_Is_Returned_When_Value_Not_Null()
         {
-            DateTime? dt = RandomDateTime();
+            DateTime? dt =Utility.RandomDateTime();
 
             var utc = dt.Offset();
 
