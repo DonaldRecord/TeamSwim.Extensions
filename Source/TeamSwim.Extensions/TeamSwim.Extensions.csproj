@@ -28,9 +28,11 @@
     <PackageId>TeamSwim.Extensions</PackageId>
     <PackageTags>csharp;dotnet-core;dotnet-standard;extension-methods;extension</PackageTags>
     <PackageIcon>packageIcon.png</PackageIcon>
-    <PackageUrl>https://github.com/DonaldRecord/TeamSwim.Extensions</PackageUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>https://github.com/DonaldRecord/TeamSwim.Extensions</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/DonaldRecord/TeamSwim.Extensions</PackageProjectUrl>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
