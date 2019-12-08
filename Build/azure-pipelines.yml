@@ -6,6 +6,8 @@ trigger:
 variables:
   BuildConfiguration: 'release'
   Project: 'Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj'
+  TestProjects: |
+    'Source/TeamSwim.Extensions.Tests/*.csproj'
 
 pool:
   vmImage: 'windows-latest'
@@ -27,7 +29,7 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: test
-    projects: $(Project)
+    projects: $(TestProjects)
     publishTestResults: true
     arguments: '--configuration $(BuildConfiguration)'
     
