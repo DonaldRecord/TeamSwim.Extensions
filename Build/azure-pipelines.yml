@@ -41,6 +41,7 @@ steps:
     nobuild: true
     versioningScheme: byEnvVar
     versionEnvVar: GitVersion.NuGetVersion
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: NuGetCommand@2
   inputs:
