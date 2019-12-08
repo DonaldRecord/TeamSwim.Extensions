@@ -1,0 +1,41 @@
+trigger:
+  branches:
+    include:
+    - master
+
+variables:
+  BuildConfiguration: 'release'
+  Project: 'Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj'
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: gittools.gitversion.gitversion-task.GetVersion@4
+  displayName: GitVersion
+  inputs:
+    preferBundledVersion: false
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: $(Project)
+    arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NuGetVersion)'
+    versioningScheme: byBuildNumber
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: test
+    projects: $(Project)
+    publishTestResults: true
+    arguments: '--configuration $(BuildConfiguration)'
+    
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: pack
+    packagesToPack: '$(Project)'
+    nobuild: true
+    versioningScheme: byEnvVar
+    versionEnvVar: GitVersion.NuGetVersion
