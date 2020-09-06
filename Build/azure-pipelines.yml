@@ -32,12 +32,14 @@ steps:
     projects: $(TestProjects)
     publishTestResults: true
     arguments: '--configuration $(BuildConfiguration)'
-    
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
-    command: pack
+    command: 'pack'
     packagesToPack: '$(Project)'
     nobuild: true
-    versioningScheme: byEnvVar
-    versionEnvVar: GitVersion.NuGetVersion
+    includesymbols: true
+    versioningScheme: 'byEnvVar'
+    versionEnvVar: 'GitVersion.NuGetVersion'
+    
