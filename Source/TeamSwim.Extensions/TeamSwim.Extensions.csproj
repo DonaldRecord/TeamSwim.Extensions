@@ -3,6 +3,7 @@
   <!--Project Properties-->
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+    <Version>1.0</Version>
     <RootNamespace>NotUsed</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
@@ -18,7 +19,7 @@
     <Product>TeamSwim.Extensions</Product>
     <Description>Collection of practical .NET extension methods.</Description>
     <Summary>Collection of practical .NET extension methods.</Summary>
-    <Copyright>Copyright © Donald Record 2019</Copyright>
+    <Copyright>Copyright © Donald Record 2020</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Title>TeamSwim.Extensions</Title>
   </PropertyGroup>
