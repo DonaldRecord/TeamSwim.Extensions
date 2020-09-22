@@ -12,6 +12,7 @@ namespace System.Linq
     partial class LinqExt
     {
         /// <summary>
+        ///     (Opinionated)
         ///     Will create a list of elements only when the debugger is attached.
         ///     This is useful for large lists so that they are not fully loaded into memory in production environments,
         ///     but Visual Studio debugger displays can be more helpful while debugging in a developer environment.
