@@ -14,6 +14,7 @@ namespace System.System.Linq
         public void Null_Source_Throws_Exception_Overload1()
         {
             var scope = new Scope {Source = null}.ExecuteOverload1();
+
         }
 
         [TestMethod]
