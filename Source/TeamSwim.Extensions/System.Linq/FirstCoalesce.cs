@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using JetBrains.Annotations;
 
 namespace System.Linq
 {
     partial class LinqExt
     {
+        [PublicAPI]
         public static T FirstCoalesce<T>(this IEnumerable<T> source, params Func<T, bool>[] predicates)
         {
             var matches = new List<Tuple<int, T>>();

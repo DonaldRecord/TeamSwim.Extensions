@@ -4,7 +4,7 @@ using System.Text;
 
 namespace System.Linq
 {
-    class YieldTests
+    public class YieldTests
     {
     }
 }

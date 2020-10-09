@@ -22,11 +22,12 @@ namespace System
 
             if (failingMethods.Any())
             {
-                static string WriteMethodLine(MethodInfo method) => $"{method.DeclaringType}.{method.Name}";
-
-                var msg = $"The following methods do not have PublicAPI attributes: {String.Join(Environment.NewLine, failingMethods.Select(WriteMethodLine))}";
+                var msg = $"The following methods do not have PublicAPI attributes: " +
+                          $"{String.Join(Environment.NewLine, failingMethods.Select(WriteMethodLine))}";
                 Assert.Fail(msg);
             }
         }
+
+        private static string WriteMethodLine(MethodInfo method) => $"{method.DeclaringType}.{method.Name}";
     }
 }
