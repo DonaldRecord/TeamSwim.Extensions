@@ -13,7 +13,8 @@ namespace System
         /// <param name="bool"><see cref="bool"/> to return string for.</param>
         /// <param name="options">Options for the format of the return string.</param>
         /// <returns>"yes" for <see langword="true"/>, "no" for <see langword="false"/>.</returns>
-        [Pure, NotNull, PublicAPI]
+        [PublicAPI]
+        [Pure, NotNull]
         public static string ToYesNo(this bool @bool, ToYesNoOptions options = ToYesNoOptions.Lowercase)
         {
             switch (options)
@@ -28,26 +29,5 @@ namespace System
                     throw new ArgumentOutOfRangeException(nameof(options), options, null);
             }
         }
-    }
-
-    /// <summary>
-    ///     Options for returning strings for booleans.
-    /// </summary>
-    public enum ToYesNoOptions
-    {
-        /// <summary>
-        ///     Lowercase
-        /// </summary>
-        Lowercase,
-
-        /// <summary>
-        ///     Uppercase
-        /// </summary>
-        Uppercase,
-
-        /// <summary>
-        ///     Capital
-        /// </summary>
-        Capital
     }
 }

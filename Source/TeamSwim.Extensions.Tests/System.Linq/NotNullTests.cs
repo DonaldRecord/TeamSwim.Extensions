@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.Linq
 {
     [TestClass]
-    public class PrioritizeTests
+    public class NotNullTests
     {
     }
 }

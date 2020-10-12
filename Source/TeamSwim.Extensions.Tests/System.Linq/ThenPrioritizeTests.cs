@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace System.Linq
 {
-    class ThenPrioritizeTests
+    [TestClass]
+    public class ThenPrioritizeTests
     {
     }
 }
