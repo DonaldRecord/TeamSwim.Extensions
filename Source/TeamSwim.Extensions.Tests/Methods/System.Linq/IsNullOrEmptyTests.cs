@@ -32,6 +32,15 @@ namespace System.Linq
             Assert.IsFalse(result);
         }
 
+        [TestMethod]
+        public void Source_With_Null_Elements_Returns_False()
+        {
+            var list = new List<object> {null, null};
+            var result = list.IsNullOrEmpty();
+
+            Assert.IsFalse(result);
+        }
+
         class Scope
         {
             public List<string> Source { get; set; } = new List<string>

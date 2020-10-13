@@ -6,16 +6,14 @@ namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
     [TestClass]
     public class OffsetTests : BaseUnitTest
     {
-        internal const string OffsetTest = "DateTime.Offset()";
-
         [TestMethod]
         public void Date_Time_Offset_Is_Returned()
         {
-            var dt =Utility.RandomDateTime();
+            var dt = Utility.RandomDateTime();
 
             var utc = dt.Offset();
 
-            Assert.AreEqual(typeof(DateTimeOffset), utc.GetType());
+            Assert.IsInstanceOfType(utc, typeof(DateTimeOffset));
         }
     }
 }

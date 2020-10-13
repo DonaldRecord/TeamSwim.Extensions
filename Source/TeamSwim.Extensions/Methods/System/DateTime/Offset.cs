@@ -10,7 +10,8 @@ namespace System
         /// <param name="dateTime"><see cref="DateTime"/> being converted to <see cref="DateTimeOffset"/>.</param>
         /// <param name="dateTimeKind">Specified kind of time to be turned into a <see cref="DateTimeOffset"/></param>
         /// <returns>A DateTimeOffset object based on the specifed DateTime.</returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static DateTimeOffset Offset(
             this DateTime dateTime,
             DateTimeKind dateTimeKind = DateTimeKind.Unspecified)

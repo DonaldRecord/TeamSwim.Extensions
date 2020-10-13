@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System
 {
     [TestClass]
-    public class AnalysisTests
+    public class StaticAnalysisTests
     {
         [TestMethod]
         public void All_Public_Extension_Methods_Have_Public_API_Attribute()
