@@ -18,7 +18,7 @@ namespace System.Linq
         /// <returns><paramref name="source"/> un-affected, if the debugger is not attached. Otherwise, a collection (still passed as <see cref="IEnumerable{T}"/>.</returns>
         [Pure, NotNull, LinqTunnel]
         [PublicAPI]
-        [ExcludeFromCodeCoverage] // Can't reach 100% in RELEASE config, but this code is trusted and the alternatives are tested. TODO:
+        [ExcludeFromCodeCoverage] // Can't reach 100% in RELEASE config, but this code is trusted and the alternatives are tested.
         public static IEnumerable<T> ToListWhenDebugging<T>([NotNull] this IEnumerable<T> source)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));

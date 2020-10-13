@@ -14,7 +14,7 @@ namespace System.Linq
         /// <typeparam name="T">Element type of collection.</typeparam>
         /// <param name="source">The collection being added to.</param>
         /// <param name="addElements">The source list of elements.</param>
-        /// <param name="excludeNullElements">If <see langword="true"/>, will skip over <see langword="null"/> elements.</param>
+        /// <param name="excludeNullElements">(Opinionated) If <see langword="true"/>, will skip over <see langword="null"/> elements. Default is <see langword="false"/>.</param>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is <see langword="null"/></exception>
         [PublicAPI]
         public static void AddMany<T>(

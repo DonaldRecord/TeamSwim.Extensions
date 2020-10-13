@@ -15,7 +15,8 @@ namespace System.Linq
         /// <param name="mutation">Mutation method.</param>
         /// <param name="predicate">Filters objects that will be mutated.</param>
         /// <returns>Mutated collection.</returns>
-        [MustUseReturnValue, PublicAPI, LinqTunnel]
+        [PublicAPI]
+        [MustUseReturnValue, LinqTunnel]
         public static IEnumerable<T> Mutate<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T> mutation,
@@ -43,7 +44,8 @@ namespace System.Linq
         /// <param name="mutation">Mutation method.</param>
         /// <param name="predicate">Filters objects that will be mutated.</param>
         /// <returns>Mutated collection.</returns>
-        [MustUseReturnValue, PublicAPI, LinqTunnel]
+        [PublicAPI]
+        [MustUseReturnValue, LinqTunnel]
         public static IEnumerable<T> Mutate<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T, int> mutation,

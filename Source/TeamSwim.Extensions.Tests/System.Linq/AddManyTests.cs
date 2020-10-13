@@ -10,95 +10,30 @@ namespace System.Linq
     public class AddManyTests : BaseUnitTest
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Null_Source_Throws_Exception()
+        public void AddMany_Returns_Expected_List()
         {
-            var scope = new Scope {Source = null};
-            scope.ExecuteTest();
+            var list = new List<int?>();
+            var elements = new List<int?> { 1, null, null, 2, null, 3 };
+            list.AddMany(elements);
+
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(null, list[1]);
+            Assert.AreEqual(null, list[2]);
+            Assert.AreEqual(2, list[3]);
+            Assert.AreEqual(null, list[4]);
+            Assert.AreEqual(3, list[5]);
         }
 
         [TestMethod]
-        public void Null_New_Elements_Does_Not_Affect_Source()
+        public void AddMany_Returns_Expected_List_With_Nullable()
         {
-            var scope = new Scope {NewElements = null};
-            var expected = scope.Source.Count;
-            scope.ExecuteTest();
+            var list = new List<int?>();
+            var elements = new List<int?> { 1, null, null, 2, null, 3 };
+            list.AddMany(elements, true);
 
-            Assert.AreEqual(expected, scope.Source.Count);
-        }
-
-        [TestMethod]
-        public void Null_Elements_Are_Not_Ignored()
-        {
-            var scope = new Scope().ExtendNewElements(null).ExtendNewElements(null).ExtendNewElements(Utility.RandomString());
-            var originalDestCount = scope.Source.Count;
-            var newElementCount = scope.NewElements.Count;
-
-            scope.ExecuteTest(false);
-
-            var expected = originalDestCount + newElementCount;
-            Assert.AreEqual(expected, scope.Source.Count);
-        }
-
-        [TestMethod]
-        public void Null_Elements_Are_Not_Ignored_By_Default()
-        {
-            var scope = new Scope().ExtendNewElements(null).ExtendNewElements(null).ExtendNewElements(Utility.RandomString());
-            var originalDestCount = scope.Source.Count;
-            var newElementCount = scope.NewElements.Count;
-
-            scope.ExecuteTest();
-
-            var expected = originalDestCount + newElementCount;
-            Assert.AreEqual(expected, scope.Source.Count);
-        }
-
-        public void Null_Elements_Are_Ignored()
-        {
-            var scope = new Scope().ExtendNewElements(null).ExtendNewElements(null).ExtendNewElements(Utility.RandomString());
-            var originalDestCount = scope.Source.Count;
-            var newElementCount = scope.NewElements.Count(e => e != null);
-
-            scope.ExecuteTest(true);
-
-            var expected = originalDestCount + newElementCount;
-            Assert.AreEqual(expected, scope.Source.Count);
-
-        }
-
-        class Scope
-        {
-            public Scope()
-            {
-                
-            }
-
-            public void ExecuteTest(bool? excludeNullElements = null)
-            {
-                if (excludeNullElements.HasValue)
-                    Source.AddMany(NewElements, excludeNullElements.Value);
-                else
-                    Source.AddMany(NewElements);
-            } 
-
-            public List<string> Source { get; set; } = new List<string>
-            {
-                Utility.RandomString(),
-                Utility.RandomString(),
-                Utility.RandomString()
-            };
-
-            public List<string> NewElements { get; set; } = new List<string>
-            {
-                Utility.RandomString(),
-                Utility.RandomString()
-            };
-
-            public Scope ExtendNewElements(string s)
-            {
-                NewElements.Add(s);
-                return this;
-            }
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(2, list[1]);
+            Assert.AreEqual(3, list[2]);
         }
     }
 }

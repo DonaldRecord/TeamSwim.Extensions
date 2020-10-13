@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using JetBrains.Annotations;
 
 namespace System.Linq
@@ -9,7 +8,7 @@ namespace System.Linq
     {
         [PublicAPI]
         [Pure]
-        public static T FirstCoalesce<T>(this IEnumerable<T> source, params Func<T, bool>[] predicates)
+        public static T FirstOrDefaultCoalesce<T>(this IEnumerable<T> source, params Func<T, bool>[] predicates)
         {
             var matches = new List<Tuple<int, T>>();
 
@@ -31,8 +30,10 @@ namespace System.Linq
                 }
             }
 
-            var tuple = matches.OrderBy(m => m.Item1).First();
-            return tuple.Item2;
+            if (matches.Any())
+                return matches.OrderBy(m => m.Item1).First().Item2;
+            else 
+                return default;
         }
     }
 }

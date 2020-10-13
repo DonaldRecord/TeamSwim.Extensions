@@ -18,10 +18,8 @@ namespace System.Linq
         [Pure, PublicAPI]
         public static bool All<T>(this IEnumerable<T> source, Func<T, int, bool> predicate)
         {
-            if (source == null)
-                throw new ArgumentNullException(nameof(source));
-            if (predicate == null)
-                throw new ArgumentNullException(nameof(predicate));
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
             var i = 0;
             foreach (var elem in source)
