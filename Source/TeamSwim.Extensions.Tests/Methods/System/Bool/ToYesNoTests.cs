@@ -32,5 +32,14 @@ namespace TeamSwim.Extensions.Tests.System.Bool
             Assert.AreEqual("Yes", true.ToYesNo(ToYesNoOptions.Capital));
             Assert.AreEqual("No", false.ToYesNo(ToYesNoOptions.Capital));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Default_Throws_Exception()
+        {
+            Assert.IsFalse(Enum.IsDefined(typeof(ToYesNoOptions), Int32.MaxValue));
+            true.ToYesNo((ToYesNoOptions)Int32.MaxValue);
+            Assert.Fail();
+        }
     }
 }

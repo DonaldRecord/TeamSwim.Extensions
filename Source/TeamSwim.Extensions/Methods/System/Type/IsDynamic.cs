@@ -15,7 +15,8 @@ namespace System
         /// <param name="type">The type to be checked for dynamic.</param>
         /// <returns><see langword="true"/> if the type implements <see cref="IDynamicMetaObjectProvider"/>. Otherwise, <see langword="false"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="type"/> is <see langword="null"/></exception>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool IsDynamic([NotNull] this Type type)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));

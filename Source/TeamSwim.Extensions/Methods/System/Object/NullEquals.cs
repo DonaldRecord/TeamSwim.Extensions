@@ -8,6 +8,7 @@ namespace System
     public static partial class ObjectExt
     {
         /// <summary>
+        ///     (Opinionated)
         ///     Version of <see cref="Object.Equals(object, object)"/> that is safe with <see langword="null"/> objects.
         /// </summary>
         /// <param name="objA"><see cref="object"/> A to be compared.</param>

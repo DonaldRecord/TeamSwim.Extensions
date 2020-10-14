@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="int"/><c>?</c>.
-    /// </summary>
-    public static partial class NullableInt32Ext
+    public static partial class Int32Ext
     {
         /// <summary>
         ///     Converts the string representation of a number to its nullable 32-bit signed integer equivalent. 

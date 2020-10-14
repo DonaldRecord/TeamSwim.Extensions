@@ -9,42 +9,36 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         private const string TryParseTest = "Int32?.TryParse()";
 
         [TestMethod]
-        public void Null_String_Returns_Null()
+        public void Null_String_Returns_True()
         {
-            string s = null;
+            string input = null;
 
-            int? i;
+            var actual = Int32Ext.TryParse(input, out var i);
 
-            var result = NullableInt32Ext.TryParse(s, out i);
-
-            Assert.IsTrue(result);
+            Assert.IsTrue(actual);
             Assert.IsNull(i);
         }
 
         [TestMethod]
-        public void Parsable_String_Returns_Nullable_Int32()
+        public void Invalid_String_Returns_True()
         {
-            var s = Utility.RandomString(maxLength: 4);
+            string input = "abc";
 
-            int? i;
+            var actual = Int32Ext.TryParse(input, out var i);
 
-            var result = NullableInt32Ext.TryParse(s, out i);
-
-            Assert.IsTrue(result);
-            Assert.IsNotNull(i);
+            Assert.IsFalse(actual);
+            Assert.IsNull(i);
         }
 
         [TestMethod]
-        public void Unparsable_String_Returns_Null()
+        public void Valid_String_Returns_True()
         {
-            var s = Utility.RandomString();
+            string input = "12";
 
-            int? i;
+            var actual = Int32Ext.TryParse(input, out var i);
 
-            var result = NullableInt32Ext.TryParse(s, out i);
-
-            Assert.IsFalse(result);
-            Assert.IsNull(i);
+            Assert.IsTrue(actual);
+            Assert.AreEqual(12, i);
         }
     }
 }

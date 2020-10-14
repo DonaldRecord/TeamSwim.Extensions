@@ -12,7 +12,8 @@ namespace System
         /// <param name="type">The generic type to check for compatibility.</param>
         /// <param name="genericTypeDefinition">The generic definition type being checked for compatibility with the passed type.</param>
         /// <returns><see langword="true"/> if the type is derived from the generic definition. Otherwise, <see langword="false"/>.</returns>
-        [Pure, PublicAPI, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [PublicAPI]
+        [Pure, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
         public static bool IsSubclassOfGenericDefinition(
             [NotNull] this Type type,
             [NotNull] Type genericTypeDefinition)
@@ -29,7 +30,8 @@ namespace System
         /// <param name="genericTypeDefinition">The generic definition type being checked for compatibility with the passed type.</param>
         /// <param name="genericTypes">The generic type arguments of the specified type.</param>
         /// <returns><see langword="true"/> if the type is derived from the generic definition. Otherwise, <see langword="false"/>.</returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool IsSubclassOfGenericDefinition( //TODO: Is there a better way to do this?
             [NotNull] this Type type,
             [NotNull] Type genericTypeDefinition,

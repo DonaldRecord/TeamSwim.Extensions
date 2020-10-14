@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="bool"/>.
-    /// </summary>
-    public static partial class BooleanExt
+    partial class BooleanExt
     {
         /// <summary>
         ///     Returns <see langword="false"/> if a <see cref="Nullable"/>&lt;<see cref="bool"/>&gt; is <see langword="null"/>.

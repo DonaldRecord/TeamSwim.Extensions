@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace System
 {
+    // https://stackoverflow.com/questions/32763927/elegant-way-of-converting-between-stringcomparison-and-stringcomparer
     /// <summary>
     ///     Extension method class for <see cref="StringComparison"/>.
     /// </summary>
@@ -24,22 +25,8 @@ namespace System
         /// </summary>
         /// <param name="stringComparison">String comparison.</param>
         /// <returns>Equivalent <see cref="StringComparer"/> type.</returns>
-        [Pure, NotNull, PublicAPI, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [PublicAPI]
+        [Pure, NotNull]
         public static StringComparer ToStringComparer(this StringComparison stringComparison) => _maps[stringComparison]();
-
-        /// <summary>
-        ///     Return equivalent <see cref="StringComparer"/> of the specified <paramref name="stringComparison"/>.
-        /// </summary>
-        /// <param name="stringComparison">String comparison.</param>
-        /// <param name="defaultComparer">Default comparer to return if no equivalent <see cref="StringComparer"/> is found.</param>
-        /// <returns>Equivalent <see cref="StringComparer"/> type.</returns>
-        [Pure, NotNull, PublicAPI]
-        public static StringComparer ToStringComparer(this StringComparison stringComparison, [NotNull] StringComparer defaultComparer)
-        {
-            if (_maps.ContainsKey(stringComparison))
-                return _maps[stringComparison]();
-            else
-                return defaultComparer;
-        }
     }
 }

@@ -39,6 +39,7 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\README.md" Link="README.md" />
     <None Include="packageIcon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 

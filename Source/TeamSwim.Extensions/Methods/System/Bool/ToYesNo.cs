@@ -5,7 +5,7 @@ namespace System
     /// <summary>
     ///     Extension method class for <see cref="bool"/>.
     /// </summary>
-    public static class BoolExt
+    public static partial class BooleanExt
     {
         /// <summary>
         ///     Returns string representation of bool: "yes" for <see langword="true"/>, "no" for <see langword="false"/>.
