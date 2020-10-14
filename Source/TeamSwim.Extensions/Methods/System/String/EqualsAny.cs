@@ -1,4 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 
 namespace System
 {
@@ -11,11 +13,12 @@ namespace System
         /// <param name="stringComparison"></param>
         /// <param name="strings"></param>
         /// <returns></returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool EqualsAny(
             [NotNull] this string stringA,
             StringComparison stringComparison,
-            [ItemCanBeNull, CanBeNull] params string[] strings)
+            [CanBeNull, ItemCanBeNull, InstantHandle] IEnumerable<string> strings)
         {
             if (strings == null) return false;
 
@@ -27,5 +30,19 @@ namespace System
 
             return false;
         }
+
+        /// <summary>
+        ///     Determines if a string is equal to any specified <paramref name="strings"/> using a <see cref="StringComparison"/>.
+        /// </summary>
+        /// <param name="stringA"></param>
+        /// <param name="stringComparison"></param>
+        /// <param name="strings"></param>
+        /// <returns></returns>
+        [PublicAPI]
+        [Pure]
+        public static bool EqualsAny(
+            [NotNull] this string stringA,
+            StringComparison stringComparison,
+            [ItemCanBeNull, CanBeNull] params string[] strings) => stringA.EqualsAny(stringComparison, strings.AsEnumerable());
     }
 }

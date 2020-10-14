@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+// using System.Linq;
+
 namespace System
 {
     public static partial class StringExt
@@ -13,7 +15,8 @@ namespace System
         /// <param name="checks">Values to check for in string.</param>
         /// <returns><see langword="true"/> if any of the values are contained in the string. Otherwise, <see langword="false"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> or <paramref name="checks"/> is <see langword="null" />.</exception>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool ContainsAny(
             [NotNull] this string value, 
             [NotNull, ItemCanBeNull] params string[] checks)
@@ -24,24 +27,27 @@ namespace System
             return checks.Any(value.Contains);
         }
 
-        ///// <summary>
-        /////     Determines if any of the values are contained within the string.
-        ///// </summary>
-        ///// <param name="value">String to check for values.</param>
-        ///// <param name="comparison">String Comparison to use for checking values.</param>
-        ///// <param name="checks">Values to check for in string.</param>
-        ///// <returns><see langword="true"/> if any of the values are contained in the string. Otherwise, <see langword="false"/>.</returns>
-        ///// <exception cref="ArgumentNullException"><paramref name="value"/> is <see langword="null" />.</exception>
-        //[Pure, PublicAPI]
-        //public static bool ContainsAny(
-        //    [NotNull] this string value, 
-        //    StringComparison comparison,
-        //    [NotNull, ItemNotNull] params string[] checks)
-        //{
-        //    if (value == null) throw new ArgumentNullException(nameof(value));
+        /// <summary>
+        ///     Determines if any of the values are contained within the string.
+        /// </summary>
+        /// <param name="value">String to check for values.</param>
+        /// <param name="comparison">String Comparison to use for checking values.</param>
+        /// <param name="checks">Values to check for in string.</param>
+        /// <returns><see langword="true"/> if any of the values are contained in the string. Otherwise, <see langword="false"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is <see langword="null" />.</exception>
+        [PublicAPI]
+        [Pure]
+        public static bool ContainsAny(
+            [NotNull] this string value,
+            StringComparison comparison,
+            [NotNull, ItemNotNull] params string[] checks)
+        {
+            if (value == null) throw new ArgumentNullException(nameof(value));
+            return checks.Any(str => Contains(value, str, comparison));
+        }
 
-        //    return checks.Any(str => value.Contains(str, comparison)); //TODO: <----WTF
-        //}
+        internal static bool Contains(string @string, string value, StringComparison comparison)
+            => @string.IndexOf(value, comparison) >= 0;
 
         /// <summary>
         ///     Determines if any of the values are contained within the string.
@@ -50,7 +56,8 @@ namespace System
         /// <param name="checks">Values to check for in string.</param>
         /// <returns><see langword="true"/> if any of the values are contained in the string. Otherwise, <see langword="false"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is <see langword="null" />.</exception>
-        [Pure, PublicAPI, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [PublicAPI]
+        [Pure]
         public static bool ContainsAny(
             [NotNull] this string value, 
             [NotNull, ItemCanBeNull, InstantHandle] IEnumerable<string> checks) => ContainsAny(value, checks.ToArray());
@@ -63,7 +70,8 @@ namespace System
         /// <param name="checks">Values to check for in string.</param>
         /// <returns><see langword="true"/> if any of the values are contained in the string. Otherwise, <see langword="false"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is <see langword="null" />.</exception>
-        [Pure, PublicAPI, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [PublicAPI]
+        [Pure]
         public static bool ContainsAny(
             [NotNull] this string value, 
             StringComparison comparison, 

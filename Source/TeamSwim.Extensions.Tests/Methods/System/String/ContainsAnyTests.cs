@@ -7,8 +7,6 @@ namespace TeamSwim.Extensions.Tests.SystemTests
     [TestClass]
     public class ContainsAnyTests : BaseUnitTest
     {
-        public const string ContainsAny = "String.ContainsAny()";
-
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ContainsAny_Throws_Exception_When_Value_Is_Null()

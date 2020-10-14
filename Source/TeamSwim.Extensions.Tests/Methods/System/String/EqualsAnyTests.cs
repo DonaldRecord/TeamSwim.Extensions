@@ -1,44 +1,44 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-//namespace TeamSwim.Extensions.Tests.SystemTests
-//{
-//    [TestClass]
-//    public class EqualsAnyTests : BaseUnitTest
-//    {
-//        [TestMethod]
-//        public void False_Returned_When_Strings_Are_Null()
-//        {
-//            var value = Utility.RandomString();
-//            var result = value.EqualsAny(StringComparison.CurrentCulture, null);
+namespace TeamSwim.Extensions.Tests.SystemTests
+{
+    [TestClass]
+    public class EqualsAnyTests : BaseUnitTest
+    {
+        [TestMethod]
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Null_Instance_Throws_Exception()
+        {
+            string str = null;
+            var actual = str.EqualsAny(StringComparison.OrdinalIgnoreCase, "A", "B", "C");
+            Assert.Fail();
+        }
 
-//            Assert.IsFalse(result);
-//        }
+        [TestMethod]
+        public void Returns_Expected_True()
+        {
+            var actual = "a".EqualsAny(StringComparison.OrdinalIgnoreCase, "A", "B", "C");
+            Assert.IsTrue(actual);
+        }
 
-//        [TestMethod]
-//        public void False_Returned_When_Sequence_Does_Not_Contain_String()
-//        {
-//            var strings = Pseudo.Pseudo.String().Exclude(null).GetList();
-//            var value = Pseudo.Pseudo.String().ExcludeList(strings).Get();
+        [TestMethod]
+        public void Returns_Expected_False()
+        {
+            var actual = "d".EqualsAny(StringComparison.OrdinalIgnoreCase, "A", "B", "C");
+            Assert.IsFalse(actual);
+        }
 
-//            var result = value.EqualsAny(StringComparison.CurrentCulture, strings.ToArray());
+        [TestMethod]
+        public void Can_Handle_Null_Argument_In_Array()
+        {
+            var actual = "a".EqualsAny(StringComparison.OrdinalIgnoreCase, "A", "B", null, "C");
+            Assert.IsTrue(actual);
+        }
 
-//            Assert.IsFalse(result);
-//        }
-
-//        [TestMethod]
-//        public void True_Returned_When_Sequence_Contains_String()
-//        {
-//            var strings = Pseudo.Pseudo.String().Exclude(null).NoLessThan(10).GetList();
-//            var value = strings.First();
-
-//            var result = value.EqualsAny(StringComparison.CurrentCulture, strings.ToArray());
-
-//            Assert.IsTrue(result);
-//        }
-//    }
-//}
+    }
+}
