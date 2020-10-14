@@ -5,7 +5,7 @@
 
 //namespace System
 //{
-//    public static partial class StringExt
+//    partial class StringExt
 //    {
 //        /// <summary>
 //        ///     Replaces any found substrings within a string with a singular new value.

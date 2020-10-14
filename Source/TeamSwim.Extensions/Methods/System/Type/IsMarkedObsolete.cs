@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using System.Reflection;
+using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace System
 {
@@ -50,7 +51,7 @@ namespace System
         /// <param name="type">The type to check for obsolescence.</param>
         /// <returns><see langword="true"/> if the type is marked obsolete. Otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
-        [Pure, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [Pure, ExcludeFromCodeCoverage]
         // ReSharper disable once ConditionIsAlwaysTrueOrFalse
         public static bool IsMarkedObsolete([NotNull] this Type type) => type.IsMarkedObsolete(out ObsoleteAttribute _);
     }

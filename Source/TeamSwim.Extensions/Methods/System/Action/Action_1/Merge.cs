@@ -12,7 +12,8 @@ namespace System
         /// <param name="value">First <see cref="Action{T}"/> value being merged.</param>
         /// <param name="newActions">Parameter array of <see cref="Action{T}"/> being merged together.</param>
         /// <returns></returns>
-        [Pure, NotNull, PublicAPI]
+        [PublicAPI]
+        [Pure, NotNull]
         public static Action<T> Merge<T>(
             [NotNull] this Action<T> value,
             [NotNull, ItemCanBeNull] params Action<T>[] newActions)

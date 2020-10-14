@@ -12,7 +12,8 @@ namespace System
         /// </summary>
         /// <param name="value">The <see cref="DayOfWeek"/> to determine.</param>
         /// <returns><see langword="true"/> if the day of week is <see cref="DayOfWeek.Saturday"/> or <see cref="DayOfWeek.Sunday"/>. Otherwise, <see langword="false"/>.</returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool IsWeekday(this DayOfWeek value)
         {
             switch (value)

@@ -15,8 +15,11 @@ namespace System.Linq
         /// <see langword="true" /> if every element of the source sequence passes the test in the specified predicate, or if the sequence is empty; otherwise, <see langword="false" />.</returns>
         /// <exception cref="T:System.ArgumentNullException">
         /// <paramref name="source" /> or <paramref name="predicate" /> is <see langword="null" />.</exception>
-        [Pure, PublicAPI]
-        public static bool All<T>(this IEnumerable<T> source, Func<T, int, bool> predicate)
+        [PublicAPI]
+        [Pure]
+        public static bool All<T>(
+            [InstantHandle, NotNull] this IEnumerable<T> source,
+            [InstantHandle, NotNull] Func<T, int, bool> predicate)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (predicate == null) throw new ArgumentNullException(nameof(predicate));

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\TeamSwim.Extensions\TeamSwim.Extensions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+
 </Project>

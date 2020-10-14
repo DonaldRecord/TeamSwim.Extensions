@@ -7,6 +7,13 @@ namespace System.Linq
 {
     partial class LinqExt
     {
+        /// <summary>
+        ///     Returns the first element of a sequence that satisfies one of the predicates.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of <paramref name="source" />.</typeparam>
+        /// <param name="source">The source collection.</param>
+        /// <param name="predicates">Predicates to evaluate for returning an element.</param>
+        /// <returns>The first element to satisfy one of the predicates.</returns>
         [PublicAPI]
         [Pure]
         public static T FirstCoalesce<T>(this IEnumerable<T> source, params Func<T, bool>[] predicates)

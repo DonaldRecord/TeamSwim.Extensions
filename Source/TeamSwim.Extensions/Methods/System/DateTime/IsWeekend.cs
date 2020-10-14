@@ -9,7 +9,8 @@ namespace System
         /// </summary>
         /// <param name="dateTime">DateTime to check for weekend.</param>
         /// <returns><see langword="true"/> if the DateTime falls on a weekend day. Otherwise, <see langword="false"/>.</returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool IsWeekend(this DateTime dateTime)
         {
             var day = dateTime.DayOfWeek;

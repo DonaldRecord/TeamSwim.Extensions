@@ -2,9 +2,10 @@
 
 namespace System
 {
-    public static partial class StringExt
+    partial class StringExt
     {
         /// <summary>
+        ///     (Opinionated)
         ///     Prepends a <paramref name="value"/> with a specified <paramref name="prependText"/> string.
         /// </summary>
         /// <param name="value">String that will have <paramref name="prependText"/> prepended to the beginning of it.</param>
@@ -17,7 +18,8 @@ namespace System
         /// </param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is not <see langword="null" />, but <paramref name="prependText"/> is <see langword="null"/>.</exception>
-        [Pure, NotNull, PublicAPI]
+        [PublicAPI]
+        [Pure, NotNull]
         public static string Prepend(
             [NotNull] this string value,
             [NotNull] string prependText,
@@ -42,7 +44,8 @@ namespace System
         /// </para>
         /// </param>
         /// <returns></returns>
-        [Pure, NotNull, PublicAPI, Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+        [PublicAPI]
+        [Pure, NotNull]
         public static string Prepend(
             [NotNull] this string value,
             char prependChar,

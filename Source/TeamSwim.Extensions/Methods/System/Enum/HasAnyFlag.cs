@@ -12,7 +12,8 @@ namespace System
         /// <param name="flags">Flags to enumerate and check for.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException">One of the <paramref name="flags" /> is a different type than the <paramref name="value"/>.</exception>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool HasAnyFlag(this Enum value, params Enum[] flags)
         {
             foreach (var f in flags)

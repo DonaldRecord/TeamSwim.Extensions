@@ -9,7 +9,8 @@ namespace System
         /// </summary>
         /// <param name="value">The <see cref="DayOfWeek"/> to determine.</param>
         /// <returns><see langword="true"/> if the day of week is <see cref="DayOfWeek.Monday"/>, <see cref="DayOfWeek.Tuesday"/>, <see cref="DayOfWeek.Wednesday"/>, <see cref="DayOfWeek.Thursday"/> or <see cref="DayOfWeek.Friday"/>. Otherwise, <see langword="false"/>.</returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool IsWeekend(this DayOfWeek value)
         {
             switch (value)

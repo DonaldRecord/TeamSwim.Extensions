@@ -14,14 +14,15 @@ namespace System
         /// <param name="value">The First <see cref="Action{T1, T2, T3}"/> delegate.</param>
         /// <param name="newDelegates">Array of subsequent delegates to merge.</param>
         /// <returns>A single <see cref="Action{T1, T2, T3}"/> delegates with a method body merged from all input delegates.</returns>
-        [Pure, NotNull, PublicAPI]
+        [PublicAPI]
+        [Pure, NotNull]
         public static Action<T1, T2, T3> Merge<T1, T2, T3>(
             [NotNull] this Action<T1, T2, T3> value,
             [NotNull, ItemCanBeNull] params Action<T1, T2, T3>[] newDelegates)
         {
             var news = Delegate.Combine(newDelegates);
             var ret = Delegate.Combine(value, news);
-            return (Action<T1, T2, T3>)ret;
+            return (Action<T1, T2, T3>) ret;
         }
     }
 }

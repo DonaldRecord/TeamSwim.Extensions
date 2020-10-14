@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 
 namespace System
 {
-    public static partial class StringExt
+    partial class StringExt
     {
         /// <summary>
         ///     Determines if a string is equal to any specified <paramref name="strings"/> using a <see cref="StringComparison"/>.

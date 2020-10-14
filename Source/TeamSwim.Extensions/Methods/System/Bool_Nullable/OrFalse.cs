@@ -9,7 +9,8 @@ namespace System
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool OrFalse([CanBeNull] this bool? value) => value.HasValue && value.Value;
     }
 }

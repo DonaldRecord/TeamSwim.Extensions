@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace System
 {
-    public static partial class StringExt
+    partial class StringExt
     {
         /// <summary>
         ///     Determines if any of the values are contained within the string.

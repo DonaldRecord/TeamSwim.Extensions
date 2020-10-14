@@ -14,7 +14,8 @@ namespace System
         /// <param name="s">A string containing a number to convert.</param>
         /// <param name="result">When this method returns, contains the 32-bit signed integer value equivalent of the number contained in s, if the conversion succeeded, or null if the conversion failed. The conversion fails if the s parameter is null or System.String.Empty, is not of the correct format, or represents a number less than System.Int32.MinValue or greater than System.Int32.MaxValue. This parameter is passed uninitialized.</param>
         /// <returns><see langword="true"/> if s was converted successfully; otherwise, <see langword="false"/>.</returns>
-        [Pure, PublicAPI]
+        [PublicAPI]
+        [Pure]
         public static bool TryParse([CanBeNull] string s, [CanBeNull] out int? result)
         {
             if (s == null)
