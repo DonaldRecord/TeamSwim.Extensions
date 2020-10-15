@@ -3,24 +3,14 @@ bin
 obj
 *.user
 /packages
-/GJR.Api/Scripts
-/GJR.Api/Content
-/GJR.Api/fonts
 /TestResults/b3a2bd67-7669-4182-938c-d7e63bcf292d
 /_NCrunch_GJR
-/GJR.Api/bower_components
-/GJR.Api/node_modules
 /artifacts/webdeploy/QA
-GJR.Web/coverage/
-/GJR.Database.ClientCenter/Import Schema Logs/*.log
-/GJR.Database.ClientCenter/*.jfm
-/GJR.Web/src/app/components/shared/env.constants.ts
 *.dbmdl
 /_ReSharper.Caches
 /PowershellScripts/*.log
-/GJR.Business.Tests/*.ncrunchproject
 **/bower_components/
 **/node_modules/
-/GJR.Document.Api/App_Data/DocumentCache
 paste.ts
-
+/Source/TestResults
+/Source/_NCrunch*
