@@ -12,5 +12,5 @@ obj
 **/bower_components/
 **/node_modules/
 paste.ts
-*.cache
 /Source/TestResults
+/Source/_NCrunch*
