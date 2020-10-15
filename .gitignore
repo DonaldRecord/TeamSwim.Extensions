@@ -13,3 +13,4 @@ obj
 **/node_modules/
 paste.ts
 *.cache
+/Source/TestResults
