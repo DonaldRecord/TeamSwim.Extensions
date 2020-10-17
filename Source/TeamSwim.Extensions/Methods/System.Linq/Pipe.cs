@@ -16,8 +16,8 @@ namespace System.Linq
         /// <param name="predicate">Filters objects that will be mutated.</param>
         /// <returns>Mutated collection.</returns>
         [PublicAPI]
-        [MustUseReturnValue, LinqTunnel]
-        public static IEnumerable<T> Mutate<T>(
+        [MustUseReturnValue, NotNull, ItemCanBeNull, LinqTunnel]
+        public static IEnumerable<T> Pipe<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T> mutation,
             [CanBeNull, InstantHandle] Func<T, bool> predicate = null) where T : class
@@ -46,7 +46,7 @@ namespace System.Linq
         /// <returns>Mutated collection.</returns>
         [PublicAPI]
         [MustUseReturnValue, LinqTunnel]
-        public static IEnumerable<T> Mutate<T>(
+        public static IEnumerable<T> Pipe<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T, int> mutation,
             [NotNull, InstantHandle] Func<T, int, bool> predicate = null) where T : class

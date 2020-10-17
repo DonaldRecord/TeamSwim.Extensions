@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Classes\" />
+    <Folder Include="ContractAnnotationTests\" />
   </ItemGroup>
 
 </Project>

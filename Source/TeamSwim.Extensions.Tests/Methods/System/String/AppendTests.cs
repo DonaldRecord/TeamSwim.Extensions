@@ -11,8 +11,8 @@ namespace TeamSwim.Extensions.Tests.SystemTests
     public class AppendTests : BaseUnitTest
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Null_Value_Throws_Argument_Null_Exception()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void Null_Value_Throws_Null_Reference_Exception()
         {
             string value = null;
             string appendText = Utility.RandomString();
@@ -64,10 +64,8 @@ namespace TeamSwim.Extensions.Tests.SystemTests
             Assert.AreNotEqual(actual, expected);
         }
 
-        //OVERLOADS
-
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void Null_Value_Throws_Exception_Comparison_Overload()
         {
             string value = null;

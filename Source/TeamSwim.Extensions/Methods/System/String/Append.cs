@@ -31,7 +31,7 @@ namespace System
             bool onlyAppendIfNotEndsWith = false,
             StringComparison comparisonType = StringComparison.CurrentCulture)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw new NullReferenceException();
             if (appendText == null) throw new ArgumentNullException(nameof(appendText));
 
             if (onlyAppendIfNotEndsWith && value.EndsWith(appendText, comparisonType)) return value;

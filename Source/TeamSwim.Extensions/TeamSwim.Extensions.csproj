@@ -2,7 +2,7 @@
 
   <!--Project Properties-->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <Version>1.1.0</Version>
     <RootNamespace>NotUsed</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>

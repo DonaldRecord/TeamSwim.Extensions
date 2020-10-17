@@ -9,7 +9,7 @@ namespace System.Linq
     {
         /// <summary>
         ///     (Opinionated)
-        ///     Create a sequence from a single element. Will not throw for null values.
+        ///     Create a sequence from a single element. Will not throw for <see langword="null"/> values.
         /// </summary>
         /// <typeparam name="T">Type of destination sequence.</typeparam>
         /// <param name="element">Object that become the first element in the destination sequence.</param>

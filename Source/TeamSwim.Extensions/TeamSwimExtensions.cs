@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace TeamSwim
 {
@@ -14,7 +15,6 @@ namespace TeamSwim
         /// <summary>
         ///     Tag for the TeamSwim Extensions Assembly
         /// </summary>
-        [ExcludeFromCodeCoverage]
-        public static Assembly Assembly { get; } = typeof(TeamSwimExtensions).Assembly;
+        public static Assembly Assembly { [PublicAPI] get; } = typeof(TeamSwimExtensions).Assembly;
     }
 }
