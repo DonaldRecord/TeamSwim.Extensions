@@ -40,6 +40,7 @@ namespace System.Linq.Expressions
         /// <param name="propertyInfo"></param>
         /// <exception cref="ArgumentException">Expression is not a valid <see cref="MemberExpression"/> that can return an instance of <see cref="PropertyInfo"/>.</exception>
         /// <returns><see langword="true"/> if the expression represents an instance of <see cref="PropertyInfo"/>. Otherwise, <see langword="false"/>.</returns>
+        [PublicAPI]
         [Pure, ContractAnnotation("=>true,propertyInfo:notnull;=>false,propertyInfo:null")]
         public static bool TryGetPropertyInfo<T>(
             [CanBeNull] this Expression<Func<T, object>> expression, 
