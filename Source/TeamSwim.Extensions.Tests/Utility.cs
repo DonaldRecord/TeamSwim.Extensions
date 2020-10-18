@@ -34,5 +34,7 @@ namespace System
             new DateTime(1940, 1, 1)
                 .AddSeconds(Enumerable.Range(214_748_364, 10_000)
                     .OrderBy(_ => Guid.NewGuid()).First());
+
+        public static int RandomInteger() => Enumerable.Range(1, 200).OrderBy(_ => Guid.NewGuid()).First();
     }
 }

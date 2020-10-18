@@ -8,7 +8,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
     public class PrependTests : BaseUnitTest
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [ExpectedException(typeof(NullReferenceException))]
         public void Null_Value_Throws_Exception()
         {
             string value = null;
@@ -28,36 +28,39 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         }
 
         [TestMethod]
-        public void String_Is_Not_Prepended_When_Bool_Is_True_And_Value_Ends_With()
+        public void String_Is_Not_Prepended_When_Bool_Is_True_And_Value_Starts_With()
         {
-            string actual = Utility.RandomString();
-            string appendText = actual.First().ToString();
+            string value = "abc";
+            string append = "a";
+            string expected = value;
 
-            string expected = actual.Prepend(appendText, true);
+            string actual = value.Prepend(append, true);
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void String_Is_Prepended_When_Bool_Is_True_And_Value_Doesnt_End_With()
+        public void String_Is_Prepended_When_Bool_Is_True_And_Value_Doesnt_Start_With()
         {
-            string actual = Utility.RandomString();
-            string appendText = Utility.RandomString(exclusion: actual);
+            string value = "abc";
+            string append = "d";
+            string expected = "dabc";
 
-            string expected = actual.Prepend(appendText, true);
+            string actual = value.Prepend(append, true);
 
-            Assert.AreNotEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void String_Is_Prepended_When_Bool_Is_False()
         {
-            string actual = Utility.RandomString();
-            string appendText = Utility.RandomString(exclusion: actual);
+            string value = "abc";
+            string append = "a";
+            string expected = "aabc";
 
-            string expected = actual.Prepend(appendText, false);
+            string actual = value.Prepend(append, false);
 
-            Assert.AreNotEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         //OVERLOADS

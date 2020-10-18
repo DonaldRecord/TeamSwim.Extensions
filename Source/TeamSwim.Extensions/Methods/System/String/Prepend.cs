@@ -25,7 +25,7 @@ namespace System
             [NotNull] string prependText,
             bool onlyPrependIfNotStartsWith = false)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw new NullReferenceException();
             if (prependText == null) throw new ArgumentNullException(nameof(prependText));
 
             if (onlyPrependIfNotStartsWith && value.StartsWith(prependText)) return value;
