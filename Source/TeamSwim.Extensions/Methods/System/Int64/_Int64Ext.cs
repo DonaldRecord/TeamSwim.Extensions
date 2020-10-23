@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace System
+﻿namespace System
 {
     /// <summary>
     ///     Extensing method class for <see cref="long"/>.
