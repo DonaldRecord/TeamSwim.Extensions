@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static partial class EnumExt
+    partial class EnumExt
     {
         /// <summary>
         ///     Determines if the <see cref="Enum"/> <paramref name="value"/> 

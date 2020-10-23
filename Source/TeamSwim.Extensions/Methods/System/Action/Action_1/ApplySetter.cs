@@ -2,7 +2,7 @@
 
 namespace System
 {
-    public static partial class ActionExt
+    partial class ActionExt
     {
         /// <summary>
         ///     (Opinionated)

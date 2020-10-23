@@ -8,8 +8,8 @@
 //{
 //    public class InstanceComparer<T> : IEqualityComparer<T>
 //    {
-//        private readonly Dictionary<Func<IEqualityComparer, T, T, bool>, IEqualityComparer> _equalsMethods = new Dictionary<Func<IEqualityComparer, T, T, bool>, IEqualityComparer>();
-//        private readonly Dictionary<Func<IEqualityComparer, T, int>, IEqualityComparer> _hashCodeMethods = new Dictionary<Func<IEqualityComparer, T, int>, IEqualityComparer>();
+//        private readonly Dictionary<Func<IEqualityComparer, T, T, bool>, DelegateStorage<T>> _equalsMethods = new Dictionary<Func<IEqualityComparer, T, T, bool>, DelegateStorage<T>>();
+//        private readonly Dictionary<Func<IEqualityComparer, T, int>, DelegateStorage<T>> _hashCodeMethods = new Dictionary<Func<IEqualityComparer, T, int>, DelegateStorage<T>>();
 //        private readonly HashSet<string> _debugNames = new HashSet<string>(StringComparer.Ordinal);
 
 //        /// <summary>
@@ -31,8 +31,8 @@
 //                var comparer = kvp.Value;
 //                var method = kvp.Key;
 
-//                var result = method.Invoke(comparer, x, y);
-//                if (!result) 
+//                var result = method.Invoke(comparer.Comparer, x, y);
+//                if (!result)
 //                    return false;
 //            }
 
@@ -61,7 +61,7 @@
 //                        var comparer = kvp.Value;
 //                        var method = kvp.Key;
 
-//                        result = (result * MULTIPLIER) ^ method.Invoke(comparer, obj);
+//                        result = (result * MULTIPLIER) ^ method.Invoke(comparer.Comparer, obj);
 //                    }
 //                }
 
@@ -78,22 +78,25 @@
 //                throw new ArgumentNullException(nameof(property));
 
 //            var propertyInfo = property.GetPropertyInfo();
-//            if (propertyInfo.GetMethod == null)
-//            {
-//                // TODO: Resource file?
-//                var msg = $"A getter method for the property {propertyInfo.Name} does not exist. Cannot be used in member comparison.";
-//                var ex = new ArgumentException(msg);
-//                throw ex;
-//            }
+
+//            // C# protects against this
+//            //if (propertyInfo.GetMethod == null)
+//            //{
+//            //    // TODO: Resource file?
+//            //    var msg = $"A getter method for the property {propertyInfo.Name} does not exist. Cannot be used in member comparison.";
+//            //    var ex = new ArgumentException(msg);
+//            //    throw ex;
+//            //}
 
 //            var comparerProxy = new ObjectComparerProxy<TProperty>(comparer);
+//            var storage = new DelegateStorage<T>(comparerProxy);
 //            var hashMethod = CompileHashCodeExpression(t => Expression.Property(t, propertyInfo));
 //            var equalsMethod = CompileEqualsExpression(
 //                t1 => Expression.Property(t1, propertyInfo),
 //                t2 => Expression.Property(t2, propertyInfo));
 
-//            _hashCodeMethods.Add(hashMethod, comparerProxy);
-//            _equalsMethods.Add(equalsMethod, comparerProxy);
+//            _hashCodeMethods.Add(hashMethod, storage);
+//            _equalsMethods.Add(equalsMethod, storage);
 //            _debugNames.Add(propertyInfo.Name);
 
 //            return this;
@@ -107,24 +110,65 @@
 //                throw new ArgumentNullException(nameof(field));
 
 //            var comparerProxy = new ObjectComparerProxy<TField>(comparer);
+//            var storage = new DelegateStorage<T>(comparerProxy);
 //            var fieldInfo = field.GetFieldInfo();
 //            var hashMethod = CompileHashCodeExpression(t => Expression.Field(t, fieldInfo));
 //            var equalsMethod = CompileEqualsExpression(
 //                t1 => Expression.Field(t1, fieldInfo),
 //                t2 => Expression.Field(t2, fieldInfo));
 
-//            _hashCodeMethods.Add(hashMethod, comparerProxy);
-//            _equalsMethods.Add(equalsMethod, comparerProxy);
+//            _hashCodeMethods.Add(hashMethod, storage);
+//            _equalsMethods.Add(equalsMethod, storage);
 //            _debugNames.Add(fieldInfo.Name);
 
 //            return this;
 //        }
 
 //        public InstanceComparer<T> AddExpression<TValue>(
-//            Func<T, TValue> expression,
-//            IEqualityComparer<TValue> comparer = null)
+//            [NotNull] Expression<Func<T, TValue>> expression,
+//            [CanBeNull] IEqualityComparer<TValue> comparer = null)
 //        {
 //            // equals: (comparer, T1, T2) => 
+
+//            if (expression == null)
+//                throw new ArgumentNullException(nameof(expression));
+
+//            var comparerProxy = new ObjectComparerProxy<TValue>(comparer);
+//            var storage = new DelegateStorage<T>(comparerProxy);
+//            var lambda = expression as LambdaExpression;
+//            // LambdaExpression.
+
+
+
+//            var hashMethod = CompileHashCodeExpression(t => );
+//            var equalsMethod = CompileEqualsExpression(
+//                t1 => new ParameterReplacer(t1).Visit(lambda),
+//                t2 => new ParameterReplacer(t2).Visit(lambda));
+
+//            _hashCodeMethods.Add(hashMethod, comparerProxy);
+//            _equalsMethods.Add(equalsMethod, comparerProxy);
+//            _debugNames.Add(expression.ToString());
+
+//            //var t1 = Expression.Parameter(typeof(T), "x");
+//            //var t2 = Expression.Parameter(typeof(T), "y");
+//            //var comparerParam = Expression.Parameter(typeof(IEqualityComparer), "comparer");
+//            ////var expr1 = getFirstExpr.Invoke(t1);
+//            ////var expr2 = getFirstExpr.Invoke(t2);
+
+//            //Expression<Func<IEqualityComparer, T, T, bool>> method =
+//            //    Expression.Lambda<Func<IEqualityComparer, T, T, bool>>(
+//            //        Expression.Call(
+//            //            comparerParam,
+//            //            _equalityComparerEqualsMethod,
+//            //            Expression.Convert(expr1, typeof(object)),
+//            //            Expression.Convert(expr2, typeof(object))
+//            //        ),
+//            //        comparerParam, t1, t2);
+
+//            //var finalMethod = method.Compile();
+//            //return finalMethod;
+
+//            return this;
 //        }
 
 
@@ -135,22 +179,24 @@
 //            typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.GetHashCode));
 
 //        private static Func<IEqualityComparer, T, T, bool> CompileEqualsExpression(
-//            Func<Expression, Expression> getFirstExpr,
-//            Func<Expression, Expression> getSecondExpr)
+//            Func<ParameterExpression, Expression> getFirstExpr,
+//            Func<ParameterExpression, Expression> getSecondExpr)
 //        {
 //            // (comparer, t1, t2) => comparer.Equals(t1, t2);
 
 //            var t1 = Expression.Parameter(typeof(T), "x");
 //            var t2 = Expression.Parameter(typeof(T), "y");
 //            var comparerParam = Expression.Parameter(typeof(IEqualityComparer), "comparer");
+//            var expr1 = getFirstExpr.Invoke(t1);
+//            var expr2 = getFirstExpr.Invoke(t2);
 
 //            Expression<Func<IEqualityComparer, T, T, bool>> method =
 //                Expression.Lambda<Func<IEqualityComparer, T, T, bool>>(
 //                    Expression.Call(
 //                        comparerParam,
 //                        _equalityComparerEqualsMethod,
-//                        Expression.Convert(getFirstExpr.Invoke(t1), typeof(object)),
-//                        Expression.Convert(getSecondExpr.Invoke(t2), typeof(object))
+//                        Expression.Convert(expr1, typeof(object)),
+//                        Expression.Convert(expr2, typeof(object))
 //                    ),
 //                    comparerParam, t1, t2);
 
@@ -158,19 +204,20 @@
 //            return finalMethod;
 //        }
 
-//        private static Func<IEqualityComparer, T, int> CompileHashCodeExpression(Func<Expression, Expression> getMemberExpr)
+//        private static Func<IEqualityComparer, T, int> CompileHashCodeExpression(
+//            Func<ParameterExpression, Expression> getMemberExpr)
 //        {
 //            //(comparer, t) => comparer.GetHashCode(t.Member);
 
 //            var t = Expression.Parameter(typeof(T), "x");
 //            var comparerParam = Expression.Parameter(typeof(IEqualityComparer), "comparer");
+//            var expr = getMemberExpr.Invoke(t);
 
-//            Expression<Func<IEqualityComparer, T, int>> method =
-//                Expression.Lambda<Func<IEqualityComparer, T, int>>(
+//            var method = Expression.Lambda<Func<IEqualityComparer, T, int>>(
 //                    Expression.Call(
 //                        comparerParam,
 //                        _equalityComparerHashCodeMethod,
-//                        Expression.Convert(getMemberExpr.Invoke(t), typeof(object))),
+//                        Expression.Convert(expr, typeof(object))),
 //                    comparerParam, t);
 
 //            var finalMethod = method.Compile();
@@ -202,6 +249,32 @@
 //                var ty = (T2) y;
 //                return GenericComparer.Equals(tx, ty);
 //            }
+//        }
+
+//        //internal class ParameterReplacer : ExpressionVisitor
+//        //{
+//        //    private readonly ParameterExpression _parameter;
+
+//        //    protected override Expression VisitParameter(ParameterExpression node)
+//        //    {
+//        //        return base.VisitParameter(_parameter);
+//        //    }
+
+//        //    internal ParameterReplacer(ParameterExpression parameter)
+//        //    {
+//        //        _parameter = parameter;
+//        //    }
+//        //}
+//        internal class DelegateStorage<T>
+//        {
+//            public DelegateStorage([NotNull] IEqualityComparer comparer, [CanBeNull] Func<T> selector = null)
+//            {
+//                Comparer = comparer;
+//                Selector = selector;
+//            }
+
+//            [NotNull] public IEqualityComparer Comparer { get; }
+//            [CanBeNull] public Func<T> Selector { get; }
 //        }
 //    }
 //}

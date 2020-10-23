@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="DateTime"/>.
-    /// </summary>
-    public static partial class DateTimeExt
+    partial class DateTimeExt
     {
         /// <summary>
         ///     Determines if <paramref name="value"/> is between <paramref name="start"/> and <paramref name="end"/> values.

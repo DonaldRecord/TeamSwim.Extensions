@@ -3,10 +3,7 @@ using JetBrains.Annotations;
 
 namespace System.Linq
 {
-    /// <summary>
-    ///     Linq extension method class.
-    /// </summary>
-    public static partial class LinqExt
+    partial class LinqExt
     {
         /// <summary>
         ///     Loops set of new elements to add them to an existing collection.

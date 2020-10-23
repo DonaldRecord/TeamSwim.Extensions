@@ -3,10 +3,7 @@ using JetBrains.Annotations;
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="Type"/>.
-    /// </summary>
-    public static partial class TypeExt
+    partial class TypeExt
     {
         /// <summary>
         ///     Determines if a type is <see langword="dynamic"/>, and intended to be accessed via the .NET Dynamic API.

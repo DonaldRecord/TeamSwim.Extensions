@@ -4,7 +4,7 @@ using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeC
 
 namespace System
 {
-    public static partial class TypeExt
+    partial class TypeExt
     {
         /// <summary>
         ///     Determines if the specified <paramref name="type"/> is marked obsolete via the use of <see cref="ObsoleteAttribute"/>.

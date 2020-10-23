@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="string"/>.
-    /// </summary>
-    public static partial class StringExt
+    partial class StringExt
     {
         /// <summary>
         ///     Appends a <paramref name="value"/> with a specified <paramref name="appendText"/> string.

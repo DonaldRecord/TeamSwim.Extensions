@@ -6,10 +6,7 @@ using JetBrains.Annotations;
 
 namespace System.Linq.Expressions
 {
-    /// <summary>
-    ///     Extension method class for <see cref="Expression"/>.
-    /// </summary>
-    public static partial class ExpressionExt
+    partial class ExpressionExt
     {
         /// <summary>
         ///     Get <see cref="FieldInfo"/> from an <paramref name="expression"/>.

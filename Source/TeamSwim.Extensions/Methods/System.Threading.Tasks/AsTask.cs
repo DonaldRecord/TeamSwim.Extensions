@@ -5,10 +5,7 @@ using JetBrains.Annotations;
 
 namespace System.Threading.Tasks
 {
-    /// <summary>
-    ///     Extension methods in System.Threading.Tasks namespace.
-    /// </summary>
-    public static class TasksExt
+    partial class TasksExt
     {
         /// <summary>
         ///     (Opinionated)

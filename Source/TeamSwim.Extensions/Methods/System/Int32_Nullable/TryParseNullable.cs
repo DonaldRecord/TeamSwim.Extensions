@@ -16,7 +16,7 @@ namespace System
         /// <returns><see langword="true"/> if s was converted successfully; otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
         [Pure]
-        public static bool TryParse([CanBeNull] string s, [CanBeNull] out int? result)
+        public static bool TryParseNullable([CanBeNull] string s, [CanBeNull] out int? result)
         {
             if (s == null)
             {

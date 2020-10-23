@@ -1,5 +1,6 @@
 ﻿//using System;
 //using System.Collections.Generic;
+//using System.Linq.Expressions;
 //using System.Text;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,87 +10,127 @@
 //    public class InstanceComparerTests
 //    {
 //        [TestMethod]
-//        public void Returns_Expected_True()
+//        public void Valid_Property_Expression_Returns_Expected_Results()
 //        {
-            
+//            var comparer = new InstanceComparer<TestClass>()
+//                .AddProperty(c => c.StringProperty, StringComparer.OrdinalIgnoreCase);
+
+//            var a = new TestClass {StringProperty = "a"};
+//            var b = new TestClass {StringProperty = "A"};
+//            var c = new TestClass {StringProperty = "b"};
+
+//            Assert.IsTrue(comparer.Equals(a, a));
+//            Assert.IsTrue(comparer.Equals(b, b));
+//            Assert.IsTrue(comparer.Equals(a, b));
+//            Assert.IsFalse(comparer.Equals(a, null));
+//            Assert.IsFalse(comparer.Equals(b, null));
+//            Assert.IsFalse(comparer.Equals(c, null));
+//            Assert.IsFalse(comparer.Equals(a, c));
+//            Assert.IsFalse(comparer.Equals(b, c));
+
+//            Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
+//            Assert.AreNotEqual(comparer.GetHashCode(a), comparer.GetHashCode(c));
+//            Assert.AreNotEqual(comparer.GetHashCode(b), comparer.GetHashCode(c));
 //        }
 
 //        [TestMethod]
-//        public void Returns_Expected_False()
+//        public void Valid_Field_Expression_Returns_Expected_Results()
 //        {
+//            var comparer = new InstanceComparer<TestClass>()
+//                .AddField(c => c.StringField, StringComparer.OrdinalIgnoreCase);
 
+//            var a = new TestClass { StringField = "a" };
+//            var b = new TestClass { StringField = "A" };
+//            var c = new TestClass { StringField = "b" };
+
+//            Assert.IsTrue(comparer.Equals(a, a));
+//            Assert.IsTrue(comparer.Equals(b, b));
+//            Assert.IsTrue(comparer.Equals(a, b));
+//            Assert.IsFalse(comparer.Equals(a, null));
+//            Assert.IsFalse(comparer.Equals(b, null));
+//            Assert.IsFalse(comparer.Equals(c, null));
+//            Assert.IsFalse(comparer.Equals(a, c));
+//            Assert.IsFalse(comparer.Equals(b, c));
+
+//            Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
+//            Assert.AreNotEqual(comparer.GetHashCode(a), comparer.GetHashCode(c));
+//            Assert.AreNotEqual(comparer.GetHashCode(b), comparer.GetHashCode(c));
 //        }
 
 //        [TestMethod]
+//        public void Valid_Expression_Returns_Expected_Results()
+//        {
+//            var comparer = new InstanceComparer<TestClass>()
+//                .AddExpression(t => t.StringProperty.EndsWith("a"));
+
+//            var a = new TestClass {StringField = "cba"};
+//            var b = new TestClass {StringField = "a"};
+//            var c = new TestClass {StringField = "b"};
+
+//            Assert.IsTrue(comparer.Equals(a, a));
+//            Assert.IsTrue(comparer.Equals(b, b));
+//            Assert.IsTrue(comparer.Equals(a, b));
+//            Assert.IsFalse(comparer.Equals(a, null));
+//            Assert.IsFalse(comparer.Equals(b, null));
+//            Assert.IsFalse(comparer.Equals(c, null));
+//            Assert.IsFalse(comparer.Equals(a, c));
+//            Assert.IsFalse(comparer.Equals(b, c));
+
+//            Assert.AreEqual(comparer.GetHashCode(a), comparer.GetHashCode(b));
+//            Assert.AreNotEqual(comparer.GetHashCode(a), comparer.GetHashCode(c));
+//            Assert.AreNotEqual(comparer.GetHashCode(b), comparer.GetHashCode(c));
+//        }
+
+//        [TestMethod]
+//        [ExpectedException(typeof(ArgumentNullException))]
+//        public void Null_Property_Expression_Throws_Exception()
+//        {
+//            Expression<Func<TestClass, string>> expr = null;
+//            var comparer = new InstanceComparer<TestClass>().AddProperty(expr, StringComparer.OrdinalIgnoreCase);
+//            Assert.Fail();
+//        }
+
+//        [TestMethod]
+//        [ExpectedException(typeof(ArgumentException))]
 //        public void Invalid_Property_Expression_Throws_Exception()
 //        {
+//            var comparer = new InstanceComparer<TestClass>()
+//                .AddProperty(c => c.StringField, StringComparer.OrdinalIgnoreCase);
+//            Assert.Fail();
+//        }
 
+//        //[TestMethod]
+//        //[ExpectedException(typeof(ArgumentException))]
+//        //public void WriteOnly_Property_Expression_Throws_Exception()
+//        //{
+//        //    var comparer = new InstanceComparer<TestClass>()
+//        //        .AddProperty(c => c.WriteOnlyProperty, StringComparer.OrdinalIgnoreCase);
+//        //    Assert.Fail();
+//        //}
+
+//        [TestMethod]
+//        [ExpectedException(typeof(ArgumentNullException))]
+//        public void Null_Field_Expression_Throws_Exception()
+//        {
+//            Expression<Func<TestClass, string>> expr = null;
+//            var comparer = new InstanceComparer<TestClass>().AddField(expr, StringComparer.OrdinalIgnoreCase);
+//            Assert.Fail();
 //        }
 
 //        [TestMethod]
+//        [ExpectedException(typeof(ArgumentException))]
 //        public void Invalid_Field_Expression_Throws_Exception()
 //        {
-
-//        }
-
-//        [TestMethod]
-//        public void Invalid_Member_Expression_Throws_Exception()
-//        {
-
-//        }
-
-//        public class InstanceComparerTestScope
-//        {
-//            public TestClass Instance1 { get; }
-//            public TestClass Instance2 { get; }
-//            public TestSubClass SubInstance1 { get; }
-//            public TestSubClass SubInstance2 { get; }
-
-//            public InstanceComparerTestScope()
-//            {
-//                SubInstance1 = new TestSubClass
-//                {
-//                    NumberProperty = Utility.RandomInteger(),
-//                    StringProperty = Utility.RandomString()
-//                };
-
-//                SubInstance2 = new TestSubClass
-//                {
-//                    NumberProperty = Utility.RandomInteger(),
-//                    StringProperty = Utility.RandomString(5, 8)
-//                };
-
-//                Instance1 = new TestClass
-//                {
-//                    NumberProperty = Utility.RandomInteger(),
-//                    StringProperty = Utility.RandomString(),
-//                    ComplexProperty = SubInstance1
-//                };
-
-//                Instance2 = new TestClass
-//                {
-//                    NumberProperty = Utility.RandomInteger(),
-//                    StringProperty = Utility.RandomString(5, 8),
-//                    ComplexProperty = SubInstance2
-//                };
-//            }
-
-//            public static void AssertEquals(
-//                Action<InstanceComparerTestScope> scope,
-//                Func<InstanceComparer<TestClass>, InstanceComparer<TestClass>> comparer,
-//                bool expectedResult)
-//            {
-//                var scopeInstance = new InstanceComparerTestScope();
-//                scope.Invoke(scopeInstance);
-//                var comparerInstance = comparer.Invoke(new InstanceComparer<TestClass>());
-//                var actual = comparerInstance.Equals(scopeInstance.Instance1, scopeInstance.Instance2);
-//                Assert.AreEqual(expectedResult, actual);
-//            }
+//            var comparer = new InstanceComparer<TestClass>()
+//                .AddField(c => c.StringProperty, StringComparer.OrdinalIgnoreCase);
+//            Assert.Fail();
 //        }
 
 //        public class TestClass
 //        {
+//            public string StringField;
 //            public string StringProperty { get; set; }
+//            public string WriteOnlyProperty { set => StringField = value; }
 //            public int NumberProperty { get; set; }
 //            public TestSubClass ComplexProperty { get; set; }
 //        }

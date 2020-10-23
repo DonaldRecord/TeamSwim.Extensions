@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="byte"/>.
-    /// </summary>
-    public static partial class ByteExt
+    partial class ByteExt
     {
         /// <summary>
         ///     Determines if <paramref name="value"/> is between <paramref name="start"/> and <paramref name="end"/> values.
