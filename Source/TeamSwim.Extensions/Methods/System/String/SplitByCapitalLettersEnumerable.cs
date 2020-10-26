@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
@@ -16,7 +17,7 @@ namespace System
         [Pure, NotNull, ItemNotNull, LinqTunnel]
         public static IEnumerable<string> SplitByCapitalLettersEnumerable(this string value)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw Exceptions.ArgumentNull(nameof(value));
             var sb = new StringBuilder();
 
             for (var i = 0; i < value.Length; i++)

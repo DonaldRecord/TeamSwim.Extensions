@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Collections.Generic
 {
@@ -15,8 +16,8 @@ namespace System.Collections.Generic
             [NotNull] this IDictionary<TKey, TValue> dictionary, 
             [NotNull, InstantHandle] IEnumerable<TKey> keys)
         {
-            if (dictionary == null) throw new NullReferenceException();
-            if (keys == null) throw new ArgumentNullException();
+            if (dictionary == null) throw Exceptions.NullRef();
+            if (keys == null) throw Exceptions.ArgumentNull(nameof(keys));
             return keys.All(dictionary.ContainsKey);
         }
 

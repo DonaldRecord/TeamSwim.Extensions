@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
@@ -25,8 +26,8 @@ namespace System
             [NotNull] string prependText,
             bool onlyPrependIfNotStartsWith = false)
         {
-            if (value == null) throw new NullReferenceException();
-            if (prependText == null) throw new ArgumentNullException(nameof(prependText));
+            if (value == null) throw Exceptions.NullRef();
+            if (prependText == null) throw Exceptions.ArgumentNull(nameof(prependText));
 
             if (onlyPrependIfNotStartsWith && value.StartsWith(prependText)) return value;
             return String.Concat(prependText, value);

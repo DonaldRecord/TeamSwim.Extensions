@@ -12,5 +12,10 @@ namespace TeamSwim
         ///     Tag for the TeamSwim Extensions Assembly
         /// </summary>
         public static Assembly Assembly { [PublicAPI] get; } = typeof(TeamSwimExtensions).Assembly;
+
+        /// <summary>
+        ///     Source of exceptions thrown from the TeamSwim.Extensions library.
+        /// </summary>
+        public const string ExceptionSource = "TeamSwim.Extensions";
     }
 }

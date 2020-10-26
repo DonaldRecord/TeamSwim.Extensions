@@ -1,5 +1,6 @@
 ﻿using System.Dynamic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
@@ -16,7 +17,7 @@ namespace System
         [Pure]
         public static bool IsDynamic([NotNull] this Type type)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (type == null) throw Exceptions.ArgumentNull(nameof(type));
 
             var result = typeof(IDynamicMetaObjectProvider).IsAssignableFrom(type);
             return result;

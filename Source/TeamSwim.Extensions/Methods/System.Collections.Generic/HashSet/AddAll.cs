@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Collections.Generic
 {
@@ -17,8 +18,8 @@ namespace System.Collections.Generic
             [NotNull, NoEnumeration] this HashSet<T> hashSet,
             [NotNull, ItemCanBeNull, InstantHandle] IEnumerable<T> range)
         {
-            if (hashSet == null) throw new NullReferenceException();
-            if (range == null) throw new ArgumentNullException(nameof(range));
+            if (hashSet == null) throw Exceptions.NullRef();
+            if (range == null) throw Exceptions.ArgumentNull(nameof(range));
 
             var retVal = false;
             var tmp = true;

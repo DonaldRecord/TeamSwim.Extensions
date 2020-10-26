@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq.Expressions
 {
@@ -15,7 +16,7 @@ namespace System.Linq.Expressions
         [Pure, NotNull]
         public static FieldInfo GetFieldInfo<T, TField>([NotNull] this Expression<Func<T, TField>> expression)
         {
-            if (expression == null) throw new NullReferenceException();
+            if (expression == null) throw Exceptions.NullRef();
             if (expression.TryGetFieldInfo(out var fieldInfo))
                 return fieldInfo;
                 
@@ -32,7 +33,7 @@ namespace System.Linq.Expressions
         [Pure, NotNull]
         public static FieldInfo GetFieldInfo<T>([NotNull] this Expression<Func<T, object>> expression)
         {
-            if (expression == null) throw new NullReferenceException();
+            if (expression == null) throw Exceptions.NullRef();
             if (expression.TryGetFieldInfo(out var fieldInfo))
                 return fieldInfo;
                 

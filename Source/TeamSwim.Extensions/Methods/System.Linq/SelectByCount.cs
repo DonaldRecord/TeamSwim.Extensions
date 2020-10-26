@@ -15,7 +15,7 @@
 //            [CanBeNull, InstantHandle] Func<T, TResult> one = null,
 //            [CanBeNull, InstantHandle] Func<ICollection<T>, TResult> many = null)
 //        {
-//            if (source == null) throw new ArgumentNullException(nameof(source));
+//            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
 //            none = none ?? (() => default);
 //            one = one ?? (_ => default);
 //            many = many ?? (_ => default);

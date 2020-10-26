@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -22,7 +23,7 @@ namespace System.Linq
             [CanBeNull, InstantHandle] Action<T> singleItemHandler = null,
             [CanBeNull, InstantHandle] Action<ICollection<T>> manyItemsHandler = null)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
 
             var list = source.ToList();
             if (!list.Any())

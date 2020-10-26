@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
+using TeamSwim;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace System.Linq
@@ -21,7 +22,7 @@ namespace System.Linq
         [ExcludeFromCodeCoverage] // Can't reach 100% in RELEASE config, but this code is trusted and the alternatives are tested.
         public static IEnumerable<T> ToListWhenDebugging<T>([NotNull] this IEnumerable<T> source)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
 
             if (Debugger.IsAttached)
                 return source.ToList();

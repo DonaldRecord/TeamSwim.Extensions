@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq.Expressions
 {
@@ -15,7 +16,7 @@ namespace System.Linq.Expressions
         [Pure, NotNull]
         public static MemberInfo GetMemberInfo<T, TMember>([NotNull] this Expression<Func<T, TMember>> expression)
         {
-            if (expression == null) throw new NullReferenceException();
+            if (expression == null) throw Exceptions.NullRef();
             if (expression.TryGetMemberInfo(out var memberInfo))
                 return memberInfo;
 
@@ -32,7 +33,7 @@ namespace System.Linq.Expressions
         [Pure, NotNull]
         public static MemberInfo GetMemberInfo<T>([NotNull] this Expression<Func<T, object>> expression)
         {
-            if (expression == null) throw new NullReferenceException();
+            if (expression == null) throw Exceptions.NullRef();
             if (expression.TryGetMemberInfo(out var memberInfo))
                 return memberInfo;
 

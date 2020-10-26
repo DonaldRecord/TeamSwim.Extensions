@@ -75,7 +75,7 @@
 //            [CanBeNull] IEqualityComparer<TProperty> comparer = null)
 //        {
 //            if (property == null)
-//                throw new ArgumentNullException(nameof(property));
+//                throw Exceptions.ArgumentNull(nameof(property));
 
 //            var propertyInfo = property.GetPropertyInfo();
 
@@ -107,7 +107,7 @@
 //            [CanBeNull] IEqualityComparer<TField> comparer = null)
 //        {
 //            if (field == null)
-//                throw new ArgumentNullException(nameof(field));
+//                throw Exceptions.ArgumentNull(nameof(field));
 
 //            var comparerProxy = new ObjectComparerProxy<TField>(comparer);
 //            var storage = new DelegateStorage<T>(comparerProxy);
@@ -131,7 +131,7 @@
 //            // equals: (comparer, T1, T2) => 
 
 //            if (expression == null)
-//                throw new ArgumentNullException(nameof(expression));
+//                throw Exceptions.ArgumentNull(nameof(expression));
 
 //            var comparerProxy = new ObjectComparerProxy<TValue>(comparer);
 //            var storage = new DelegateStorage<T>(comparerProxy);

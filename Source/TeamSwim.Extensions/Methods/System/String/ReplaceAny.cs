@@ -22,8 +22,8 @@
 //            StringComparison stringComparison,
 //            [NotNull, ItemCanBeNull] params string[] oldValues)
 //        {
-//            if (value == null) throw new ArgumentNullException(nameof(value));
-//            if (oldValues == null) throw new ArgumentNullException(nameof(oldValues));
+//            if (value == null) throw Exceptions.ArgumentNull(nameof(value));
+//            if (oldValues == null) throw Exceptions.ArgumentNull(nameof(oldValues));
 
 //            StringBuilder sb = new StringBuilder(value);
 

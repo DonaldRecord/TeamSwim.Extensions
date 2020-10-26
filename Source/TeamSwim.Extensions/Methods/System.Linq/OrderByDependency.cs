@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -31,10 +32,10 @@ namespace System.Linq
             [NotNull] Func<T, IEnumerable<TKey>> dependents,
             IEqualityComparer<TKey> keyComparer = null)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (referenceKey == null) throw new ArgumentNullException(nameof(referenceKey));
-            if (dependents == null) throw new ArgumentNullException(nameof(dependents));
-            
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
+            if (referenceKey == null) throw Exceptions.ArgumentNull(nameof(referenceKey));
+            if (dependents == null) throw Exceptions.ArgumentNull(nameof(dependents));
+
             var clone = new List<T>(source);
             var dependencyGraph = new Dictionary<T, ICollection<TKey>>();
             keyComparer ??= EqualityComparer<TKey>.Default;

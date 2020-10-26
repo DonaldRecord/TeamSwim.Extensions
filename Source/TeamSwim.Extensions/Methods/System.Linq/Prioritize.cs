@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -19,8 +20,8 @@ namespace System.Linq
         [NotNull] this IEnumerable<TElement> source,
         [NotNull] Func<TElement, bool> predicate)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-                if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
+            if (predicate == null) throw Exceptions.ArgumentNull(nameof(predicate));
 
             var result = source.OrderByDescending(predicate);
                 return result;

@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
@@ -23,8 +24,8 @@ namespace System
             [NotNull] string occurrence,
             StringComparison stringComparison = StringComparison.CurrentCulture)
         {
-            if (value == null) throw new NullReferenceException();
-            if (occurrence == null) throw new ArgumentNullException(nameof(occurrence));
+            if (value == null) throw Exceptions.NullRef();
+            if (occurrence == null) throw Exceptions.ArgumentNull(nameof(occurrence));
             if (occurrence.Length == 0)
                 return null;
 

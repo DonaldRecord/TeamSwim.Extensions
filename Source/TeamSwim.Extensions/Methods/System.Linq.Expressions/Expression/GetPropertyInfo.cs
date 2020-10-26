@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq.Expressions
 {
@@ -15,7 +16,7 @@ namespace System.Linq.Expressions
         [Pure, NotNull]
         public static PropertyInfo GetPropertyInfo<T, TProperty>([NotNull] this Expression<Func<T, TProperty>> expression)
         {
-            if (expression == null) throw new NullReferenceException();
+            if (expression == null) throw Exceptions.NullRef();
             if (expression.TryGetPropertyInfo(out var propertyInfo))
                 return propertyInfo;
             else
@@ -32,7 +33,7 @@ namespace System.Linq.Expressions
         [Pure, NotNull]
         public static PropertyInfo GetPropertyInfo<T>(this Expression<Func<T, object>> expression)
         {
-            if (expression == null) throw new NullReferenceException();
+            if (expression == null) throw Exceptions.NullRef();
             if (expression.TryGetPropertyInfo(out var propertyInfo))
                 return propertyInfo;
             else

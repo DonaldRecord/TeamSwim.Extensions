@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System.Collections.Generic;
 using System.Linq;
+using TeamSwim;
 
 // using System.Linq;
 
@@ -21,8 +22,8 @@ namespace System
             [NotNull] this string value, 
             [NotNull, ItemCanBeNull] params string[] checks)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-            if (checks == null) throw new ArgumentNullException(nameof(checks));
+            if (value == null) throw Exceptions.ArgumentNull(nameof(value));
+            if (checks == null) throw Exceptions.ArgumentNull(nameof(checks));
 
             return checks.Any(value.Contains);
         }
@@ -42,7 +43,7 @@ namespace System
             StringComparison comparison,
             [NotNull, ItemNotNull] params string[] checks)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (value == null) throw Exceptions.ArgumentNull(nameof(value));
             return checks.Any(str => Contains(value, str, comparison));
         }
 

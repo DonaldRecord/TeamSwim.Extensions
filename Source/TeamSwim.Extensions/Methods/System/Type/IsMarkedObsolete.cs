@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using System.Reflection;
+using TeamSwim;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace System
@@ -19,7 +20,7 @@ namespace System
         [Pure, ContractAnnotation("obsoleteAttribute:null=>false;obsoleteAttribute:notnull=>true")]
         public static bool IsMarkedObsolete([NotNull] this Type type, out ObsoleteAttribute obsoleteAttribute)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (type == null) throw Exceptions.ArgumentNull(nameof(type));
             obsoleteAttribute = type.GetCustomAttribute<ObsoleteAttribute>();
             var result = obsoleteAttribute != null;
             return result;
@@ -38,7 +39,7 @@ namespace System
         [Pure, ContractAnnotation("message:null=>false")]
         public static bool IsMarkedObsolete([NotNull] this Type type, out string message)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (type == null) throw Exceptions.ArgumentNull(nameof(type));
             var obsoleteAttribute = type.GetCustomAttribute<ObsoleteAttribute>();
             var result = obsoleteAttribute != null;
             message = obsoleteAttribute?.Message;
