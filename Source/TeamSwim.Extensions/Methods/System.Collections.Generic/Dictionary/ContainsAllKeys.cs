@@ -20,7 +20,7 @@ namespace System.Collections.Generic
             if (keys == null) throw Exceptions.ArgumentNull(nameof(keys));
             return keys.All(dictionary.ContainsKey);
         }
-
+         
         [PublicAPI]
         [Pure]
         public static bool ContainsAllKeys<TKey, TValue>(
