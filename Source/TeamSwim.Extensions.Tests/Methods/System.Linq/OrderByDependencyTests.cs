@@ -98,7 +98,7 @@ namespace System.Methods.System.Linq
         }
 
         [TestMethod]
-        public void Returns_Expected_Results()
+        public void Returns_Expected_Results_Reverse()
         {
             var source = new List<TestClass>
             {
@@ -115,6 +115,28 @@ namespace System.Methods.System.Linq
             Assert.AreEqual(1, actual[2].Value);
         }
 
+        [TestMethod]
+        public void Returns_Expected_Results_Double_Loopback()
+        {
+            var source = new List<TestClass>
+            {
+                new TestClass(1),
+                new TestClass(3, 2),
+                new TestClass(5, 4),
+                new TestClass(2, 1),
+                new TestClass(4, 3),
+            };
+
+            var actual = source
+                .OrderByDependency(TestClass.ReferenceKey, TestClass.Dependents)
+                .ToList();
+            Assert.AreEqual(1, actual[0].Value);
+            Assert.AreEqual(2, actual[1].Value);
+            Assert.AreEqual(3, actual[2].Value);
+            Assert.AreEqual(4, actual[3].Value);
+            Assert.AreEqual(5, actual[4].Value);
+        }
+        
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Null_Element_Throws_Argument_Exception()

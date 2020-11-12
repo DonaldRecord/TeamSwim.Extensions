@@ -64,9 +64,27 @@ namespace System.Linq
                     var stillExisting = clone.Skip(1).Where(c => dependsOn.Contains(GetReferenceKey(c), keyComparer)).ToList();
                     if (stillExisting.Any())
                     {
-                        var circular = stillExisting.Any(se =>
-                            dependencyGraph.ContainsKey(se) &&
-                            dependencyGraph.Any(g => g.Value.Contains(GetReferenceKey(elem), keyComparer)));
+                        // TODO: Sub-optimal
+                        var circular = false;
+                        foreach (var lookup in stillExisting)
+                        {
+                            // if it not yet put in the dependency graph, put it at the back of the list
+                            if (!dependencyGraph.ContainsKey(lookup))
+                                break;
+
+                            var key = GetReferenceKey(elem);
+                            var matches = dependencyGraph.Where(g => g.Value.Contains(key, keyComparer)).ToList();
+                            if (matches.Any())
+                            {
+                                foreach (var match in matches)
+                                {
+                                    var we = dependencyGraph[elem];
+                                    var matchKey = referenceKey.Invoke(match.Key);
+                                    if (we.Contains(matchKey, keyComparer))
+                                        circular = true;
+                                }
+                            }
+                        }
 
                         if (circular)
                             throw new InvalidOperationException("Circular order dependencies detected.");
