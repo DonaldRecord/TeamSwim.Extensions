@@ -42,6 +42,7 @@ namespace System
         ///     Static implicit operator for <see cref="int"/>.
         /// </summary>
         /// <param name="sn"></param>
+        [PublicAPI]
         public static implicit operator int(SequenceNumber sn) => sn.Current();
 
         /// <summary>
