@@ -7,14 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.System.Linq
 {
     [TestClass]
-    public class PipeTests
+    public class MutateTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Mutate_Null_Source_Throws_Exception()
         {
             List<TestEntity> list = null;
-            var result = list.Pipe(l => l.Number++).ToList();
+            var result = list.Mutate(l => l.Number++).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -33,7 +33,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Pipe(action).ToList();
+            var result = list.Mutate(action).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -50,7 +50,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Pipe(l => l.Number++).ToList();
+            var result = list.Mutate(l => l.Number++).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -69,7 +69,7 @@ namespace System.System.Linq
                 null
             };
 
-            var result = list.Pipe(l => l.Number++).ToList();
+            var result = list.Mutate(l => l.Number++).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -81,7 +81,7 @@ namespace System.System.Linq
         public void Mutate_With_Indexer_Null_Source_Throws_Exception()
         {
             List<TestEntity> list = null;
-            var result = list.Pipe((l, i) => l.Number += i).ToList();
+            var result = list.Mutate((l, i) => l.Number += i).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(4, result[1].Number);
@@ -100,7 +100,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Pipe(action).ToList();
+            var result = list.Mutate(action).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(4, result[1].Number);
@@ -117,7 +117,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Pipe((l, i) => l.Number += i).ToList();
+            var result = list.Mutate((l, i) => l.Number += i).ToList();
 
             Assert.AreEqual(1, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -136,7 +136,7 @@ namespace System.System.Linq
                 null
             };
 
-            var result = list.Pipe((l, i) => l.Number += i).ToList();
+            var result = list.Mutate((l, i) => l.Number += i).ToList();
 
             Assert.AreEqual(1, result[0].Number);
             Assert.AreEqual(3, result[1].Number);

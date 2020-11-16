@@ -37,6 +37,9 @@ namespace System.Linq
             if (dependents == null) throw Exceptions.ArgumentNull(nameof(dependents));
 
             var clone = new List<T>(source);
+            if (!clone.Any()) 
+                yield break;
+
             var dependencyGraph = new Dictionary<T, ICollection<TKey>>();
             keyComparer ??= EqualityComparer<TKey>.Default;
 

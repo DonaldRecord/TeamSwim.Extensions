@@ -136,7 +136,18 @@ namespace System.Methods.System.Linq
             Assert.AreEqual(4, actual[3].Value);
             Assert.AreEqual(5, actual[4].Value);
         }
-        
+
+        [TestMethod]
+        public void Works_For_Empty_Source()
+        {
+            var source = new List<TestClass>();
+
+            var actual = source
+                .OrderByDependency(TestClass.ReferenceKey, TestClass.Dependents)
+                .ToList();
+            Assert.AreEqual(0, actual.Count);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Null_Element_Throws_Argument_Exception()

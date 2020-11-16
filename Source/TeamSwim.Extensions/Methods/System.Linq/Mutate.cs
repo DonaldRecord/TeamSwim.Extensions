@@ -16,7 +16,7 @@ namespace System.Linq
         /// <returns>Mutated collection.</returns>
         [PublicAPI]
         [MustUseReturnValue, NotNull, ItemCanBeNull, LinqTunnel]
-        public static IEnumerable<T> Pipe<T>(
+        public static IEnumerable<T> Mutate<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T> mutation,
             [CanBeNull, InstantHandle] Func<T, bool> predicate = null) where T : class
@@ -45,7 +45,7 @@ namespace System.Linq
         /// <returns>Mutated collection.</returns>
         [PublicAPI]
         [MustUseReturnValue, LinqTunnel]
-        public static IEnumerable<T> Pipe<T>(
+        public static IEnumerable<T> Mutate<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T, int> mutation,
             [NotNull, InstantHandle] Func<T, int, bool> predicate = null) where T : class
