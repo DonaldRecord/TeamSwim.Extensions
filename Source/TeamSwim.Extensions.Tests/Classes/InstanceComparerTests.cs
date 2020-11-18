@@ -12,7 +12,7 @@ namespace System.Classes
         [TestMethod]
         public void Valid_Property_Expression_Returns_Expected_Results()
         {
-            var comparer = new InstanceComparer<TestClass>()
+            var comparer = InstanceComparer.For<TestClass>()
                 .AddProperty(c => c.StringProperty, StringComparer.OrdinalIgnoreCase);
 
             var a = new TestClass { StringProperty = "a" };
@@ -36,7 +36,7 @@ namespace System.Classes
         [TestMethod]
         public void Valid_Field_Expression_Returns_Expected_Results()
         {
-            var comparer = new InstanceComparer<TestClass>()
+            var comparer = InstanceComparer.For<TestClass>()
                 .AddField(c => c.StringField, StringComparer.OrdinalIgnoreCase);
 
             var a = new TestClass { StringField = "a" };
@@ -60,7 +60,7 @@ namespace System.Classes
         [TestMethod]
         public void Valid_Expression_Returns_Expected_Results()
         {
-            var comparer = new InstanceComparer<TestClass>()
+            var comparer = InstanceComparer.For<TestClass>()
                 .AddExpression(t => t.StringProperty.EndsWith("a"));
 
             var a = new TestClass { StringProperty = "cba" };
@@ -86,7 +86,7 @@ namespace System.Classes
         public void Null_Property_Expression_Throws_Exception()
         {
             Expression<Func<TestClass, string>> expr = null;
-            var comparer = new InstanceComparer<TestClass>().AddProperty(expr, StringComparer.OrdinalIgnoreCase);
+            var comparer = InstanceComparer.For<TestClass>().AddProperty(expr, StringComparer.OrdinalIgnoreCase);
             Assert.Fail();
         }
 
@@ -94,7 +94,7 @@ namespace System.Classes
         [ExpectedException(typeof(ArgumentException))]
         public void Invalid_Property_Expression_Throws_Exception()
         {
-            var comparer = new InstanceComparer<TestClass>()
+            var comparer = InstanceComparer.For<TestClass>()
                 .AddProperty(c => c.StringField, StringComparer.OrdinalIgnoreCase);
             Assert.Fail();
         }
@@ -104,7 +104,7 @@ namespace System.Classes
         public void Null_Field_Expression_Throws_Exception()
         {
             Expression<Func<TestClass, string>> expr = null;
-            var comparer = new InstanceComparer<TestClass>().AddField(expr, StringComparer.OrdinalIgnoreCase);
+            var comparer = InstanceComparer.For<TestClass>().AddField(expr, StringComparer.OrdinalIgnoreCase);
             Assert.Fail();
         }
 
@@ -112,7 +112,7 @@ namespace System.Classes
         [ExpectedException(typeof(ArgumentException))]
         public void Invalid_Field_Expression_Throws_Exception()
         {
-            var comparer = new InstanceComparer<TestClass>()
+            var comparer = InstanceComparer.For<TestClass>()
                 .AddField(c => c.StringProperty, StringComparer.OrdinalIgnoreCase);
             Assert.Fail();
         }

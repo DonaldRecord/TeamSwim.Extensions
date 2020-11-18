@@ -111,6 +111,7 @@ namespace System.Classes
             Assert.AreEqual(4, uut);
         }
 
+        //https://stackoverflow.com/questions/9468800/determining-thread-safety-in-unit-tests
         //[TestMethod]
         //public void Thread_Safety_Test()
         //{
@@ -128,8 +129,7 @@ namespace System.Classes
         //                uut.Pause(false);
         //            if (j % 2 == 1)
         //            {
-        //                uut.Resume(true);
-        //                uut.Current();
+        //                uut.Skip();
         //            }
         //        });
 

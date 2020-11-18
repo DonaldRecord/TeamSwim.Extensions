@@ -1,11 +1,14 @@
 ﻿using JetBrains.Annotations;
 using System.Linq.Expressions;
-using System.Net.Http.Headers;
-using System.Reflection;
 using TeamSwim;
 
 namespace System.Collections.Generic
 {
+    public static class InstanceComparer
+    {
+        public static InstanceComparer<T> For<T>() => new InstanceComparer<T>();
+    }
+
     public class InstanceComparer<T> : IEqualityComparer<T>
     {
         private readonly Dictionary<Func<IEqualityComparer, T, T, bool>, IEqualityComparer> _equalsMethods = new Dictionary<Func<IEqualityComparer, T, T, bool>, IEqualityComparer>();
@@ -131,14 +134,7 @@ namespace System.Collections.Generic
 
             return this;
         }
-
-
-        private static readonly MethodInfo _equalityComparerEqualsMethod =
-            typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.Equals));
-
-        private static readonly MethodInfo _equalityComparerHashCodeMethod =
-            typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.GetHashCode));
-
+        
         private static Func<IEqualityComparer, T, T, bool> CompileEqualsExpression(
             Func<ParameterExpression, Expression> getFirstExpr,
             Func<ParameterExpression, Expression> getSecondExpr)
@@ -155,7 +151,7 @@ namespace System.Collections.Generic
                 Expression.Lambda<Func<IEqualityComparer, T, T, bool>>(
                     Expression.Call(
                         comparerParam,
-                        _equalityComparerEqualsMethod,
+                        typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.Equals)),
                         Expression.Convert(expr1, typeof(object)),
                         Expression.Convert(expr2, typeof(object))
                     ),
@@ -177,7 +173,7 @@ namespace System.Collections.Generic
             var method = Expression.Lambda<Func<IEqualityComparer, T, int>>(
                     Expression.Call(
                         comparerParam,
-                        _equalityComparerHashCodeMethod,
+                        typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.GetHashCode)),
                         Expression.Convert(expr, typeof(object))),
                     comparerParam, t);
 
