@@ -4,11 +4,26 @@ using TeamSwim;
 
 namespace System.Collections.Generic
 {
+    /// <summary>
+    ///     Facade class for creating instances of <see cref="InstanceComparer{T}"/>.
+    /// </summary>
     public static class InstanceComparer
     {
+        /// <summary>
+        ///     Create an instance of <see cref="InstanceComparer{T}"/> for type <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">Type to create comparer for.</typeparam>
+        /// <returns>New instance of <see cref="InstanceComparer{T}"/>.</returns>
+        [PublicAPI]
+        [NotNull, Pure]
         public static InstanceComparer<T> For<T>() => new InstanceComparer<T>();
     }
 
+    /// <summary>
+    ///     Creates an <see cref="IEqualityComparer{T}"/> dynamically using a
+    ///     combination of properties, fields, and custom expressions.
+    /// </summary>
+    /// <typeparam name="T">Type of instance</typeparam>
     public class InstanceComparer<T> : IEqualityComparer<T>
     {
         private readonly Dictionary<Func<IEqualityComparer, T, T, bool>, IEqualityComparer> _equalsMethods = new Dictionary<Func<IEqualityComparer, T, T, bool>, IEqualityComparer>();
@@ -42,7 +57,6 @@ namespace System.Collections.Generic
             return true;
         }
 
-        /// <inheritdoc />
         /// <summary>
         ///     Serves as the default hash function.
         /// </summary>
@@ -55,7 +69,7 @@ namespace System.Collections.Generic
             unchecked
             {
                 var result = 0;
-                const int MULTIPLIER = 397;
+                const int multiplier = 397;
 
                 if (obj != null)
                 {
@@ -64,7 +78,7 @@ namespace System.Collections.Generic
                         var comparer = kvp.Value;
                         var method = kvp.Key;
 
-                        result = (result * MULTIPLIER) ^ method.Invoke(comparer, obj);
+                        result = (result * multiplier) ^ method.Invoke(comparer, obj);
                     }
                 }
 
@@ -72,6 +86,14 @@ namespace System.Collections.Generic
             }
         }
 
+        /// <summary>
+        ///     Fluently adds a property member to the instance comparison, with the specified comparer.
+        ///     The property must have a get accessor.
+        /// </summary>
+        /// <typeparam name="TProperty">Property type.</typeparam>
+        /// <param name="property">Expression to represent property on object.</param>
+        /// <param name="comparer">Equality Comparer of type <typeparamref name="TProperty"/> to use in comparisons.</param>
+        /// <returns>Same <see cref="InstanceComparer{T}"/> instance.</returns>
         [NotNull]
         public InstanceComparer<T> AddProperty<TProperty>(
             [NotNull] Expression<Func<T, TProperty>> property,
@@ -83,9 +105,7 @@ namespace System.Collections.Generic
             var propertyInfo = property.GetPropertyInfo();
             var comparerProxy = new ObjectComparerProxy<TProperty>(comparer);
             var hashMethod = CompileHashCodeExpression(t => Expression.Property(t, propertyInfo));
-            var equalsMethod = CompileEqualsExpression(
-                t1 => Expression.Property(t1, propertyInfo),
-                t2 => Expression.Property(t2, propertyInfo));
+            var equalsMethod = CompileEqualsExpression(t => Expression.Property(t, propertyInfo));
 
             _hashCodeMethods.Add(hashMethod, comparerProxy);
             _equalsMethods.Add(equalsMethod, comparerProxy);
@@ -94,6 +114,13 @@ namespace System.Collections.Generic
             return this;
         }
 
+        /// <summary>
+        ///     Fluently adds a field member to the instance comparison, with the specified comparer.
+        /// </summary>
+        /// <typeparam name="TField">Field type.</typeparam>
+        /// <param name="field">Expression to represent field on object.</param>
+        /// <param name="comparer">Equality Comparer of type <typeparamref name="TField"/> to use in comparisons.</param>
+        /// <returns>Same <see cref="InstanceComparer{T}"/> instance.</returns>
         public InstanceComparer<T> AddField<TField>(
             [NotNull] Expression<Func<T, TField>> field,
             [CanBeNull] IEqualityComparer<TField> comparer = null)
@@ -104,9 +131,7 @@ namespace System.Collections.Generic
             var comparerProxy = new ObjectComparerProxy<TField>(comparer);
             var fieldInfo = field.GetFieldInfo();
             var hashMethod = CompileHashCodeExpression(t => Expression.Field(t, fieldInfo));
-            var equalsMethod = CompileEqualsExpression(
-                t1 => Expression.Field(t1, fieldInfo),
-                t2 => Expression.Field(t2, fieldInfo));
+            var equalsMethod = CompileEqualsExpression(t => Expression.Field(t, fieldInfo));
 
             _hashCodeMethods.Add(hashMethod, comparerProxy);
             _equalsMethods.Add(equalsMethod, comparerProxy);
@@ -115,6 +140,14 @@ namespace System.Collections.Generic
             return this;
         }
 
+        /// <summary>
+        ///     Add a custom comparison delegate to the instance comparison.
+        ///     No error prevention is done internally to the expression.
+        /// </summary>
+        /// <typeparam name="TValue">Result type of the delegate.</typeparam>
+        /// <param name="expression">Expression representing the delegate.</param>
+        /// <param name="comparer">Equality Comparer of type <typeparamref name="TValue"/> for the delegate results.</param>
+        /// <returns>Same <see cref="InstanceComparer{T}"/> instance.</returns>
         public InstanceComparer<T> AddExpression<TValue>(
             [NotNull] Expression<Func<T, TValue>> expression,
             [CanBeNull] IEqualityComparer<TValue> comparer = null)
@@ -124,9 +157,7 @@ namespace System.Collections.Generic
 
             var comparerProxy = new ObjectComparerProxy<TValue>(comparer);
             var hashMethod = CompileHashCodeExpression(t => new ParameterReplacer(t).Visit(expression.Body));
-            var equalsMethod = CompileEqualsExpression(
-                t1 => new ParameterReplacer(t1).Visit(expression.Body),
-                t2 => new ParameterReplacer(t2).Visit(expression.Body));
+            var equalsMethod = CompileEqualsExpression(t => new ParameterReplacer(t).Visit(expression.Body));
 
             _hashCodeMethods.Add(hashMethod, comparerProxy);
             _equalsMethods.Add(equalsMethod, comparerProxy);
@@ -136,21 +167,21 @@ namespace System.Collections.Generic
         }
         
         private static Func<IEqualityComparer, T, T, bool> CompileEqualsExpression(
-            Func<ParameterExpression, Expression> getFirstExpr,
-            Func<ParameterExpression, Expression> getSecondExpr)
+            Func<ParameterExpression, Expression> getExpression)
         {
             // (comparer, t1, t2) => comparer.Equals(t1, t2);
 
             var t1 = Expression.Parameter(typeof(T), "x");
             var t2 = Expression.Parameter(typeof(T), "y");
             var comparerParam = Expression.Parameter(typeof(IEqualityComparer), "comparer");
-            var expr1 = getFirstExpr.Invoke(t1);
-            var expr2 = getFirstExpr.Invoke(t2);
+            var expr1 = getExpression.Invoke(t1);
+            var expr2 = getExpression.Invoke(t2);
 
             Expression<Func<IEqualityComparer, T, T, bool>> method =
                 Expression.Lambda<Func<IEqualityComparer, T, T, bool>>(
                     Expression.Call(
                         comparerParam,
+                        // ReSharper disable once AssignNullToNotNullAttribute
                         typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.Equals)),
                         Expression.Convert(expr1, typeof(object)),
                         Expression.Convert(expr2, typeof(object))
@@ -173,6 +204,7 @@ namespace System.Collections.Generic
             var method = Expression.Lambda<Func<IEqualityComparer, T, int>>(
                     Expression.Call(
                         comparerParam,
+                        // ReSharper disable once AssignNullToNotNullAttribute
                         typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.GetHashCode)),
                         Expression.Convert(expr, typeof(object))),
                     comparerParam, t);

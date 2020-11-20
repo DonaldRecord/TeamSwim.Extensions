@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 namespace System
@@ -27,7 +25,7 @@ namespace System
         private readonly object _numberLock = new object();
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly object _setLock = new object();
-
+        
         /// <summary>
         ///     Default seed value.
         /// </summary>
