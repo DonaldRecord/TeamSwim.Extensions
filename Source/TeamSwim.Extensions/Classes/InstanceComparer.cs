@@ -86,6 +86,8 @@ namespace System.Collections.Generic
             }
         }
 
+        // TODO: Add "all properties" method
+
         /// <summary>
         ///     Fluently adds a property member to the instance comparison, with the specified comparer.
         ///     The property must have a get accessor.
