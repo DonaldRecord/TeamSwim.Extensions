@@ -9,6 +9,24 @@ namespace System.Methods.System.Linq
     public class FlattenTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Source_Throws_Exception()
+        {
+            IEnumerable<TestClass> c = null;
+            var actual = c.Flatten(x => x.Child).ToList();
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Delegate_Throws_Exception()
+        {
+            var c = new TestClass(1, 2).Yield();
+            var actual = c.Flatten(null).ToList();
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void Flatten_Single_Nesting_Returns_Expected_Results()
         {
             var c = new TestClass(1, 2).Yield();

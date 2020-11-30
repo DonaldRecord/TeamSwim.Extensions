@@ -8,7 +8,7 @@ namespace System.Linq
     partial class LinqExt
     {
         /// <summary>
-        ///     Flatten a list of hierarchical objects with a 1-to-1 nested structure.
+        ///     Flatten a list of hierarchical objects with a one-to-one nested structure.
         /// </summary>
         /// <typeparam name="T">Hierarchical object type.</typeparam>
         /// <param name="parents">List of parent elements.</param>
