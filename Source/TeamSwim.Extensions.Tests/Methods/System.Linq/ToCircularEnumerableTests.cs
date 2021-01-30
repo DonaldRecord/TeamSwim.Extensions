@@ -9,6 +9,15 @@ namespace System.Methods.System.Linq
     public class ToCircularEnumerableTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Source_Throws_Exception()
+        {
+            IEnumerable<int> list = null;
+            var uut = list.ToCircularEnumerable().ToHashSet();
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void Iterating_Would_Cause_StackOverflowException()
         {
             var list = new List<int> { 1, 2, 3 };

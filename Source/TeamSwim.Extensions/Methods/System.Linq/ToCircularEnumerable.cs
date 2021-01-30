@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 using TeamSwim;
 
@@ -15,7 +13,10 @@ namespace System.Linq
         ///     For instance, if the source is a list of integers [1, 2, 3]
         ///     and the element at index 3 is requested, normally an exception would be thrown.
         ///     With this extension method, it would loop back to the beginning and start again.
-        ///     The source enumerable is immediately converted into an <see cref="ICollection{T}"/> to 
+        /// </para>
+        /// <para>
+        ///     The source enumerable is immediately converted into an <see cref="ICollection{T}"/> to avoid
+        ///     potential side effects of re-running the source collection state machine.
         /// </para>
         /// <para>
         ///     Iterating over this result will result in a <see cref="StackOverflowException"/>.
