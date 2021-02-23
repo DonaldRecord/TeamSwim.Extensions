@@ -13,5 +13,15 @@ namespace TeamSwim
         {
             return new ArgumentNullException(paramName) {Source = TeamSwimExtensions.ExceptionSource};
         }
+
+        internal static Exception ErrorNoMatch()
+        {
+            return new InvalidOperationException("Sequence contains no elements") {Source = TeamSwimExtensions.ExceptionSource};
+        }
+
+        internal static Exception ErrorMoreThanOneMatch()
+        {
+            return new InvalidOperationException("Sequence contains more than one element") {Source = TeamSwimExtensions.ExceptionSource};
+        }
     }
 }

@@ -74,6 +74,29 @@ namespace System.Methods.System.Linq
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(1, actual[0].Id);
         }
+
+        [TestMethod]
+        public void Null_Elements_Succeed()
+        {
+            var c = new TestClass(1)
+                .AddChild(new TestClass(2)
+                    .AddChild(new TestClass(3))
+                    .AddChild(null)
+                    .AddChild(new TestClass(4)
+                        .AddChild(new TestClass(5))))
+                .AddChild(new TestClass(6))
+                .Yield();
+
+            var actual = c.FlattenMany(x => x.Children).ToList();
+
+            Assert.AreEqual(6, actual.Count);
+            Assert.AreEqual(1, actual[0].Id);
+            Assert.AreEqual(2, actual[1].Id);
+            Assert.AreEqual(3, actual[2].Id);
+            Assert.AreEqual(4, actual[3].Id);
+            Assert.AreEqual(5, actual[4].Id);
+            Assert.AreEqual(6, actual[5].Id);
+        }
         
         [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]

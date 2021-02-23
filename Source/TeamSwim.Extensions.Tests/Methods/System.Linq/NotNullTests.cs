@@ -11,6 +11,13 @@ namespace System.Linq
     public class NotNullTests
     {
         [TestMethod]
+        public void Message_1()
+        {
+            var list = new List<int> {1, 2};
+            var x = list.Single();
+        }
+
+        [TestMethod]
         public void Returns_Expected_Value()
         {
             string str1 = null;
