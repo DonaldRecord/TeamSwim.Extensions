@@ -9,7 +9,8 @@ namespace System.Linq
     {
         /// <summary>
         ///     Get the cartesian product of two collections.
-        ///     If the second collection is empty, the source collection will be returned as is.
+        ///     If the second collection is empty, the <paramref name="fallbackSelector"/> parameter is
+        ///     evaluated to provide a result; otherwise, it will be empty.
         /// </summary>
         /// <typeparam name="T">First collection element type.</typeparam>
         /// <typeparam name="TSecond">Second collection element type.</typeparam>
@@ -17,6 +18,7 @@ namespace System.Linq
         /// <param name="source">First collection in cross join.</param>
         /// <param name="cross">Second collection in cross join.</param>
         /// <param name="selector">A transform function to apply to each cross-joined set of elements.</param>
+        /// <param name="fallbackSelector">Function that is evaluated when the second collection is empty.</param>
         /// <returns></returns>
         [PublicAPI]
         [Pure, NotNull, LinqTunnel]

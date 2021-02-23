@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using TeamSwim;
 
 namespace System.Linq
@@ -11,7 +12,9 @@ namespace System.Linq
         /// <typeparam name="T">Element type.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <returns><see langword="true"/> if the collection only has one element. Otherwise, <see langword="false"/>.</returns>
-        public static bool IsSingle<T>(this IEnumerable<T> source)
+        [PublicAPI]
+        [Pure]
+        public static bool IsSingle<T>([NotNull, InstantHandle] this IEnumerable<T> source)
         {
             if (source == null) throw Exceptions.ArgumentNull(nameof(source));
             var count = source.Count();

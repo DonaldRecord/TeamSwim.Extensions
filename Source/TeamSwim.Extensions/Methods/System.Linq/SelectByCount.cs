@@ -25,10 +25,11 @@ namespace System.Linq
             var list = source.ToList();
             if (!list.Any())
                 return none.Invoke();
-            else if (list.Count == 1)
+            
+            if (list.Count == 1)
                 return one.Invoke(list.Single());
-            else
-                return many.Invoke(list);
+            
+            return many.Invoke(list);
         }
     }
 }
