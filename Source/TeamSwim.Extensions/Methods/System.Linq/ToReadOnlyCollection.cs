@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -14,9 +15,9 @@ namespace System.Linq
         /// <returns>The new readonly collection.</returns>
         [PublicAPI]
         [Pure, NotNull]
-        public static IReadOnlyCollection<T> ToReadOnlyCollection<T>([NotNull, InstantHandle] IEnumerable<T> source)
+        public static IReadOnlyCollection<T> ToReadOnlyCollection<T>([NotNull, InstantHandle] this IEnumerable<T> source)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
             var list = source.ToList();
             var result = new ReadOnlyCollection<T>(list);
             return result;

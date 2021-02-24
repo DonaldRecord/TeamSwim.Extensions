@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using TeamSwim;
+using NotNull = JetBrains.Annotations.NotNullAttribute;
 
 namespace System.Reflection
 {
@@ -18,6 +20,7 @@ namespace System.Reflection
         /// <returns>Array of loadable types.</returns>
         [PublicAPI]
         [Pure, NotNull, ItemNotNull]
+        [ExcludeFromCodeCoverage] // Jon Skeet wrote it, we're good
         public static Type[] GetLoadableTypes([NotNull] this Assembly assembly)
         {
             if (assembly == null) throw Exceptions.NullRef();
@@ -29,7 +32,9 @@ namespace System.Reflection
             }
             catch (ReflectionTypeLoadException ex)
             {
-                result = ex.Types.Where(t => t != null).ToArray();
+                result = ex.Types != null 
+                    ? ex.Types.Where(t => t != null).ToArray() 
+                    : Array.Empty<Type>();
             }
 
             return result;

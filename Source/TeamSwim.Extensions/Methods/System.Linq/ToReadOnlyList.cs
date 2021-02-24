@@ -14,9 +14,12 @@ namespace System.Linq
         /// <returns>The new readonly list.</returns>
         [PublicAPI]
         [Pure, NotNull]
-        public static IReadOnlyList<T> ToReadOnlyList<T>([NotNull, InstantHandle] IEnumerable<T> source)
+        public static IReadOnlyList<T> ToReadOnlyList<T>([NotNull, InstantHandle] this IEnumerable<T> source)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source is IReadOnlyList<T> rol)
+                return rol;
+
             var list = source.ToList();
             var result = new ReadOnlyCollection<T>(list);
             return result;
