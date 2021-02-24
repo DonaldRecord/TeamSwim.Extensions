@@ -10,7 +10,19 @@ namespace System.Linq
 {
     partial class LinqExt
     {
+        /// <summary>
+        ///     (Opinionated)
+        ///     Project a result from a sequence based on the number of elements in the sequence (none, one, or many).
+        /// </summary>
+        /// <typeparam name="T">Element type</typeparam>
+        /// <typeparam name="TResult">Result type</typeparam>
+        /// <param name="source">Sequence of elements to project result for.</param>
+        /// <param name="none">Transform function called when no elements are present in sequence.</param>
+        /// <param name="one">Transform function called when one element is present in sequence.</param>
+        /// <param name="many">Transform function called when more than one element is present in sequence.</param>
+        /// <returns>Result of the called transform function.</returns>
         [PublicAPI]
+        [MustUseReturnValue]
         public static TResult SelectByCount<T, TResult>(
             [NotNull, InstantHandle] this IEnumerable<T> source,
             [CanBeNull, InstantHandle] Func<TResult> none = null,

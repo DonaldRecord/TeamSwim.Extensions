@@ -32,9 +32,7 @@ namespace System.Reflection
             }
             catch (ReflectionTypeLoadException ex)
             {
-                result = ex.Types != null 
-                    ? ex.Types.Where(t => t != null).ToArray() 
-                    : Array.Empty<Type>();
+                result = ex.Types?.Where(t => t != null).ToArray() ?? Array.Empty<Type>();
             }
 
             return result;
