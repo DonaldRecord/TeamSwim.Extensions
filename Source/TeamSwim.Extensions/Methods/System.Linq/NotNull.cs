@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -17,7 +16,7 @@ namespace System.Linq
         [Pure, NotNull, ItemNotNull, LinqTunnel]
         public static IEnumerable<T> NotNull<T>(this IEnumerable<T> source)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
 
             foreach (var elem in source)
                 if (elem != null)

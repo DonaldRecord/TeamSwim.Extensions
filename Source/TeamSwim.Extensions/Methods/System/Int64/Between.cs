@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extensing method class for <see cref="long"/>.
-    /// </summary>
-    public static partial class Int64Ext
+    partial class Int64Ext
     {
         /// <summary>
         ///     Determines if <paramref name="value"/> is between <paramref name="start"/> and <paramref name="end"/> values.

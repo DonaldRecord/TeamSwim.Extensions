@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="char"/>.
-    /// </summary>
-    public static partial class CharExt
+    partial class CharExt
     {
         /// <summary>
         ///     Determines if <paramref name="value"/> is between <paramref name="start"/> and <paramref name="end"/> values.

@@ -1,8 +1,9 @@
 ﻿using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
-    public static partial class ActionExt
+    partial class ActionExt
     {
         /// <summary>
         ///     (Opinionated)
@@ -18,7 +19,7 @@ namespace System
         [MustUseReturnValue, NotNull]
         public static T ApplySetter<T>([NotNull, InstantHandle] this Action<T> setter) where T : new()
         {
-            if (setter == null) throw new ArgumentNullException(nameof(setter));
+            if (setter == null) throw Exceptions.ArgumentNull(nameof(setter));
 
             var t = new T();
             setter.Invoke(t);

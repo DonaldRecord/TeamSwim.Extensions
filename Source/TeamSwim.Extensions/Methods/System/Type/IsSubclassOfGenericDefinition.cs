@@ -40,8 +40,8 @@
 //        {
 //            genericTypes = null;
 
-//            if (type == null) throw new ArgumentNullException(nameof(type));
-//            if (genericTypeDefinition == null) throw new ArgumentNullException(nameof(genericTypeDefinition));
+//            if (type == null) throw Exceptions.ArgumentNull(nameof(type));
+//            if (genericTypeDefinition == null) throw Exceptions.ArgumentNull(nameof(genericTypeDefinition));
 
 //            if (!genericTypeDefinition.IsGenericTypeDefinition) return false;
 //            if (type == genericTypeDefinition) return true;

@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="int"/>.
-    /// </summary>
-    public static partial class Int32Ext
+    partial class Int32Ext
     {
         /// <summary>
         ///     Determines if <paramref name="value"/> is between <paramref name="start"/> and <paramref name="end"/> values.

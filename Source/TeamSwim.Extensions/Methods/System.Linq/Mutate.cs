@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -16,14 +15,14 @@ namespace System.Linq
         /// <param name="predicate">Filters objects that will be mutated.</param>
         /// <returns>Mutated collection.</returns>
         [PublicAPI]
-        [MustUseReturnValue, LinqTunnel]
+        [MustUseReturnValue, NotNull, ItemCanBeNull, LinqTunnel]
         public static IEnumerable<T> Mutate<T>(
             [NotNull] this IEnumerable<T> source,
             [NotNull, InstantHandle] Action<T> mutation,
             [CanBeNull, InstantHandle] Func<T, bool> predicate = null) where T : class
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
+            if (mutation == null) throw Exceptions.ArgumentNull(nameof(mutation));
 
             foreach (var element in source)
             {
@@ -51,8 +50,8 @@ namespace System.Linq
             [NotNull, InstantHandle] Action<T, int> mutation,
             [NotNull, InstantHandle] Func<T, int, bool> predicate = null) where T : class
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            if (mutation == null) throw new ArgumentNullException(nameof(mutation));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
+            if (mutation == null) throw Exceptions.ArgumentNull(nameof(mutation));
 
             var i = 0;
             foreach (var element in source)

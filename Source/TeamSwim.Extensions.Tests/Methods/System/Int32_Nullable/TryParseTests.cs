@@ -13,7 +13,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         {
             string input = null;
 
-            var actual = Int32Ext.TryParse(input, out var i);
+            var actual = Int32Ext.TryParseNullable(input, out var i);
 
             Assert.IsTrue(actual);
             Assert.IsNull(i);
@@ -24,7 +24,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         {
             string input = "abc";
 
-            var actual = Int32Ext.TryParse(input, out var i);
+            var actual = Int32Ext.TryParseNullable(input, out var i);
 
             Assert.IsFalse(actual);
             Assert.IsNull(i);
@@ -35,7 +35,7 @@ namespace TeamSwim.Extensions.Tests.SystemTests
         {
             string input = "12";
 
-            var actual = Int32Ext.TryParse(input, out var i);
+            var actual = Int32Ext.TryParseNullable(input, out var i);
 
             Assert.IsTrue(actual);
             Assert.AreEqual(12, i);

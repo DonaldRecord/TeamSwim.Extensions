@@ -2,14 +2,12 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="object"/>.
-    /// </summary>
-    public static partial class ObjectExt
+    partial class ObjectExt
     {
         /// <summary>
         ///     (Opinionated)
         ///     Version of <see cref="Object.Equals(object, object)"/> that is safe with <see langword="null"/> objects.
+        ///     Will return <see langword="true"/> when both objects are null;
         /// </summary>
         /// <param name="objA"><see cref="object"/> A to be compared.</param>
         /// <param name="objB"><see cref="object"/> B to be compared.</param>

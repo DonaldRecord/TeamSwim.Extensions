@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
+using TeamSwim;
 using ExcludeFromCodeCoverage = System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute;
 
 namespace System.Linq
@@ -16,12 +17,12 @@ namespace System.Linq
         /// <typeparam name="T">Element type.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <returns><paramref name="source"/> un-affected, if the debugger is not attached. Otherwise, a collection (still passed as <see cref="IEnumerable{T}"/>.</returns>
-        [Pure, NotNull, LinqTunnel]
         [PublicAPI]
+        [Pure, NotNull, LinqTunnel]
         [ExcludeFromCodeCoverage] // Can't reach 100% in RELEASE config, but this code is trusted and the alternatives are tested.
         public static IEnumerable<T> ToListWhenDebugging<T>([NotNull] this IEnumerable<T> source)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
 
             if (Debugger.IsAttached)
                 return source.ToList();

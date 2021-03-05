@@ -1,11 +1,9 @@
 ﻿using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="string"/>.
-    /// </summary>
-    static partial class StringExt
+    partial class StringExt
     {
         /// <summary>
         ///     Appends a <paramref name="value"/> with a specified <paramref name="appendText"/> string.
@@ -31,8 +29,8 @@ namespace System
             bool onlyAppendIfNotEndsWith = false,
             StringComparison comparisonType = StringComparison.CurrentCulture)
         {
-            if (value == null) throw new ArgumentNullException(nameof(value));
-            if (appendText == null) throw new ArgumentNullException(nameof(appendText));
+            if (value == null) throw Exceptions.NullRef();
+            if (appendText == null) throw Exceptions.ArgumentNull(nameof(appendText));
 
             if (onlyAppendIfNotEndsWith && value.EndsWith(appendText, comparisonType)) return value;
             return String.Concat(value, appendText);

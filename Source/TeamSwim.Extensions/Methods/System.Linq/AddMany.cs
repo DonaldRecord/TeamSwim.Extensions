@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
-    /// <summary>
-    ///     Linq extension method class.
-    /// </summary>
-    public static partial class LinqExt
+    partial class LinqExt
     {
         /// <summary>
         ///     Loops set of new elements to add them to an existing collection.
@@ -22,7 +20,7 @@ namespace System.Linq
             [CanBeNull, InstantHandle, ItemCanBeNull] IEnumerable<T> addElements,
             bool excludeNullElements = false)
         {
-            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
             if (addElements == null) return;
 
             foreach (var elem in addElements)

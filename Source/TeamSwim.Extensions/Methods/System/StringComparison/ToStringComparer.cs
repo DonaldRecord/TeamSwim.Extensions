@@ -4,10 +4,7 @@ using System.Collections.Generic;
 namespace System
 {
     // https://stackoverflow.com/questions/32763927/elegant-way-of-converting-between-stringcomparison-and-stringcomparer
-    /// <summary>
-    ///     Extension method class for <see cref="StringComparison"/>.
-    /// </summary>
-    public static partial class StringComparisonExt
+    partial class StringComparisonExt
     {
         private static readonly Dictionary<StringComparison, Func<StringComparer>> _maps =
             new Dictionary<StringComparison, Func<StringComparer>>

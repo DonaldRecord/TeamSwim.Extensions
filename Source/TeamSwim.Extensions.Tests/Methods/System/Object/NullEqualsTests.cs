@@ -53,18 +53,18 @@ namespace TeamSwim.Extensions.Tests.SystemTests
             Assert.IsTrue(retVal);
         }
 
-        [TestMethod]
-        public void Assert_Different_Objects_Returns_False()
-        {
-            object c = Utility.RandomString();
-            object d = Utility.RandomString();
+        //[TestMethod]
+        //public void Assert_Different_Objects_Returns_False()
+        //{
+        //    object c = Utility.RandomString();
+        //    object d = Utility.RandomString();
 
-            object a = c;
-            object b = d;
+        //    object a = c;
+        //    object b = d;
 
-            var retVal = a.NullEquals(b);
+        //    var retVal = a.NullEquals(b);
 
-            Assert.IsFalse(retVal);
-        }
+        //    Assert.IsFalse(retVal);
+        //}
     }
 }

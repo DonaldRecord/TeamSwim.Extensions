@@ -2,10 +2,7 @@
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="Enum"/>.
-    /// </summary>
-    public static partial class EnumExt
+    partial class EnumExt
     {
         /// <summary>
         ///     Returns <see langword="true"/> if the <see cref="Enum"/> <paramref name="value"/> 

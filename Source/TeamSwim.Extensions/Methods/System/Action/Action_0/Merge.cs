@@ -3,7 +3,7 @@
 
 namespace System
 {
-    public static partial class ActionExt
+    partial class ActionExt
     {
         /// <summary>
         ///     Merge together several <see cref="Action"/> delegates.

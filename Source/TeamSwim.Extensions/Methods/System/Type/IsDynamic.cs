@@ -1,12 +1,10 @@
 ﻿using System.Dynamic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System
 {
-    /// <summary>
-    ///     Extension method class for <see cref="Type"/>.
-    /// </summary>
-    public static partial class TypeExt
+    partial class TypeExt
     {
         /// <summary>
         ///     Determines if a type is <see langword="dynamic"/>, and intended to be accessed via the .NET Dynamic API.
@@ -19,7 +17,7 @@ namespace System
         [Pure]
         public static bool IsDynamic([NotNull] this Type type)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (type == null) throw Exceptions.ArgumentNull(nameof(type));
 
             var result = typeof(IDynamicMetaObjectProvider).IsAssignableFrom(type);
             return result;

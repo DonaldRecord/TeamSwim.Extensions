@@ -3,8 +3,6 @@ bin
 obj
 *.user
 /packages
-/TestResults/b3a2bd67-7669-4182-938c-d7e63bcf292d
-/_NCrunch_GJR
 /artifacts/webdeploy/QA
 *.dbmdl
 /_ReSharper.Caches
