@@ -24,7 +24,7 @@ namespace System.Linq
             if (predicate == null) throw Exceptions.ArgumentNull(nameof(predicate));
 
             var result = source.OrderByDescending(predicate);
-                return result;
+            return result;
         }
     }
 }
