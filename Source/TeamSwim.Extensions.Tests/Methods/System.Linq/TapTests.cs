@@ -7,14 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.System.Linq
 {
     [TestClass]
-    public class MutateTests
+    public class TapTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Mutate_Null_Source_Throws_Exception()
+        public void Tap_Null_Source_Throws_Exception()
         {
             List<TestEntity> list = null;
-            var result = list.Mutate(l => l.Number++).ToList();
+            var result = list.Tap(l => l.Number++).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -23,7 +23,7 @@ namespace System.System.Linq
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Mutate_Null_Delegate_Throws_Exception()
+        public void Tap_Null_Delegate_Throws_Exception()
         {
             Action<TestEntity> action = null;
             var list = new List<TestEntity>
@@ -33,7 +33,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Mutate(action).ToList();
+            var result = list.Tap(action).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -41,7 +41,7 @@ namespace System.System.Linq
         }
 
         [TestMethod]
-        public void Mutate_Delegate_Is_Always_Executed()
+        public void Tap_Delegate_Is_Always_Executed()
         {
             var list = new List<TestEntity>
             {
@@ -50,7 +50,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Mutate(l => l.Number++).ToList();
+            var result = list.Tap(l => l.Number++).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -59,7 +59,7 @@ namespace System.System.Linq
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Mutate_Does_Not_Error_Handle()
+        public void Tap_Does_Not_Error_Handle()
         {
             var list = new List<TestEntity>
             {
@@ -69,7 +69,7 @@ namespace System.System.Linq
                 null
             };
 
-            var result = list.Mutate(l => l.Number++).ToList();
+            var result = list.Tap(l => l.Number++).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -78,10 +78,10 @@ namespace System.System.Linq
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Mutate_With_Indexer_Null_Source_Throws_Exception()
+        public void Tap_With_Indexer_Null_Source_Throws_Exception()
         {
             List<TestEntity> list = null;
-            var result = list.Mutate((l, i) => l.Number += i).ToList();
+            var result = list.Tap((l, i) => l.Number += i).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(4, result[1].Number);
@@ -90,7 +90,7 @@ namespace System.System.Linq
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Mutate_With_Indexer_Null_Delegate_Throws_Exception()
+        public void Tap_With_Indexer_Null_Delegate_Throws_Exception()
         {
             Action<TestEntity, int> action = null;
             var list = new List<TestEntity>
@@ -100,7 +100,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Mutate(action).ToList();
+            var result = list.Tap(action).ToList();
 
             Assert.AreEqual(2, result[0].Number);
             Assert.AreEqual(4, result[1].Number);
@@ -108,7 +108,7 @@ namespace System.System.Linq
         }
 
         [TestMethod]
-        public void Mutate_With_Indexer_Delegate_Is_Always_Executed()
+        public void Tap_With_Indexer_Delegate_Is_Always_Executed()
         {
             var list = new List<TestEntity>
             {
@@ -117,7 +117,7 @@ namespace System.System.Linq
                 new TestEntity(3)
             };
 
-            var result = list.Mutate((l, i) => l.Number += i).ToList();
+            var result = list.Tap((l, i) => l.Number += i).ToList();
 
             Assert.AreEqual(1, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
@@ -126,7 +126,7 @@ namespace System.System.Linq
 
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
-        public void Mutate_With_Indexer_Does_Not_Error_Handle()
+        public void Tap_With_Indexer_Does_Not_Error_Handle()
         {
             var list = new List<TestEntity>
             {
@@ -136,7 +136,7 @@ namespace System.System.Linq
                 null
             };
 
-            var result = list.Mutate((l, i) => l.Number += i).ToList();
+            var result = list.Tap((l, i) => l.Number += i).ToList();
 
             Assert.AreEqual(1, result[0].Number);
             Assert.AreEqual(3, result[1].Number);

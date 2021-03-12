@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -14,7 +15,9 @@ namespace System.Linq
         /// <returns>The first element to satisfy one of the predicates, or default of <typeparamref name="T"/>.</returns>
         [PublicAPI]
         [Pure]
-        public static T FirstOrDefaultCoalesce<T>(this IEnumerable<T> source, params Func<T, bool>[] predicates)
+        public static T FirstOrDefaultCoalesce<T>(
+            [NotNull, InstantHandle] this IEnumerable<T> source, 
+            [NotNull, ItemNotNull, InstantHandle] params Func<T, bool>[] predicates)
         {
             var matches = new List<Tuple<int, T>>();
 
@@ -23,6 +26,9 @@ namespace System.Linq
                 var i = 0;
                 foreach (var predicate in predicates)
                 {
+                    if (predicate == null)
+                        throw new ArgumentException("One of the passed predicates was null.").WithSource();
+
                     var match = predicate.Invoke(elem);
                     if (match)
                     {

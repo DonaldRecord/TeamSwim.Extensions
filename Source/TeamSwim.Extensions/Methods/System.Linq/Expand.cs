@@ -9,8 +9,9 @@ namespace System.Linq
     partial class LinqExt
     {
         /// <summary>
-        ///     Projects multiple sequences, each containing an element and the result
+        ///     Projects multiple sequences, each containing an element of the source sequence and the result
         ///     of the element being passed through a set of <paramref name="selectors"/>.
+        ///     They are returned in the following order [1], [1a], [1b], [2], [2a], [2b], etc.
         /// </summary>
         /// <typeparam name="T">Element type</typeparam>
         /// <param name="source">The sequence to expand.</param>
@@ -30,6 +31,7 @@ namespace System.Linq
         /// <summary>
         ///     Projects a sequence containing the source elements as well as the evaluations of each element
         ///     against the passed <paramref name="selectors"/>.
+        ///     They are returned in the following order [1], [1a], [1b], [2], [2a], [2b], etc.
         /// </summary>
         /// <typeparam name="T">Element type</typeparam>
         /// <param name="source">Source sequence to expand</param>

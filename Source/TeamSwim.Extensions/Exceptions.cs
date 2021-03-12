@@ -4,6 +4,12 @@ namespace TeamSwim
 {
     internal static class Exceptions
     {
+        internal static TException WithSource<TException>(this TException ex) where TException : Exception
+        {
+            ex.Source = TeamSwimExtensions.ExceptionSource;
+            return ex;
+        }
+        
         internal static NullReferenceException NullRef()
         {
             return new NullReferenceException {Source = TeamSwimExtensions.ExceptionSource};
