@@ -3,7 +3,7 @@
   <!--Project Properties-->
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.1.1</Version>
+    <Version>1.1.2</Version>
     <RootNamespace>NotUsed</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
