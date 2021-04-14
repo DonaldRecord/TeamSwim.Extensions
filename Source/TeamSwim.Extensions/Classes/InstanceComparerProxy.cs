@@ -11,7 +11,7 @@ namespace System.Collections.Generic
     /// <typeparam name="T"></typeparam>
     public abstract class InstanceComparerProxy<T> : IEqualityComparer<T>
     {
-        protected abstract InstanceComparerProxy<T> ComparerProxy { get; }
+        protected abstract InstanceComparer<T> ComparerProxy { get; }
 
         public bool Equals(T x, T y) => ComparerProxy.Equals(x, y);
         public int GetHashCode(T obj) => ComparerProxy.GetHashCode(obj);
