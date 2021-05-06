@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 
 namespace System
 {
-    partial class Int64Ext
+    partial class DecimalExt
     {
         /// <summary>
         ///     Determines if <paramref name="value"/> is between <paramref name="threshold1"/> and <paramref name="threshold2"/> values.
@@ -12,14 +12,14 @@ namespace System
         ///     The threshold parameters will be ordered internally to figure out which one is lower and which one is higher -
         ///     they can be passed in either order.
         /// </para>
-        /// <param name="value"><see cref="long"/> value</param>
+        /// <param name="value"><see cref="decimal"/> value</param>
         /// <param name="threshold1">Start value of range.</param>
         /// <param name="threshold2">End value of range.</param>
         /// <param name="inclusive">When set to true, the <paramref name="value"/> is allowed to match the <paramref name="threshold1"/> or <paramref name="threshold2"/> value.</param>
         /// <returns><see langword="true"/> if the value is in the specified range. Otherwise, <see langword="false"/>. Default value is <see langword="true"/>.</returns>
         [PublicAPI]
         [Pure]
-        public static bool Between(this long value, long threshold1, long threshold2, bool inclusive = true)
+        public static bool Between(this decimal value, decimal threshold1, decimal threshold2, bool inclusive = true)
         {
             var list = new[] {threshold1, threshold2};
             var start = list.Min();
@@ -28,7 +28,7 @@ namespace System
             return result;
         }
 
-        private static bool BetweenImpl(long value, long start, long end, bool inclusive = true)
+        private static bool BetweenImpl(decimal value, decimal start, decimal end, bool inclusive = true)
         {
             if (inclusive)
                 return value >= start && value <= end;

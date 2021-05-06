@@ -11,9 +11,24 @@ namespace System.Collections.Generic
     /// <typeparam name="T"></typeparam>
     public abstract class InstanceComparerProxy<T> : IEqualityComparer<T>
     {
+        /// <summary>
+        ///     Instance of comparer to use in equality comparisons.
+        /// </summary>
         protected abstract InstanceComparerProxy<T> ComparerProxy { get; }
 
+        /// <summary>
+        ///     Determines if two instances of <typeparamref name="T"/> are equal to each other.
+        /// </summary>
+        /// <param name="x">Instance of <typeparamref name="T"/> to compare.</param>
+        /// <param name="y">Instance of <typeparamref name="T"/> to compare.</param>
+        /// <returns><see langword="true"/> if the two instances are equal. Otherwise, <see langword="false"/>.</returns>
         public bool Equals(T x, T y) => ComparerProxy.Equals(x, y);
+
+        /// <summary>
+        ///     Get the hash code for an instance of <typeparamref name="T"/>.
+        /// </summary>
+        /// <param name="obj">Instance of <typeparamref name="T"/> to calculate hashcode for.</param>
+        /// <returns>Hashcode of <paramref name="obj"/>.</returns>
         public int GetHashCode(T obj) => ComparerProxy.GetHashCode(obj);
     }
 }
