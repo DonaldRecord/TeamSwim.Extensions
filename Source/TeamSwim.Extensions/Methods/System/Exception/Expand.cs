@@ -12,6 +12,7 @@ namespace System
         /// </summary>
         /// <param name="exception">Parent exception.</param>
         /// <returns>Flattened list of exceptions from a single parent.</returns>
+        [PublicAPI]
         [Pure, NotNull, ItemNotNull, LinqTunnel]
         public static IEnumerable<Exception> Expand([NotNull] this Exception exception)
         {

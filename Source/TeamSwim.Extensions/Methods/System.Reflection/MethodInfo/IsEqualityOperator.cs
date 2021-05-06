@@ -1,4 +1,5 @@
-﻿using TeamSwim;
+﻿using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Reflection
 {
@@ -14,7 +15,9 @@ namespace System.Reflection
         /// </summary>
         /// <param name="methodInfo">Potential equality operator method.</param>
         /// <returns><see langword="true"/> if the specified method is the .NET equality operator method. Otherwise, <see langword="false"/>.</returns>
-        public static bool IsEqualityOperator(this MethodInfo methodInfo)
+        [PublicAPI]
+        [Pure]
+        public static bool IsEqualityOperator([NotNull] this MethodInfo methodInfo)
         {
             if (methodInfo == null) throw Exceptions.ArgumentNull(nameof(methodInfo));
 
