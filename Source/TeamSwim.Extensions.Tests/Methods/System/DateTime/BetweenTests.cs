@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.DateTimeExtensions
+namespace TeamSwim.Extensions.SystemDateTime.Tests
 {
     [TestClass]
     public partial class BetweenTests : BaseUnitTest

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace System.Methods.System.Bool
+namespace TeamSwim.Extensions.SystemBoolean.Tests
 {
     [TestClass]
     public class SwitchTests

@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.DateTimeNullableExtensions
+namespace TeamSwim.Extensions.SystemDateTime.Tests
 {
     [TestClass]
-    public class OffsetTests : BaseUnitTest
+    public class NullableOffsetTests : BaseUnitTest
     {
         internal const string ToDateTimeOffsetTest = "DateTime.ToDateTimeOffset()";
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.SystemTests
+namespace TeamSwim.Extensions.SystemString.Tests
 {
     [TestClass]
     public class ContainsAnyTests : BaseUnitTest

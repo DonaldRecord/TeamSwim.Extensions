@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable ExpressionIsAlwaysNull
 
-namespace TeamSwim.Extensions.Tests.System.StringTests
+namespace TeamSwim.Extensions.SystemString.Tests
 {
     [TestClass]
     public class NullEqualsTests : BaseUnitTest

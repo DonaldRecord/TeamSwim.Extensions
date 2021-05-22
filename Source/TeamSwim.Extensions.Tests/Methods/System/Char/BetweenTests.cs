@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.Char
+namespace TeamSwim.Extensions.SystemChar.Tests
 {
     [TestClass]
     public partial class BetweenTests : BaseUnitTest

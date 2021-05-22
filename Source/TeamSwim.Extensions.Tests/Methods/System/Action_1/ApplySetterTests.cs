@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestType = TeamSwim.Extensions.Tests.System.Action_1.ApplySetterTestScope.TestType;
 // ReSharper disable AssignNullToNotNullAttribute
 
-namespace TeamSwim.Extensions.Tests.System.Action_1
+namespace TeamSwim.Extensions.SystemAction.Tests
 {
     [TestClass]
     public class ApplySetterTests : BaseUnitTest
@@ -16,7 +15,7 @@ namespace TeamSwim.Extensions.Tests.System.Action_1
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Setter_Throws_Exception()
         {
-            Action<TestType> setter = null;
+            Action<ApplySetterTestScope.TestType> setter = null;
             setter.ApplySetter();
             Assert.Fail();
         }
@@ -25,7 +24,7 @@ namespace TeamSwim.Extensions.Tests.System.Action_1
         public void Setter_Executes()
         {
             var prop1 = Utility.RandomString();
-            Action<TestType> setter = t => t.Property1 = prop1;
+            Action<ApplySetterTestScope.TestType> setter = t => t.Property1 = prop1;
             var tt = setter.ApplySetter();
             Assert.IsNotNull(tt);
             Assert.AreEqual(prop1, tt.Property1);

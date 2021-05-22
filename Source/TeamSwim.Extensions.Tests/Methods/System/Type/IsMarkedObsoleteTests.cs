@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
 #pragma warning disable 618
 
-namespace TeamSwim.Extensions.Tests.System.TypeTests
+namespace TeamSwim.Extensions.SystemType.Tests
 {
     [TestClass]
     public sealed class IsMarkedObsoleteTests : BaseUnitTest

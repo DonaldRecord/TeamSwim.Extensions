@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.SystemTests
+namespace TeamSwim.Extensions.SystemString.Tests
 {
     [TestClass]
     public class PrependTests : BaseUnitTest

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace System.Methods.System.String
+namespace TeamSwim.Extensions.SystemString.Tests
 {
     [TestClass]
     public class SplitByCapitalLettersEnumerableTests

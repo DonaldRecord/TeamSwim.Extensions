@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace System.Methods.System.Decimal
+namespace TeamSwim.Extensions.SystemDecimal.Tests
 {
     [TestClass]
     public class BetweenTests : BaseUnitTest

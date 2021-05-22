@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.DateTime_Nullable
+namespace TeamSwim.Extensions.SystemDateTime.Tests
 {
     [TestClass]
     public class TryParseTests : BaseUnitTest

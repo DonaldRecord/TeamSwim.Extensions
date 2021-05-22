@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.Bool_Nullable
+namespace TeamSwim.Extensions.SystemBoolean.Tests
 {
     [TestClass]
     public class OrFalseTests : BaseUnitTest

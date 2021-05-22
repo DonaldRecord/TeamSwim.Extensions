@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable UnusedVariable
 // ReSharper disable AssignNullToNotNullAttribute
 
-namespace TeamSwim.Extensions.Tests.SystemTests
+namespace TeamSwim.Extensions.SystemString.Tests
 {
     [TestClass, ExcludeFromCodeCoverage]
     public class AppendTests : BaseUnitTest
