@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using E = TeamSwim.Extensions.Tests.System.EnumExtensions.HasAnyFlagTestScope.TestEnum;
+using E = TeamSwim.Extensions.SystemEnum.Tests.HasAllFlagsTestScope.TestEnum;
 
-namespace TeamSwim.Extensions.Tests.System.EnumExtensions
+namespace TeamSwim.Extensions.SystemEnum.Tests
 {
     [TestClass]
     public class HasAnyFlagTests : BaseUnitTest

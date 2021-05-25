@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.SystemTests
+namespace TeamSwim.Extensions.SystemInt64.Tests
 {
     [TestClass]
     public class NullEqualsTests : BaseUnitTest

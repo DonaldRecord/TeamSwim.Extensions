@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace System
+namespace TeamSwim.Extensions.SystemDateTime.Tests
 {
     [TestClass]
     public class IsWeekendTests

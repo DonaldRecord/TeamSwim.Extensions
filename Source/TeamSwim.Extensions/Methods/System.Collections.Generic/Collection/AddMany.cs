@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using TeamSwim;
 
-namespace System.Linq
+namespace System.Collections.Generic
 {
-    partial class LinqExt
+    partial class CollectionExt
     {
         /// <summary>
         ///     Loops set of new elements to add them to an existing collection.

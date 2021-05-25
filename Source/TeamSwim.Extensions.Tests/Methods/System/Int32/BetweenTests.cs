@@ -1,13 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.Int32Extensions
+namespace TeamSwim.Extensions.SystemInt32.Tests
 {
     [TestClass]
     public class BetweenTests : BaseUnitTest
     {
-        private const string BetweenTest = "Int32.Between()";
-
         [TestMethod]
         public void Inclusive_Value_Equals_Start_Returns_True()
         {

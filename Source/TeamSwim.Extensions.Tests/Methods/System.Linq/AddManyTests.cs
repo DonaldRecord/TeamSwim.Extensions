@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace System.Linq
@@ -9,6 +6,16 @@ namespace System.Linq
     [TestClass]
     public class AddManyTests : BaseUnitTest
     {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void AddMany_Null_Source_Throws_Exception()
+        {
+            ICollection<int?> source = null;
+            var elements = new List<int?> { 1, null, null, 2, null, 3 };
+            source.AddMany(elements);
+            Assert.Fail();
+        }
+
         [TestMethod]
         public void AddMany_Returns_Expected_List()
         {

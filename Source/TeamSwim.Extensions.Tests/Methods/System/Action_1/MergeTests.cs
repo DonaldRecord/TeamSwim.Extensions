@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TeamSwim.Extensions.Tests.System.ActionExtensions
+namespace TeamSwim.Extensions.SystemAction.MethodTests
 {
     [TestClass]
     public class MergeTests : BaseUnitTest
