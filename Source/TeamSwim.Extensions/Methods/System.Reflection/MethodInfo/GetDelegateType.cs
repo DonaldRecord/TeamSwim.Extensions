@@ -7,6 +7,11 @@ namespace System.Reflection
 {
     partial class MethodInfoExt
     {
+        /// <summary>
+        ///     Get the <see langword="delegate"/> type that correctly identifies the <see cref="MethodInfo"/> signature.
+        /// </summary>
+        /// <param name="method">The method to determine the signature for.</param>
+        /// <returns><see cref="Type"/> that represents the method signature.</returns>
         [PublicAPI]
         [Pure, NotNull]
         public static Type GetDelegateType([NotNull] this MethodInfo method)
@@ -79,7 +84,7 @@ namespace System.Reflection
                 case 17:
                     return typeof(Func<,,,,,,,,,,,,,,,,>);
                 default:
-                    throw new NotImplementedException();
+                    throw new InvalidOperationException("Delegate type cannot be built for a method with more than 16 parameters.");
             }
         }
 
@@ -122,7 +127,7 @@ namespace System.Reflection
                 case 16:
                     return typeof(Action<,,,,,,,,,,,,,,,>);
                 default:
-                    throw new NotImplementedException();
+                    throw new InvalidOperationException("Delegate type cannot be built for a method with more than 16 parameters.");
             }
         }
     }

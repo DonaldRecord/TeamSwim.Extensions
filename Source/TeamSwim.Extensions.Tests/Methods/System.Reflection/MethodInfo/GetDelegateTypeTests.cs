@@ -129,6 +129,14 @@ namespace System.Methods.System.Reflection.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Action17_Throws_Expected_Exception()
+        {
+            var actual = Action17Info.GetDelegateType();
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void Func1_Returns_Expected_DelegateType()
         {
             var actual = Func1Info.GetDelegateType();
@@ -240,6 +248,21 @@ namespace System.Methods.System.Reflection.Tests
             Assert.AreEqual(typeof(Func<string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string>), actual);
         }
 
+        [TestMethod]
+        public void Func17_Returns_Expected_DelegateType()
+        {
+            var actual = Func17Info.GetDelegateType();
+            Assert.AreEqual(typeof(Func<string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string, string>), actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Func18_Throws_Expected_Exception()
+        {
+            var actual = Func18Info.GetDelegateType();
+            Assert.Fail();
+        }
+
         private void Action0() { }
         private static MethodInfo Action0Info => GetMethodInfo(nameof(Action0));
         
@@ -291,6 +314,9 @@ namespace System.Methods.System.Reflection.Tests
         private void Action16(string s1, string s2, string s3, string s4, string s5, string s6, string s7, string s8, string s9, string s10, string s11, string s12, string s13, string s14, string s15, string s16) { }
         private static MethodInfo Action16Info => GetMethodInfo(nameof(Action16));
 
+        private void Action17(string s1, string s2, string s3, string s4, string s5, string s6, string s7, string s8, string s9, string s10, string s11, string s12, string s13, string s14, string s15, string s16, string s17) { }
+        private static MethodInfo Action17Info => GetMethodInfo(nameof(Action17));
+
         private string Func1() => FuncResult;
         private static MethodInfo Func1Info => GetMethodInfo(nameof(Func1));
 
@@ -338,6 +364,12 @@ namespace System.Methods.System.Reflection.Tests
 
         private string Func16(string s1, string s2, string s3, string s4, string s5, string s6, string s7, string s8, string s9, string s10, string s11, string s12, string s13, string s14, string s15) => FuncResult;
         private static MethodInfo Func16Info => GetMethodInfo(nameof(Func16));
+
+        private string Func17(string s1, string s2, string s3, string s4, string s5, string s6, string s7, string s8, string s9, string s10, string s11, string s12, string s13, string s14, string s15, string s16) => FuncResult;
+        private static MethodInfo Func17Info => GetMethodInfo(nameof(Func17));
+
+        private string Func18(string s1, string s2, string s3, string s4, string s5, string s6, string s7, string s8, string s9, string s10, string s11, string s12, string s13, string s14, string s15, string s16, string s17) => FuncResult;
+        private static MethodInfo Func18Info => GetMethodInfo(nameof(Func18));
 
         private static MethodInfo GetMethodInfo(string name) =>
             typeof(GetDelegateTypeTests).GetMethod(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);

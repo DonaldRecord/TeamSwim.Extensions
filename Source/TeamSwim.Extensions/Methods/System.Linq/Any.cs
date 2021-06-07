@@ -8,7 +8,13 @@ namespace System.Linq
 {
     partial class LinqExt
     {
-
+        /// <summary>
+        ///     Determines whether any element of a sequence satisfies a condition.
+        /// </summary>
+        /// <typeparam name="T">Element type.</typeparam>
+        /// <param name="source">Input sequence whose elements to apply the predicate to.</param>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <returns><see langword="true"/> any elements in the source sequence pass the test in the specified predicate; otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
         [Pure]
         public static bool Any<T>(
