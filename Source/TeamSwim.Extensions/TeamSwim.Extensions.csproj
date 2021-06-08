@@ -35,9 +35,6 @@
     <PackageProjectUrl>https://github.com/DonaldRecord/TeamSwim.Extensions</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Methods\System.Linq\AverageOrDefault.Int32.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
@@ -46,6 +43,11 @@
     <None Include="Methods\System.Linq\AverageOrDefault.Int32.cs" />
     <None Include="packageIcon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
@@ -58,10 +60,5 @@
   <PropertyGroup Condition="'$(Configuration)'=='Annotations'">
     <DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
   </PropertyGroup>
-
-  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-  </PropertyGroup>-->
 
 </Project>
