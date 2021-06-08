@@ -75,6 +75,33 @@ namespace System.Linq
 
             Assert.Fail();
         }
+        
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Error_Thrown_For_Null_Predicate_Element()
+        {
+            var source = new List<int> {1, 2, 4, 5};
+            var predicates = new List<Func<int, bool>>();
+            predicates.Add(i => i % 3 == 0);
+            predicates.Add(null);
 
+            var actual = source.FirstCoalesce(predicates.ToArray());
+
+            Assert.Fail();
+        }
+
+        //[TestMethod]
+        //[ExpectedException(typeof(ArgumentException))]
+        //public void Error_Not_Thrown_For_Null_Predicate_Element_When_Previous_Predicate_Succeeds()
+        //{
+        //    var source = new List<int> {1, 2, 3, 4, 5};
+        //    var predicates = new List<Func<int, bool>>();
+        //    predicates.Add(i => i % 3 == 0);
+        //    predicates.Add(null);
+
+        //    var actual = source.FirstCoalesce(predicates.ToArray());
+
+        //    Assert.Fail();
+        //}
     }
 }

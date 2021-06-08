@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ContractAnnotationTests\**" />
+    <EmbeddedResource Remove="ContractAnnotationTests\**" />
+    <None Remove="ContractAnnotationTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bogus" Version="33.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
@@ -20,10 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TeamSwim.Extensions\TeamSwim.Extensions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ContractAnnotationTests\" />
   </ItemGroup>
 
 </Project>

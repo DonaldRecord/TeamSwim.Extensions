@@ -44,5 +44,14 @@ namespace System.Linq
             var actual = list.AverageOrDefault(i => i);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Expected_Average_Overload()
+        {
+            var list = TestList(1, 2, 4, 6, 7).Cast<decimal>();
+            var expected = list.Average();
+            var actual = list.AverageOrDefault();
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
