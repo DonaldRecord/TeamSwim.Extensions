@@ -7,8 +7,7 @@ namespace System.Linq
     partial class LinqExt
     {
         /// <summary>
-        ///     Call <see cref="String.Join(char, object?[])"/> on a sequence of strings
-        ///     via an extension method invocation.
+        ///     Call String.Join on a sequence of strings via an extension method invocation.
         /// </summary>
         /// <param name="source">Sequence of strings to join.</param>
         /// <param name="separator">Separator character.</param>
@@ -22,8 +21,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        ///     Call <see cref="String.Join(string, object?[])"/> on a sequence of strings
-        ///     via an extension method invocation.
+        ///     Call String.Join on a sequence of strings via an extension method invocation.
         /// </summary>
         /// <param name="source">Sequence of strings to join.</param>
         /// <param name="separator">Separator character.</param>
