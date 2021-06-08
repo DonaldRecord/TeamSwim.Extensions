@@ -13,16 +13,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
+
+    - name: Setup .NET Framework 5.0
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.101' # Check for latest at link at .NET 5 download page      
+
     - name: Install dependencies
       run: dotnet restore "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj"
+    
     - name: Build
       run: dotnet build "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj" --configuration Release --no-restore
+
 #    - name: Test
 #      run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
+
     - name: Publish TeamSwim.Extensions
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
