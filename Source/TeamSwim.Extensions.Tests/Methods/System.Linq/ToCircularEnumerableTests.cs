@@ -13,7 +13,7 @@ namespace System.Methods.System.Linq
         public void Null_Source_Throws_Exception()
         {
             IEnumerable<int> list = null;
-            var uut = list.ToCircularEnumerable().ToHashSet();
+            var uut = list.ToCircularEnumerable().ToList();
             Assert.Fail();
         }
 

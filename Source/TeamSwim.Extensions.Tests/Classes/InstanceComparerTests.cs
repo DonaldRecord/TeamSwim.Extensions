@@ -13,7 +13,7 @@ namespace System.Classes
         public void Valid_Property_Expression_Returns_Expected_Results()
         {
             var comparer = InstanceComparer.For<TestClass>()
-                .AddProperty(c => c.StringProperty, StringComparer.OrdinalIgnoreCase);
+                .AddProperty(x => x.StringProperty, StringComparer.OrdinalIgnoreCase);
 
             var a = new TestClass { StringProperty = "a" };
             var b = new TestClass { StringProperty = "A" };
@@ -37,7 +37,7 @@ namespace System.Classes
         public void Valid_Field_Expression_Returns_Expected_Results()
         {
             var comparer = InstanceComparer.For<TestClass>()
-                .AddField(c => c.StringField, StringComparer.OrdinalIgnoreCase);
+                .AddField(x => x.StringField, StringComparer.OrdinalIgnoreCase);
 
             var a = new TestClass { StringField = "a" };
             var b = new TestClass { StringField = "A" };

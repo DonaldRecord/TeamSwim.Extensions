@@ -77,5 +77,18 @@ namespace System.Linq
             Assert.IsTrue(secondDelegateExecuted);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Error_Thrown_For_Null_Predicate_Element()
+        {
+            var source = new List<int> { 1, 2, 4, 5 };
+            var predicates = new List<Func<int, bool>>();
+            predicates.Add(i => i % 3 == 0);
+            predicates.Add(null);
+
+            var actual = source.FirstOrDefaultCoalesce(predicates.ToArray());
+
+            Assert.Fail();
+        }
     }
 }

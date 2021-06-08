@@ -2,8 +2,8 @@
 
   <!--Project Properties-->
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.1.1</Version>
+    <TargetFrameworks>netcoreapp3.1;netstandard20;net50</TargetFrameworks>
+    <Version>1.1.4</Version>
     <RootNamespace>TeamSwim.Extensions</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
@@ -35,11 +35,15 @@
     <PackageProjectUrl>https://github.com/DonaldRecord/TeamSwim.Extensions</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Methods\System.Linq\AverageOrDefault.Int32.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\README.md" Link="README.md" />
+    <None Include="Methods\System.Linq\AverageOrDefault.Int32.cs" />
     <None Include="packageIcon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
@@ -55,9 +59,9 @@
     <DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+  <!--<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
-  </PropertyGroup>
+  </PropertyGroup>-->
 
 </Project>
