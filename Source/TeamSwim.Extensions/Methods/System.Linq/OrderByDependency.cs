@@ -41,7 +41,8 @@ namespace System.Linq
                 yield break;
 
             var dependencyGraph = new Dictionary<T, ICollection<TKey>>();
-            keyComparer ??= EqualityComparer<TKey>.Default;
+            // keyComparer ??= EqualityComparer<TKey>.Default;
+            keyComparer = keyComparer ?? EqualityComparer<TKey>.Default;
 
             TKey GetReferenceKey(T instance)
             {

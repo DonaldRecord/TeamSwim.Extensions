@@ -15,7 +15,7 @@ namespace System.Linq
         /// <returns>Joined string.</returns>
         public static string StringJoin(this IEnumerable<string> source, char separator)
         {
-            var result = String.Join(separator, source);
+            var result = String.Join(separator.ToString(), source);
             return result;
         }
 

@@ -14,7 +14,9 @@ namespace System
         [Pure]
         [ExcludeFromCodeCoverage]
         // TODO: Contract Annotation
-        public static bool IsNullOrWhiteSpace([CanBeNull, NotNullWhen(false)] this string value) => 
+        public static bool IsNullOrWhiteSpace(
+            //[CanBeNull, NotNullWhen(false)] this string value) => TODO: FIX THIS
+            [CanBeNull] this string value) =>
             String.IsNullOrWhiteSpace(value);
     }
 }
