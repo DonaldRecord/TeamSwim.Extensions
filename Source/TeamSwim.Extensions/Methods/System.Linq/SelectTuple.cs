@@ -43,6 +43,8 @@ namespace System.Linq
         /// <param name="item1"><typeparamref name="T1"/> transform function.</param>
         /// <param name="item2"><typeparamref name="T2"/> transform function.</param>
         /// <returns>Transformed source sequence Enumerable.</returns>
+        [PublicAPI]
+        [Pure, NotNull, LinqTunnel, ItemNotNull]
         public static IEnumerable<Tuple<T1, T2>> SelectTuple<T, T1, T2>(
             this IEnumerable<T> source,
             Func<T, T1> item1,

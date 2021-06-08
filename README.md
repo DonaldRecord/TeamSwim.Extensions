@@ -8,6 +8,7 @@ Collection of practical .NET extension methods & classes to boost productivity.
 - No custom namespaces.
 - Currently targeting framework(s):
 	- .NET Core 3.1
+	- .NET Standard 2.0
 
 ## Additional Notes
 - All extensions methods are 100% unit tested.
