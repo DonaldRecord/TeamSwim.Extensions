@@ -9,6 +9,7 @@ Collection of practical .NET extension methods & classes to boost productivity.
 - Currently targeting framework(s):
 	- .NET Core 3.1
 	- .NET Standard 2.0
+	- .NET Framework 5.0
 
 ## Additional Notes
 - All extensions methods are 100% unit tested.
