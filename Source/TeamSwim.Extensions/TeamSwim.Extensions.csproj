@@ -3,7 +3,7 @@
   <!--Project Properties-->
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1;netstandard20;net50</TargetFrameworks>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
     <RootNamespace>TeamSwim.Extensions</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
