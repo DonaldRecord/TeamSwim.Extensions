@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace System.Collections.Generic
 {
@@ -9,12 +10,14 @@ namespace System.Collections.Generic
     ///     for using a proxy <see cref="InstanceComparerProxy{T}"/> to do instance comparisons.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [PublicAPI]
     public abstract class InstanceComparerProxy<T> : IEqualityComparer<T>
     {
         /// <summary>
         ///     Instance of comparer to use in equality comparisons.
         /// </summary>
-        protected abstract InstanceComparerProxy<T> ComparerProxy { get; }
+        [NotNull]
+        protected abstract InstanceComparer<T> ComparerProxy { get; }
 
         /// <summary>
         ///     Determines if two instances of <typeparamref name="T"/> are equal to each other.

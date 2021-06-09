@@ -38,7 +38,7 @@ namespace System.Collections.Generic
         /// <returns><see langword="true" /> if the objects are equal. Otherwise, <see langword="false" />.</returns>
         /// <exception cref="Exception">An equality comparison callback throws an exception.</exception>
         [Pure]
-        public bool Equals(T x, T y)
+        public virtual bool Equals(T x, T y)
         {
             if (ReferenceEquals(x, y)) return true;
             if (ReferenceEquals(x, null)) return false;
@@ -64,7 +64,7 @@ namespace System.Collections.Generic
         /// <returns>Hash code as <see cref="T:System.Int32" />.</returns>
         /// <exception cref="T:System.Exception">A delegate callback throws an exception.</exception>
         [Pure]
-        public int GetHashCode([CanBeNull] T obj)
+        public virtual int GetHashCode([CanBeNull] T obj)
         {
             unchecked
             {
@@ -97,7 +97,7 @@ namespace System.Collections.Generic
         /// <param name="comparer">Equality Comparer of type <typeparamref name="TProperty"/> to use in comparisons.</param>
         /// <returns>Same <see cref="InstanceComparer{T}"/> instance.</returns>
         [NotNull]
-        public InstanceComparer<T> AddProperty<TProperty>(
+        public virtual InstanceComparer<T> AddProperty<TProperty>(
             [NotNull] Expression<Func<T, TProperty>> property,
             [CanBeNull] IEqualityComparer<TProperty> comparer = null)
         {
@@ -123,7 +123,7 @@ namespace System.Collections.Generic
         /// <param name="field">Expression to represent field on object.</param>
         /// <param name="comparer">Equality Comparer of type <typeparamref name="TField"/> to use in comparisons.</param>
         /// <returns>Same <see cref="InstanceComparer{T}"/> instance.</returns>
-        public InstanceComparer<T> AddField<TField>(
+        public virtual InstanceComparer<T> AddField<TField>(
             [NotNull] Expression<Func<T, TField>> field,
             [CanBeNull] IEqualityComparer<TField> comparer = null)
         {
@@ -150,7 +150,7 @@ namespace System.Collections.Generic
         /// <param name="expression">Expression representing the delegate.</param>
         /// <param name="comparer">Equality Comparer of type <typeparamref name="TValue"/> for the delegate results.</param>
         /// <returns>Same <see cref="InstanceComparer{T}"/> instance.</returns>
-        public InstanceComparer<T> AddExpression<TValue>(
+        public virtual InstanceComparer<T> AddExpression<TValue>(
             [NotNull] Expression<Func<T, TValue>> expression,
             [CanBeNull] IEqualityComparer<TValue> comparer = null)
         {
@@ -206,7 +206,6 @@ namespace System.Collections.Generic
             var method = Expression.Lambda<Func<IEqualityComparer, T, int>>(
                     Expression.Call(
                         comparerParam,
-                        // ReSharper disable once AssignNullToNotNullAttribute
                         typeof(IEqualityComparer).GetMethod(nameof(IEqualityComparer.GetHashCode)),
                         Expression.Convert(expr, typeof(object))),
                     comparerParam, t);
