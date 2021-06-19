@@ -77,6 +77,23 @@ namespace System.System.Linq
         }
 
         [TestMethod]
+        public void Tap_Predicate_Filters_Out_Elements()
+        {
+            var list = new List<TestEntity>
+            {
+                new TestEntity(1),
+                new TestEntity(2),
+                new TestEntity(3)
+            };
+
+            var result = list.Tap(l => l.Number++, l => l.Number % 2 == 0).ToList();
+
+            Assert.AreEqual(1, result[0].Number);
+            Assert.AreEqual(3, result[1].Number);
+            Assert.AreEqual(3, result[2].Number);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Tap_With_Indexer_Null_Source_Throws_Exception()
         {
@@ -141,6 +158,23 @@ namespace System.System.Linq
             Assert.AreEqual(1, result[0].Number);
             Assert.AreEqual(3, result[1].Number);
             Assert.AreEqual(5, result[2].Number);
+        }
+
+        [TestMethod]
+        public void Tap_With_Indexer_Predicate_Filters_Out_Elements()
+        {
+            var list = new List<TestEntity>
+            {
+                new TestEntity(1),
+                new TestEntity(2),
+                new TestEntity(3)
+            };
+
+            var result = list.Tap((l, i) => l.Number++, (l, i) => i % 2 == 0).ToList();
+
+            Assert.AreEqual(2, result[0].Number);
+            Assert.AreEqual(2, result[1].Number);
+            Assert.AreEqual(4, result[2].Number);
         }
 
         public class TestEntity

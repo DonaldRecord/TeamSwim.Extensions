@@ -29,8 +29,9 @@ namespace System.Linq
                 if (predicate == null || predicate.Invoke(element))
                 {
                     routine.Invoke(element);
-                    yield return element;
                 }
+
+                yield return element;
             }
         }
 
