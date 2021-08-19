@@ -13,6 +13,9 @@ namespace System.Linq
         ///     Will create a list of elements only when the debugger is attached.
         ///     This is useful for large lists so that they are not fully loaded into memory in production environments,
         ///     but Visual Studio debugger displays can be more helpful while debugging in a developer environment.
+        /// <para>
+        ///     This method will allow <see langword="null"/> sequences to pass through without error.
+        /// </para>
         /// </summary>
         /// <typeparam name="T">Element type.</typeparam>
         /// <param name="source">Source collection.</param>
@@ -20,6 +23,7 @@ namespace System.Linq
         [PublicAPI]
         [Pure, LinqTunnel]
         [ExcludeFromCodeCoverage] // Can't reach 100% in RELEASE config, but this code is trusted and the alternatives are tested.
+        // TODO: Add contract annotation
         public static IEnumerable<T> ToListWhenDebugging<T>([CanBeNull] this IEnumerable<T> source)
         {
             if (source == null)
