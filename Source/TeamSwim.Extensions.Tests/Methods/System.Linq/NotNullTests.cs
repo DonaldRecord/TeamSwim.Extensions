@@ -11,6 +11,17 @@ namespace System.Linq
     public class NotNullTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Source_Throws_Exception()
+        {
+            List<string> list = null;
+
+            var uut = list.NotNull().ToList();
+
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void Returns_Expected_Value()
         {
             string str1 = null;

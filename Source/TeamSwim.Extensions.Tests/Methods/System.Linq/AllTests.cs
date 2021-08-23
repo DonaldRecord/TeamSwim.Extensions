@@ -14,7 +14,7 @@ namespace System.Linq
         {
             List<int> list = null;
 
-            var result = list.All(i => i == -1);
+            var result = list.All((i, idx) => i == -1);
 
             Assert.Fail();
         }

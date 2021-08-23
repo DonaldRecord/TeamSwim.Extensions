@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -20,10 +21,14 @@ namespace System.Linq
         [PublicAPI]
         [Pure, NotNull, LinqTunnel, ItemNotNull]
         public static IEnumerable<Tuple<T1, T2>> SelectTuple<T, T1, T2>(
-            this IEnumerable<T> source,
-            Func<T, T1> item1,
-            Func<T, T2> item2)
+            [NotNull] this IEnumerable<T> source,
+            [NotNull, InstantHandle] Func<T, T1> item1,
+            [NotNull, InstantHandle] Func<T, T2> item2)
         {
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
+            if (item1 == null) throw Exceptions.ArgumentNull(nameof(item1));
+            if (item2 == null) throw Exceptions.ArgumentNull(nameof(item2));
+
             foreach (var elem in source)
             {
                 var i1 = item1.Invoke(elem);
@@ -50,6 +55,10 @@ namespace System.Linq
             Func<T, T1> item1,
             Func<T, T1, T2> item2)
         {
+            if (source == null) throw Exceptions.ArgumentNull(nameof(source));
+            if (item1 == null) throw Exceptions.ArgumentNull(nameof(item1));
+            if (item2 == null) throw Exceptions.ArgumentNull(nameof(item2));
+
             foreach (var elem in source)
             {
                 var i1 = item1.Invoke(elem);

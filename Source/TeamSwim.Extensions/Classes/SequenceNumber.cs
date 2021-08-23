@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace System
 {
-    // TODO: GET THREAD SAFETY WORKING
+    // TODO: implement IConvertible
     /// <summary>
     ///     Number type that increments integer value after every access.
     /// <para>
@@ -14,7 +14,7 @@ namespace System
     /// </summary>
     // ReSharper disable once UseNameofExpression
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public sealed class SequenceNumber
+    public sealed class SequenceNumber // : IConvertible
     {
         private int _number;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -278,5 +278,24 @@ namespace System
                 }
             }
         }
+
+        //private IConvertible CurrentConvertible() => Current();
+        //public TypeCode GetTypeCode() => CurrentConvertible().GetTypeCode();
+        //public bool ToBoolean(IFormatProvider? provider) => CurrentConvertible().ToBoolean(provider);
+        //public byte ToByte(IFormatProvider? provider) => CurrentConvertible().ToByte(provider);
+        //public char ToChar(IFormatProvider? provider) => CurrentConvertible().ToChar(provider);
+        //public DateTime ToDateTime(IFormatProvider? provider) => CurrentConvertible().ToDateTime(provider);
+        //public decimal ToDecimal(IFormatProvider? provider) => CurrentConvertible().ToDecimal(provider);
+        //public double ToDouble(IFormatProvider? provider) => CurrentConvertible().ToDouble(provider);
+        //public short ToInt16(IFormatProvider? provider) => CurrentConvertible().ToInt16(provider);
+        //public int ToInt32(IFormatProvider? provider) => CurrentConvertible().ToInt32(provider);
+        //public long ToInt64(IFormatProvider? provider) => CurrentConvertible().ToInt64(provider);
+        //public sbyte ToSByte(IFormatProvider? provider) => CurrentConvertible().ToSByte(provider);
+        //public float ToSingle(IFormatProvider? provider) => CurrentConvertible().ToSingle(provider);
+        //public string ToString(IFormatProvider? provider) => CurrentConvertible().ToString(provider);
+        //public object ToType(Type conversionType, IFormatProvider? provider) => CurrentConvertible().ToInt64(provider);
+        //public ushort ToUInt16(IFormatProvider? provider) => CurrentConvertible().ToUInt16(provider);
+        //public uint ToUInt32(IFormatProvider? provider) => CurrentConvertible().ToUInt32(provider);
+        //public ulong ToUInt64(IFormatProvider? provider) => CurrentConvertible().ToUInt64(provider);
     }
 }

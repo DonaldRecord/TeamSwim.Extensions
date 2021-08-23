@@ -9,6 +9,15 @@ namespace System.Methods.System.Linq
     public class HandleByCountTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Source_Throws_Exception()
+        {
+            List<int> source = null;
+            source.HandleByCount(() => { }, i => { }, c => { });
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void Single_Handler_Expected_Call()
         {
             var source = new List<int> {1};
@@ -60,6 +69,20 @@ namespace System.Methods.System.Linq
             Assert.IsFalse(noneHandlerCalled);
             Assert.IsFalse(singleHandlerCalled);
             Assert.IsTrue(multipleHandlerCalled);
+        }
+
+        [TestMethod]
+        public void Null_Handlers_No_Errors()
+        {
+            var source = new List<int> { 1, 2, 3 };
+            var noneHandlerCalled = false;
+            Action noneHandler = null;
+            var singleHandlerCalled = false;
+            Action<int> singleHandler = null;
+            var multipleHandlerCalled = false;
+            Action<ICollection<int>> multipleHandler = null;
+
+            source.HandleByCount(noneHandler, singleHandler, multipleHandler);
         }
     }
 }

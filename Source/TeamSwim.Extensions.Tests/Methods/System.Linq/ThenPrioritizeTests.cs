@@ -9,6 +9,26 @@ namespace System.Linq
     public class ThenPrioritizeTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Source_Throws_Exception()
+        {
+            IOrderedEnumerable<int> list = null;
+            var result = list.ThenPrioritize(i => i % 4 == 0);
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Null_Predicate_Throws_Exception()
+        {
+            Func<int, bool> predicate = null;
+            var list = new List<int> { 1, 2, 3 };
+
+            var result = list.Prioritize(i => i > 0).ThenPrioritize(predicate);
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void ThenPrioritize_Returns_Expected_Order()
         {
             var list = new List<int> { 1, 2, 3, 4 };
