@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Linq
 {
@@ -14,12 +15,14 @@ namespace System.Linq
         /// <typeparam name="T">Element type</typeparam>
         /// <param name="source">The sequence to assert.</param>
         /// <param name="comparer"></param>
+        /// <param name="exception">Custom exception to throw. Otherwise, throws an <see cref="InvalidOperationException" />.</param>
         /// <returns></returns>
         [PublicAPI]
         [Pure, NotNull, LinqTunnel]
         public static IEnumerable<T> AssertDistinct<T>(
             this IEnumerable<T> source, 
-            EqualityComparer<T> comparer = null)
+            IEqualityComparer<T> comparer = null,
+            Exception exception = null)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
@@ -32,7 +35,9 @@ namespace System.Linq
                 if (elem != null)
                 {
                     if (tmp.Contains(elem, comparer))
-                        throw new NotImplementedException();
+                    {
+                        throw (exception ?? Exceptions.InvalidOperation("Not all values are distinct."));
+                    }
 
                     tmp.Add(elem);
                 }

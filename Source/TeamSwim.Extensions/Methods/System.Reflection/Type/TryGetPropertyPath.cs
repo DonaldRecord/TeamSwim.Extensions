@@ -24,7 +24,7 @@ namespace System.Reflection
             out IList<PropertyInfo> properties,
             Func<Type, string, PropertyInfo> accessProperty = null)
         {
-            accessProperty ??= GetDefaultPropertyAccessor(DefaultBindingFlags);
+            accessProperty = accessProperty ?? GetDefaultPropertyAccessor(DefaultBindingFlags);
             properties = new List<PropertyInfo>();
             var parts = path.Split('.').ToList();
 
