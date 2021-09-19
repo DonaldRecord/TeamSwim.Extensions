@@ -10,6 +10,17 @@ namespace System.Linq
     public class FirstCoalesceTests
     {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Throws_Exception_Argument_Null_Exception()
+        {
+            List<int> list = null;
+            
+            var actual = list.FirstCoalesce(i => i == 1);
+            
+            Assert.Fail();
+        }
+
+        [TestMethod]
         public void Second_Delegate_Is_Not_Executed_When_First_Delegate_Can_Return_a_Result()
         {
             var list = new List<int> { 1, 2, 3 };
