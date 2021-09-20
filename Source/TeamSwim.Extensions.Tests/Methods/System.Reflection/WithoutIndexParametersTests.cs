@@ -52,7 +52,13 @@ namespace System.Reflection
             }
 
             public static int ExpectedPropertyCount { get; } = 1;
-            public static IEnumerable<PropertyInfo> InstanceUnderTest => typeof(TestEntity).GetProperties();
+            public static IEnumerable<PropertyInfo> InstanceUnderTest => GetUut();
+
+            private static IEnumerable<PropertyInfo> GetUut()
+            {
+                var result = typeof(TestEntity).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                return result;
+            }
 
         }
     }

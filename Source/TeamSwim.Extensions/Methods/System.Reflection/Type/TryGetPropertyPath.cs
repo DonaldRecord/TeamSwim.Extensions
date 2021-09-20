@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Reflection
 {
@@ -18,12 +20,16 @@ namespace System.Reflection
         /// <param name="properties"></param>
         /// <param name="accessProperty"></param>
         /// <returns></returns>
+        [PublicAPI]
         public static bool TryGetPropertyPath(
-            this Type type,
-            string path, 
+            [NotNull] this Type type,
+            [NotNull] string path, 
             out IList<PropertyInfo> properties,
-            Func<Type, string, PropertyInfo> accessProperty = null)
+            [CanBeNull] Func<Type, string, PropertyInfo> accessProperty = null)
         {
+            if (type == null)
+                Exceptions.ArgumentNull(nameof(type));
+
             accessProperty = accessProperty ?? GetDefaultPropertyAccessor(DefaultBindingFlags);
             properties = new List<PropertyInfo>();
             var parts = path.Split('.').ToList();
@@ -56,6 +62,7 @@ namespace System.Reflection
         /// <param name="properties"></param>
         /// <param name="bindingFlags"></param>
         /// <returns></returns>
+        [PublicAPI]
         public static bool TryGetPropertyPath(
             this Type type,
             string path,

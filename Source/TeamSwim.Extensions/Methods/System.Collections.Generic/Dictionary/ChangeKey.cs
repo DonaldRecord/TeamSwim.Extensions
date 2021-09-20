@@ -17,6 +17,7 @@ namespace System.Collections.Generic
         /// <param name="value">Dictionary instance to change key for.</param>
         /// <param name="currentKey">Current key in dictionary.</param>
         /// <param name="newKey">New key to transition into.</param>
+        [PublicAPI]
         public static bool ChangeKey<TKey, TValue>(
             [NotNull] this IDictionary<TKey, TValue> value,
             TKey currentKey,
