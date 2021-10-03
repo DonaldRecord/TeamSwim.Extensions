@@ -1,5 +1,6 @@
 ﻿//using System;
 //using System.Collections.Generic;
+//using System.Linq;
 //using System.Linq.Expressions;
 //using System.Text;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,8 +29,19 @@
 //        [TestMethod]
 //        public void Operator_Returns_True()
 //        {
-//            var scope = new Scope().TestWithExpression(e => e.Prop1 == e.Prop2);
-//            Assert.IsTrue(scope.IsEqualityOperator);
+//            //var scope = new Scope().TestWithExpression(e => e.Prop1 == e.Prop2);
+//            //Assert.IsTrue(scope.IsEqualityOperator);
+//            var methods = typeof(Entity)
+//                //.GetMethods(BindingFlags.Static | BindingFlags.CreateInstance | BindingFlags.Public)
+//                .GetMethods(B)
+//                .ToList();
+//            Assert.IsNotNull(methods);
+            
+//            //var method = typeof(Entity).GetMethod("op_Equality", );
+//            //Assert.IsNotNull(method);
+
+//            //var actual = method.IsEqualityOperator();
+//            //Assert.IsTrue(actual);
 //        }
 
 //        [TestMethod]
