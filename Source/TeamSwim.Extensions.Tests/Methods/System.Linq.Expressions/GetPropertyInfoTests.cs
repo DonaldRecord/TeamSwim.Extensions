@@ -27,7 +27,7 @@ namespace System.Methods.System.Linq.Expressions
         }
 
         [TestMethod]
-        public void Valid_Typed_Property_Throws_Exception()
+        public void Valid_Typed_Property_Returns_Expected_Result()
         {
             Expression<Func<TestClass, string>> expr = c => c.Property;
             var actual = expr.GetPropertyInfo();
@@ -60,6 +60,15 @@ namespace System.Methods.System.Linq.Expressions
         }
 
         [TestMethod]
+        //[ExpectedException(typeof(ArgumentException))]
+        public void Nested_Property_Info_Does_Not_Work_Correctly()
+        {
+            Expression<Func<TestClass, object>> expr = c => c.SubClassProperty.NestedProperty;
+            var actual = expr.GetPropertyInfo();
+            Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
         public void Valid_Untyped_Property_Throws_Exception()
         {
             Expression<Func<TestClass, object>> expr = c => c.Property;
@@ -83,6 +92,12 @@ namespace System.Methods.System.Linq.Expressions
             public string Property { get; set; }
             public static PropertyInfo PropertyInfo => typeof(TestClass).GetProperty(nameof(Property));
             public string Method() => null;
+            public TestSubClass SubClassProperty { get; set; }
+        }
+
+        public class TestSubClass
+        {
+            public string NestedProperty { get; set; }
         }
     }
 }
