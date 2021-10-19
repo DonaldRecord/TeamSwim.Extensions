@@ -20,7 +20,7 @@ namespace System.Linq.Expressions
             if (expression.TryGetPropertyInfo(out var propertyInfo))
                 return propertyInfo;
             else
-                throw new ArgumentException("The passed expression does not represent a property.");
+                throw new ArgumentException("The passed expression does not represent an atomic property.");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace System.Linq.Expressions
             if (expression.TryGetPropertyInfo(out var propertyInfo))
                 return propertyInfo;
             else
-                throw new ArgumentException("The passed expression does not represent a property.");
+                throw new ArgumentException("The passed expression does not represent an atomic property.");
         }
     }
 }

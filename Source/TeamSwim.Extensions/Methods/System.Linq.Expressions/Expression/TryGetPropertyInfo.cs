@@ -15,7 +15,7 @@ namespace System.Linq.Expressions
         [PublicAPI]
         [Pure, ContractAnnotation("=>true,propertyInfo:notnull;=>false,propertyInfo:null")]
         public static bool TryGetPropertyInfo<T, TProperty>(
-            [CanBeNull] this Expression<Func<T, TProperty>> expression, 
+            [CanBeNull] this Expression<Func<T, TProperty>> expression,
             out PropertyInfo propertyInfo)
         {
             if (expression.TryGetMemberInfo(out var memberInfo))
@@ -40,7 +40,7 @@ namespace System.Linq.Expressions
         [PublicAPI]
         [Pure, ContractAnnotation("=>true,propertyInfo:notnull;=>false,propertyInfo:null")]
         public static bool TryGetPropertyInfo<T>(
-            [CanBeNull] this Expression<Func<T, object>> expression, 
+            [CanBeNull] this Expression<Func<T, object>> expression,
             out PropertyInfo propertyInfo)
         {
             if (expression.TryGetMemberInfo(out var memberInfo))

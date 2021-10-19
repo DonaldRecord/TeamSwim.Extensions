@@ -10,31 +10,31 @@ namespace System.Linq.Expressions
     partial class ExpressionExt
     {
         /// <summary>
-        ///     Attempts to get the properties referenced in a LambdaExpression.
+        ///     Attempts to get the members (properties/fields) referenced in a LambdaExpression.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="expr"></param>
-        /// <param name="properties"></param>
+        /// <param name="members"></param>
         /// <returns></returns>
         [PublicAPI]
-        public static bool TryGetProperties<T>(
-            [NotNull] this Expression<Func<T, object>> expr, 
-            out ICollection<PropertyInfo> properties)
+        // TODO: Contract annotations
+        public static bool TryGetMembers<T>(
+            [NotNull] this Expression<Func<T, object>> expr,
+            out ICollection<MemberInfo> members)
         {
             if (expr == null)
                 throw Exceptions.ArgumentNull(nameof(expr));
 
-            properties = new List<PropertyInfo>();
-            var visitor = new MemberAccessExpansionVisitor(MemberTypes.Property);
+            members = new List<MemberInfo>();
+            var visitor = new MemberAccessExpansionVisitor(MemberTypes.Property | MemberTypes.Field);
             visitor.Visit(expr);
 
             foreach (var member in visitor.Members)
             {
-                if (member is PropertyInfo property)
-                    properties.Add(property);
+                members.Add(member);
             }
 
-            return properties.Any();
+            return members.Any();
         }
     }
 }

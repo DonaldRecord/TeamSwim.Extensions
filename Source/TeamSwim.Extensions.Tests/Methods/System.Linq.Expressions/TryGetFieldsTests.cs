@@ -8,14 +8,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.Methods.System.Linq.Expressions
 {
     [TestClass]
-    public class TryGetPropertiesTests
+    public class TryGetMembersTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Expression_Throws_Exception()
         {
             Expression<Func<TestEntity, object>> uut = null;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
             Assert.Fail();
         }
 
@@ -23,7 +23,7 @@ namespace System.Methods.System.Linq.Expressions
         public void Simple_Property_Returns_Expected_Result()
         {
             Expression<Func<TestEntity, object>> uut = e => e.SimpleProperty;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
             Assert.AreEqual(1, infos.Count());
             Assert.IsTrue(actual);
@@ -33,37 +33,37 @@ namespace System.Methods.System.Linq.Expressions
         public void Complex_Property_Returns_Expected_Result()
         {
             Expression<Func<TestEntity, object>> uut = e => e.ComplexProperty.NestedSimpleProperty;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
             Assert.AreEqual(2, infos.Count());
             Assert.IsTrue(actual);
         }
 
         [TestMethod]
-        public void Simple_Field_Returns_Expected_Nothing()
+        public void Simple_Field_Returns_Expected_Result()
         {
             Expression<Func<TestEntity, object>> uut = e => e.SimpleField;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
-            Assert.AreEqual(0, infos.Count());
-            Assert.IsFalse(actual);
+            Assert.AreEqual(1, infos.Count());
+            Assert.IsTrue(actual);
         }
 
         [TestMethod]
-        public void Complex_Field_Returns_Expected_Nothing()
+        public void Complex_Field_Returns_Expected_Result()
         {
             Expression<Func<TestEntity, object>> uut = e => e.ComplexField.NestedSimpleProperty;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
-            Assert.AreEqual(0, infos.Count());
-            Assert.IsFalse(actual);
+            Assert.AreEqual(2, infos.Count());
+            Assert.IsTrue(actual);
         }
 
         [TestMethod]
         public void Constant_Expression_Returns_Expected_Nothing()
         {
             Expression<Func<TestEntity, object>> uut = e => "constant";
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
             Assert.AreEqual(0, infos.Count());
             Assert.IsFalse(actual);
@@ -83,7 +83,7 @@ namespace System.Methods.System.Linq.Expressions
                 .TestRecursiveProperty
                 .TestRecursiveProperty
                 .TestRecursiveProperty;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
             Assert.AreEqual(10, infos.Count());
             Assert.IsTrue(actual);
@@ -103,10 +103,10 @@ namespace System.Methods.System.Linq.Expressions
                 .TestRecursiveField
                 .TestRecursiveProperty
                 .TestRecursiveProperty;
-            var actual = uut.TryGetProperties(out var infos);
+            var actual = uut.TryGetMembers(out var infos);
 
-            Assert.AreEqual(0, infos.Count());
-            Assert.IsFalse(actual);
+            Assert.AreEqual(10, infos.Count());
+            Assert.IsTrue(actual);
         }
 
         public class TestEntity

@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Diagnostics;
+using JetBrains.Annotations;
 
 namespace System.Collections.Generic
 {
@@ -7,6 +8,7 @@ namespace System.Collections.Generic
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
     [PublicAPI]
+    [DebuggerDisplay("{ProxyReference}")]
     public abstract class CollectionProxy<T> : ICollection<T>
     {
         /// <summary>
