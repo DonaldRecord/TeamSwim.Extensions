@@ -19,10 +19,7 @@ namespace System.Collections.Generic
         protected abstract IReadOnlyDictionary<TKey, TValue> ProxyReference { get; }
 
         /// <inheritdoc/>
-        public virtual TValue this[TKey key]
-        {
-            get => ProxyReference[key];
-        }
+        public virtual TValue this[TKey key] => ProxyReference[key];
 
         /// <inheritdoc/>
         public virtual IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => ProxyReference.GetEnumerator();
