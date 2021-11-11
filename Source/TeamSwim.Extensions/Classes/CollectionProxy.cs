@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace System.Collections.Generic
 {
     /// <summary>
-    ///     Helper for building custom collection types.
+    ///     Facade for building custom collection types.
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
     [PublicAPI]

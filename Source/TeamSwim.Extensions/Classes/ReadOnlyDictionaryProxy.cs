@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace System.Collections.Generic
 {
     /// <summary>
-    ///     Helper class for creating custom Dictionary types.
+    ///     Facade for creating custom read-only Dictionary types.
     /// </summary>
     /// <typeparam name="TKey">Dictionary key type.</typeparam>
     /// <typeparam name="TValue">Dictionary value element type.</typeparam>

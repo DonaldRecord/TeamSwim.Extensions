@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace System.Collections.Generic
 {
     /// <summary>
-    ///     Helper for building custom read-only collection types.
+    ///     Facade for building custom read-only collection types.
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
     [PublicAPI]

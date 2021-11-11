@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace System.Collections.Generic
 {
     /// <summary>
-    ///     Helper for building custom set types.
+    ///     Facade for building custom set types.
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
     public abstract class SetProxy<T> : ISet<T>
