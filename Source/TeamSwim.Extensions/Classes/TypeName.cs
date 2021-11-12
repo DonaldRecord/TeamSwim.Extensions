@@ -139,7 +139,7 @@ namespace TeamSwim.Extensions.Classes
                             if (t == '>')
                                 continue;
                             else
-                                throw new FormatException("Missing closing > of generic type list.");
+                                throw new FormatException("Missing closing > of generic type list.").WithSource();
                         }
                     case '[':
                         ArrayDimension d = new ArrayDimension();
@@ -156,10 +156,10 @@ namespace TeamSwim.Extensions.Classes
                                     d.Dimensions++;
                                     goto analyzeArrayDimension;
                                 default:
-                                    throw new FormatException(@"Expecting ""]"" or "","" after ""["" for array specifier but encountered """ + nextChar + @""".");
+                                    throw new FormatException(@"Expecting ""]"" or "","" after ""["" for array specifier but encountered """ + nextChar + @""".").WithSource();
                             }
                         }
-                        throw new FormatException("Expecting ] or , after [ for array type, but reached end of string.");
+                        throw new FormatException("Expecting ] or , after [ for array type, but reached end of string.").WithSource();
                     default:
                         sb.Append(c);
                         continue;

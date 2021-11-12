@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+using TeamSwim;
 using TeamSwim.Extensions.Classes;
 
 namespace System.Reflection
@@ -40,11 +41,10 @@ namespace System.Reflection
         /// <exception cref="ArgumentException"></exception>
         public static Type FindType(string type, TypeFinderOptions options = null)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (type == null) throw Exceptions.ArgumentNull(nameof(type));
             options = options ?? new TypeFinderOptions();
             if (options.TypeProvider == null)
-                throw new ArgumentException(
-                    "Type finder function was not provided in the type finder options.", nameof(options));
+                throw new ArgumentException("Type finder function was not provided in the type finder options.", nameof(options)).WithSource();
 
             var typeName = TypeName.Parse(type);
             if (!typeName.IsGeneric || typeName.IsOpenGeneric)
@@ -67,7 +67,7 @@ namespace System.Reflection
                 CanFindKeyword(typeName, out var result) ||
                 CanFindSingleType(typeName, options.TypeProvider, out result);
             if (!canFind)
-                throw new ArgumentException($"No type could be found with identifier {typeName}");
+                throw new ArgumentException($"No type could be found with identifier {typeName}").WithSource();
 
             if (typeName.ContainsNullableShorthand && result.IsValueType)
             {
@@ -126,13 +126,6 @@ namespace System.Reflection
         {
             var type = typeName.Name.Replace("?", "");
             value = FindKeyword(type);
-            if (value == null && type != type.ToLower())
-            {
-                var tmp = FindKeyword(type.ToLower());
-                //if (tmp != null)
-                //    throw new NotImplementedException();
-            }
-
             return value != null;
         }
 
