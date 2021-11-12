@@ -19,14 +19,21 @@ namespace System.Reflection
         /// </summary>
         [PublicAPI]
         [NotNull]
-        public static IReadOnlyCollection<Type> Types => GetTypesImpl();
+        public static IReadOnlyCollection<Type> Types
+        {
+            [PublicAPI] get => GetTypesImpl();
+        }
 
         /// <summary>
         ///     All assemblies in <see cref="AppDomain.CurrentDomain"/>.
         /// </summary>
         [PublicAPI]
         [NotNull]
-        public static IReadOnlyCollection<Assembly> Assemblies => GetAssembliesImpl();
+        public static IReadOnlyCollection<Assembly> Assemblies
+        {
+            [PublicAPI]
+            get => GetAssembliesImpl();
+        }
 
         private static HashSet<Type> GetTypesImpl()
         {

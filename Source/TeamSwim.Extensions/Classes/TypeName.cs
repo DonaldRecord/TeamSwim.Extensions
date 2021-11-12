@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
+using TeamSwim;
 
-namespace TeamSwim.Extensions.Classes
+namespace System.Reflection
 {
     /// <summary>
     ///     (Opinionated)
@@ -59,7 +61,9 @@ namespace TeamSwim.Extensions.Classes
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static TypeName Parse(string name)
+        [PublicAPI]
+        [Pure]
+        public static TypeName Parse([NotNull] string name)
         {
             int pos = 0;
             bool dummy;
@@ -72,6 +76,7 @@ namespace TeamSwim.Extensions.Classes
         /// <param name="name"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+        [PublicAPI]
         public static bool CanParse(string name, out TypeName value)
         {
             try
@@ -102,6 +107,8 @@ namespace TeamSwim.Extensions.Classes
 
         private static TypeName ParseImpl(string name, ref int pos, out bool listTerminated)
         {
+            if (name == null) throw Exceptions.ArgumentNull(nameof(name));
+
             StringBuilder sb = new StringBuilder();
             TypeName tn = new TypeName();
             listTerminated = true;

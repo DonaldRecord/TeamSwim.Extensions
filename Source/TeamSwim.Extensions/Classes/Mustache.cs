@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace System.Text
 {
@@ -14,6 +15,8 @@ namespace System.Text
         /// </summary>
         /// <param name="value">String value to seek.</param>
         /// <returns></returns>
+        [PublicAPI]
+        [Pure, NotNull, ItemNotNull, LinqTunnel]
         public static IEnumerable<string> GetContents(string value) => GetTokens(value).Select(t => t.Content);
 
         /// <summary>
@@ -22,6 +25,8 @@ namespace System.Text
         /// <param name="value">String value to seek</param>
         /// <param name="replacements">Replacements for mustache-formatted substrings (order specific).</param>
         /// <returns></returns>
+        [PublicAPI]
+        [Pure, NotNull]
         public static string ReplaceContents(string value, params string[] replacements) => ReplaceContentsImpl(value, true, replacements);
 
         readonly struct MustacheStringToken

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using TeamSwim;
-using TeamSwim.Extensions.Classes;
 
 namespace System.Reflection
 {
@@ -39,6 +35,8 @@ namespace System.Reflection
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>
+        [PublicAPI]
+        [Pure]
         public static Type FindType(string type, TypeFinderOptions options = null)
         {
             if (type == null) throw Exceptions.ArgumentNull(nameof(type));
@@ -242,7 +240,7 @@ namespace System.Reflection
                     MatchWeight += weight;
             }
 
-            public static TypeNameMatchup Create(string input, Type type) => new TypeNameMatchup(input, type);
+            internal static TypeNameMatchup Create(string input, Type type) => new TypeNameMatchup(input, type);
         }
     }
 }
