@@ -42,5 +42,16 @@ namespace System.Linq
             Assert.AreEqual(2, list[1]);
             Assert.AreEqual(3, list[2]);
         }
+
+        [TestMethod]
+        public void AddMany_Handles_Null_IEnumerable()
+        {
+            var uut = new List<int>();
+            IEnumerable<int> arg = null;
+
+            uut.AddMany(arg);
+
+            Assert.AreEqual(0, uut.Count);
+        }
     }
 }

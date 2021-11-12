@@ -2,34 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-#pragma warning disable 219
 
 namespace System.Linq
 {
     [TestClass]
-    public class FirstCoalesceTests
+    public class SingleOrDefaultCoalesceTests
     {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Throws_Exception_Argument_Null_Exception()
-        {
-            List<int> list = null;
-            
-            var actual = list.FirstCoalesce(i => i == 1);
-            
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void Second_Delegate_Is_Not_Executed_When_First_Delegate_Can_Return_a_Result()
+        public void Second_Delegate_Is_Not_Executed_When_Single_Delegate_Can_Return_a_Result()
         {
             var list = new List<int> { 1, 2, 3 };
-            var firstDelegateExecuted = false;
+            var SingleDelegateExecuted = false;
             var secondDelegateExecuted = false;
-            var result = list.FirstCoalesce(
+            var result = list.SingleOrDefaultCoalesce(
                 i =>
                 {
-                    firstDelegateExecuted = true;
+                    SingleDelegateExecuted = true;
                     return i == 1;
                 },
                 i =>
@@ -39,20 +27,20 @@ namespace System.Linq
                 });
 
             Assert.AreEqual(1, result);
-            Assert.IsTrue(firstDelegateExecuted);
+            Assert.IsTrue(SingleDelegateExecuted);
             Assert.IsFalse(secondDelegateExecuted);
         }
 
         [TestMethod]
-        public void Second_Delegate_Is_Executed_When_First_Delegate_Cannot_Return_a_Result()
+        public void Second_Delegate_Is_Executed_When_Single_Delegate_Cannot_Return_a_Result()
         {
             var list = new List<int> { 1, 2, 3 };
-            var firstDelegateExecuted = false;
+            var SingleDelegateExecuted = false;
             var secondDelegateExecuted = false;
-            var result = list.FirstCoalesce(
+            var result = list.SingleOrDefaultCoalesce(
                 i =>
                 {
-                    firstDelegateExecuted = true;
+                    SingleDelegateExecuted = true;
                     return i == 4;
                 },
                 i =>
@@ -62,21 +50,20 @@ namespace System.Linq
                 });
 
             Assert.AreEqual(2, result);
-            Assert.IsTrue(firstDelegateExecuted);
+            Assert.IsTrue(SingleDelegateExecuted);
             Assert.IsTrue(secondDelegateExecuted);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void Error_Is_Thrown_For_No_Elements()
+        public void Default_Is_Returned()
         {
             var list = new List<int> { 1, 2, 3 };
-            var firstDelegateExecuted = false;
+            var SingleDelegateExecuted = false;
             var secondDelegateExecuted = false;
-            var result = list.FirstCoalesce(
+            var result = list.SingleOrDefaultCoalesce(
                 i =>
                 {
-                    firstDelegateExecuted = true;
+                    SingleDelegateExecuted = true;
                     return i == 4;
                 },
                 i =>
@@ -85,35 +72,32 @@ namespace System.Linq
                     return i == 5;
                 });
 
+            Assert.AreEqual(0, result);
+            Assert.IsTrue(SingleDelegateExecuted);
+            Assert.IsTrue(secondDelegateExecuted);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Throws_Expected_Invalid_Operation_Exception()
+        {
+            var list = new List<int> { 1, 1, 1 };
+            var actual = list.SingleOrDefaultCoalesce(i => i == 2, i => i == 1);
             Assert.Fail();
         }
-        
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Error_Thrown_For_Null_Predicate_Element()
         {
-            var source = new List<int> {1, 2, 4, 5};
+            var source = new List<int> { 1, 2, 4, 5 };
             var predicates = new List<Func<int, bool>>();
             predicates.Add(i => i % 3 == 0);
             predicates.Add(null);
 
-            var actual = source.FirstCoalesce(predicates.ToArray());
+            var actual = source.SingleOrDefaultCoalesce(predicates.ToArray());
 
             Assert.Fail();
         }
-
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentException))]
-        //public void Error_Not_Thrown_For_Null_Predicate_Element_When_Previous_Predicate_Succeeds()
-        //{
-        //    var source = new List<int> {1, 2, 3, 4, 5};
-        //    var predicates = new List<Func<int, bool>>();
-        //    predicates.Add(i => i % 3 == 0);
-        //    predicates.Add(null);
-
-        //    var actual = source.FirstCoalesce(predicates.ToArray());
-
-        //    Assert.Fail();
-        //}
     }
 }

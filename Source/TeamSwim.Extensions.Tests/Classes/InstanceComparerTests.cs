@@ -82,6 +82,32 @@ namespace System.Classes
         }
 
         [TestMethod]
+        public void Nested_Property_Returns_Expected_False_Results_When_Used_As_Expression()
+        {
+            var comparer = InstanceComparer.For<TestClass>()
+                .AddExpression(t => t.ComplexProperty.NumberProperty);
+
+            var a = new TestClass {ComplexProperty = new TestSubClass {NumberProperty = 1}};
+            var b = new TestClass {ComplexProperty = new TestSubClass {NumberProperty = 2}};
+
+            Assert.IsFalse(comparer.Equals(a, b));
+            Assert.AreEqual(1.GetHashCode(), a.ComplexProperty.NumberProperty.GetHashCode());
+            Assert.AreEqual(2.GetHashCode(), b.ComplexProperty.NumberProperty.GetHashCode());
+        }
+
+        [TestMethod]
+        public void Nested_Property_Returns_Expected_True_Results_When_Used_As_Expression()
+        {
+            var comparer = InstanceComparer.For<TestClass>()
+                .AddExpression(t => t.ComplexProperty.NumberProperty);
+
+            var a = new TestClass { ComplexProperty = new TestSubClass { NumberProperty = 1 } };
+            var b = new TestClass { ComplexProperty = new TestSubClass { NumberProperty = 1 } };
+
+            Assert.IsTrue(comparer.Equals(a, b));
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Property_Expression_Throws_Exception()
         {

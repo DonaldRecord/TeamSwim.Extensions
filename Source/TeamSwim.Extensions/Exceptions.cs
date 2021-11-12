@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TeamSwim
 {
+    [ExcludeFromCodeCoverage]
     internal static class Exceptions
     {
         internal static TException WithSource<TException>(this TException ex) where TException : Exception
@@ -28,6 +30,11 @@ namespace TeamSwim
         internal static Exception ErrorMoreThanOneMatch()
         {
             return new InvalidOperationException("Sequence contains more than one element") {Source = TeamSwimExtensions.ExceptionSource};
+        }
+
+        internal static Exception InvalidOperation(string message)
+        {
+            return new InvalidOperationException(message) {Source = TeamSwimExtensions.ExceptionSource};
         }
     }
 }
