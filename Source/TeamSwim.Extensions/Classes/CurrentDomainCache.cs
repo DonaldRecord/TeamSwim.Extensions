@@ -49,8 +49,11 @@ namespace System.Reflection
                 {
                     if (_types == null)
                     {
+                        var tmp = new HashSet<Assembly>();
                         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-                        _assemblies = assemblies.ToHashSet();
+                        foreach (var assembly in assemblies)
+                            tmp.Add(assembly);
+                        _assemblies = tmp;
 
                         _types = new HashSet<Type>();
                         var types = assemblies
