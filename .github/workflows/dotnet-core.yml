@@ -25,9 +25,12 @@ jobs:
         dotnet-version: '6.0.100-preview.4.21255.9'
         include-prerelease: true
 
-    - name: Install dependencies
+    - name: Install dependencies for Source
       run: dotnet restore "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj"
     
+    - name: Install dependencies for Tests
+      run: dotnet restore "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj"
+
     - name: Build
       run: dotnet build "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj" --configuration Release --no-restore
 
