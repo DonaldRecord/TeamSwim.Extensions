@@ -2,9 +2,11 @@ name: .NET Core
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - 'master'
   pull_request:
-    branches: [ master ]
+    branches:
+      - 'master'
 
 jobs:
   build:
@@ -19,22 +21,27 @@ jobs:
       with:
         dotnet-version: 3.1.301
 
-    - name: Setup .NET Framework 5.0
+    - name: Setup .NET Framework 6.0
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.101' # Check for latest at link at .NET 5 download page      
+        dotnet-version: '6.0.100-preview.4.21255.9'
+        include-prerelease: true
 
-    - name: Install dependencies
+    - name: Install dependencies for Source
       run: dotnet restore "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj"
     
+    - name: Install dependencies for Tests
+      run: dotnet restore "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj"
+
     - name: Build
       run: dotnet build "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj" --configuration Release --no-restore
 
-#    - name: Test
-#      run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
+    # - name: Test
+    #   run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
 
     - name: Publish TeamSwim.Extensions
-      uses: brandedoutcast/publish-nuget@v2.5.2
+      id: publish_nuget
+      uses: rohith/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
