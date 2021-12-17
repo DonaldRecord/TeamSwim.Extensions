@@ -19,10 +19,11 @@ jobs:
       with:
         dotnet-version: 3.1.301
 
-    - name: Setup .NET Framework 5.0
+    - name: Setup .NET Framework 6.0
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.101' # Check for latest at link at .NET 5 download page      
+        dotnet-version: '6.0.100-preview.4.21255.9'
+        include-prerelease: true
 
     - name: Install dependencies
       run: dotnet restore "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj"
