@@ -1,9 +1,6 @@
-name: .NET Core
+name: Master - Pull Request
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
@@ -39,9 +36,4 @@ jobs:
     # - name: Test
     #   run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
 
-    - name: Publish TeamSwim.Extensions
-      id: publish_nuget
-      uses: rohith/publish-nuget@v2
-      with:
-        PROJECT_FILE_PATH: Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+    # same as publish.yml, without the NuGet publish
