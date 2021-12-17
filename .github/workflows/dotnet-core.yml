@@ -31,11 +31,12 @@ jobs:
     - name: Build
       run: dotnet build "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj" --configuration Release --no-restore
 
-#    - name: Test
-#      run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
+    - name: Test
+      run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
 
     - name: Publish TeamSwim.Extensions
-      uses: brandedoutcast/publish-nuget@v2.5.2
+      id: publish_nuget
+      uses: rohith/publish-nuget@v2
       with:
         PROJECT_FILE_PATH: Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
