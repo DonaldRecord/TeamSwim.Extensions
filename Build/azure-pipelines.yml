@@ -1,45 +1,93 @@
-trigger:
-  branches:
-    include:
-    - master
+name: .NET Core  
+  
+on:  
+  push:  
+    branches: [ master ]  
+  pull_request:  
+    branches: [ master ]  
+  
+jobs:  
+  build:  
+  
+    runs-on: ubuntu-latest  
+  
+    steps:  
+    - uses: actions/checkout@v2  
+    - name: Setup .NET Core  
+      uses: actions/setup-dotnet@v1  
+      with:  
+        dotnet-version: 3.1.101
+    - name: Setup .NET Core  
+      uses: actions/setup-dotnet@v1  
+      with:  
+        dotnet-version: '6.0.100-preview.4.21255.9'
+        include-prerelease: true
+    - name: Install dependencies  
+      run: dotnet restore  
+    - name: Build  
+      run: dotnet build --configuration Release --no-restore  
+    - name: Test  
+      run: dotnet test --no-restore --verbosity normal
+    - name: Publish  
+      uses: brandedoutcast/publish-nuget@v2.5.2  
+      with:   
+        PROJECT_FILE_PATH: Extensions/Extensions.csproj  
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}  
+# trigger:
+#   branches:
+#     include:
+#     - master
 
-variables:
-  BuildConfiguration: 'release'
-  Project: 'Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj'
-  TestProjects: |
-    'Source/TeamSwim.Extensions.Tests/*.csproj'
+# variables:
+#   BuildConfiguration: 'release'
+#   Project: 'Source/TeamSwim.Extensions/TeamSwim.Extensions.csproj'
+#   TestProjects: |
+#     'Source/TeamSwim.Extensions.Tests/*.csproj'
 
-pool:
-  vmImage: 'windows-latest'
+# pool:
+#   vmImage: 'windows-latest'
 
-steps:
-- task: GitVersion@5
-  displayName: GitVersion
-  inputs:
-    preferBundledVersion: false
+# steps:
+# - task: GitVersion@5
+#   displayName: GitVersion
+#   inputs:
+#     preferBundledVersion: false
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
-  inputs:
-    projects: $(Project)
-    arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NuGetVersion)'
-    versioningScheme: byBuildNumber
+# steps:
+#   - uses: actions/checkout@v2
+#   - name: Setup .NET
+#     uses: actions/setup-dotnet@v1
+#     with:
+#       dotnet-version: 5.0.x
+#   - name: Restore dependencies
+#     run: dotnet restore
+#   - name: Build
+#     run: dotnet build --no-restore
+#   - name: Test
+#     run: dotnet test --no-build --verbosity normal
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: test
-    projects: $(TestProjects)
-    publishTestResults: true
-    arguments: '--configuration $(BuildConfiguration)'
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet build'
+#   inputs:
+#     projects: $(Project)
+#     arguments: '--configuration $(BuildConfiguration) /p:Version=$(GitVersion.NuGetVersion)'
+#     versioningScheme: byBuildNumber
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet pack'
-  inputs:
-    command: 'pack'
-    packagesToPack: '$(Project)'
-    nobuild: true
-    includesymbols: true
-    versioningScheme: 'byEnvVar'
-    versionEnvVar: 'GitVersion.NuGetVersion'
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet test'
+#   inputs:
+#     command: test
+#     projects: $(TestProjects)
+#     publishTestResults: true
+#     arguments: '--configuration $(BuildConfiguration)'
+
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet pack'
+#   inputs:
+#     command: 'pack'
+#     packagesToPack: '$(Project)'
+#     nobuild: true
+#     includesymbols: true
+#     versioningScheme: 'byEnvVar'
+#     versionEnvVar: 'GitVersion.NuGetVersion'
     
