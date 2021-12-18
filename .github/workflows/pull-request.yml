@@ -33,7 +33,7 @@ jobs:
     - name: Build
       run: dotnet build "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj" --configuration Release --no-restore
 
-    # - name: Test
-    #   run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
+    - name: Test
+      run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
 
     # same as publish.yml, without the NuGet publish

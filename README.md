@@ -7,8 +7,8 @@ Growing collection of practical .NET extension methods, classes, and facades to 
 - Uses Microsoft namespaces.
 - Currently targeting framework(s):
 	- .NET Core 3.1
-	- .NET Standard 2.0
 	- .NET Framework 5.0
+	- .NET Framework 6.0
 
 ## Additional Notes
 - Code coverage is currently around 86%.
