@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET5_0 || NET6_0
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.Threading
 {
     [TestClass]
-    public class AsCompletedTaskTests
+    public class AsCompleteValueTaskTests
     {
         [TestMethod]
         public void Returns_Completed_Task()
@@ -15,9 +16,9 @@ namespace System.Threading
             var cts = new CancellationTokenSource();
             var token = cts.Token;
 
-            var result = token.AsCompletedTask();
+            var result = token.AsCompletedValueTask();
 
-            Assert.IsInstanceOfType(result, typeof(Task));
+            Assert.IsInstanceOfType(result, typeof(ValueTask));
         }
 
         [TestMethod]
@@ -28,7 +29,7 @@ namespace System.Threading
             var token = cts.Token;
             cts.Cancel();
 
-            var result = token.AsCompletedTask();
+            var result = token.AsCompletedValueTask();
 
             Assert.Fail();
         }
@@ -39,9 +40,10 @@ namespace System.Threading
             var cts = new CancellationTokenSource();
             var token = cts.Token;
 
-            var result = await token.AsCompletedTask(1);
+            var result = await token.AsCompletedValueTask(1);
 
             Assert.AreEqual(1, result);
         }
     }
 }
+#endif
