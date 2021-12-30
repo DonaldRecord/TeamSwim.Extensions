@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using JetBrains.Annotations;
 
@@ -15,8 +16,8 @@ namespace System.Reflection
         /// <returns><see langword="true"/> if any attributes exist on the type. Otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
         public static bool HasCustomAttributes<TAttribute>(
-            [NotNull] this Type type,
-            [NotNull] out ICollection<TAttribute> attributes) where TAttribute : Attribute
+            [JetBrains.Annotations.NotNull] this Type type,
+            [JetBrains.Annotations.NotNull] out ICollection<TAttribute> attributes) where TAttribute : Attribute
         {
             attributes = type.GetCustomAttributes<TAttribute>().ToList();
             var result = attributes.Any();
@@ -30,7 +31,8 @@ namespace System.Reflection
         /// <param name="type">Type to be seeked for parameter.</param>
         /// <returns><see langword="true"/> if any attributes exist on the type. Otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
-        public static bool HasCustomAttributes<TAttribute>([NotNull] this Type type) where TAttribute : Attribute
+        [ExcludeFromCodeCoverage]
+        public static bool HasCustomAttributes<TAttribute>([JetBrains.Annotations.NotNull] this Type type) where TAttribute : Attribute
             => type.HasCustomAttributes<TAttribute>(out _);
     }
 }

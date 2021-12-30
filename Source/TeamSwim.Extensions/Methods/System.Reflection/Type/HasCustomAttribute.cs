@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace System.Reflection
 {
@@ -14,7 +15,7 @@ namespace System.Reflection
         /// <exception cref="AmbiguousMatchException">Throws when multiple attributes of same type are found.</exception>
         [PublicAPI]
         public static bool HasCustomAttribute<TAttribute>(
-            [NotNull] this Type type, 
+            [JetBrains.Annotations.NotNull] this Type type, 
             [CanBeNull] out TAttribute attribute) where TAttribute : Attribute
         {
             attribute = type.GetCustomAttribute<TAttribute>();
@@ -30,7 +31,8 @@ namespace System.Reflection
         /// <returns><see langword="true"/> if the attribute exists on the type. Otherwise, <see langword="false"/>.</returns>
         /// <exception cref="AmbiguousMatchException">Throws when multiple attributes of same type are found.</exception>
         [PublicAPI]
-        public static bool HasCustomAttribute<TAttribute>([NotNull] this Type type) where TAttribute : Attribute
+        [ExcludeFromCodeCoverage]
+        public static bool HasCustomAttribute<TAttribute>([JetBrains.Annotations.NotNull] this Type type) where TAttribute : Attribute
             => type.HasCustomAttribute<TAttribute>(out _);
     }
 }
