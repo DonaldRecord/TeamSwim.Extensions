@@ -27,7 +27,17 @@ namespace System.Text
         /// <returns></returns>
         [PublicAPI]
         [Pure, NotNull]
-        public static string ReplaceContents(string value, params string[] replacements) => ReplaceContentsImpl(value, true, replacements);
+        public static string ReplaceContents(string value, params string[] replacements) => ReplaceContentsByIndex(value, true, replacements);
+
+        /// <summary>
+        ///     Replace all substrings by name.
+        /// </summary>
+        /// <param name="value">String value to seek</param>
+        /// <param name="replacements">Names/values to substitute for mustache-formatted substrings (not order specific).</param>
+        /// <returns></returns>
+        [PublicAPI]
+        [Pure, NotNull]
+        public static string ReplaceContents(string value, IDictionary<string, string> replacements) => ReplaceContentsByName(value, replacements);
 
         readonly struct MustacheStringToken
         {
@@ -37,8 +47,10 @@ namespace System.Text
             public int EndBraceIndex { get; }
             private int EndContextIndex { get; }
             public string Content { get; }
+            public string Body { get; }
 
             public MustacheStringToken(
+                string body,
                 int index,
                 string content,
                 int startBraceIndex,
@@ -46,6 +58,7 @@ namespace System.Text
                 int endBraceIndex,
                 int endContextIndex)
             {
+                Body = body;
                 Index = index;
                 Content = content;
                 StartBraceIndex = startBraceIndex;
@@ -93,22 +106,23 @@ namespace System.Text
                         inBraces = false;
                         var content = sb.ToString();
                         content = content.Substring(0, content.Length - 1);
+                        var body = value.Substring(startIndex - 1, content.Length + 4); // 4 is for "{{" and "}}"
                         var trimmedContent = content.TrimStart();
                         var startWhiteSpaceCount = content.Length - trimmedContent.Length;
                         trimmedContent = content.TrimEnd();
                         var endWhiteSpaceCount = content.Length - trimmedContent.Length;
                         var startBraceIndex = startIndex - 1;
-                        var startContextIndex = startIndex + 1 + startWhiteSpaceCount;
-                        var endContextIndex = i - endWhiteSpaceCount - 1;
-                        var token = new MustacheStringToken(tokenIndex++, content.Trim(), startBraceIndex, startContextIndex, i, endContextIndex);
+                        var startContentIndex = startIndex + 1 + startWhiteSpaceCount;
+                        var endContentIndex = i - endWhiteSpaceCount - 1;
+                        var token = new MustacheStringToken(body, tokenIndex++, content.Trim(), startBraceIndex, startContentIndex, i, endContentIndex);
                         yield return token;
-                        sb = new StringBuilder();
+                        sb.Clear();
                     }
                 }
             }
         }
 
-        private static string ReplaceContentsImpl(
+        private static string ReplaceContentsByIndex(
             string value,
             bool ignoreExtraReplacements,
             params string[] replacements)
@@ -149,6 +163,33 @@ namespace System.Text
             }
 
             var result = sb.ToString();
+            return result;
+        }
+
+        private static string ReplaceContentsByName(
+            string value,
+            IDictionary<string, string> replacements)
+        {
+            var tokens = GetTokens(value).ToList();
+            var indexes = new List<string>(tokens.Count);
+            var i = 0;
+
+            foreach (var token in tokens)
+            {
+                //var replacement = replacements[token.Content];
+                if (replacements.TryGetValue(token.Content, out var replacement))
+                {
+                    indexes.Add(replacement);
+                }
+                else
+                {
+                    indexes.Add(token.Body);
+                }
+
+                i++;
+            }
+
+            var result = ReplaceContentsByIndex(value, false, indexes.ToArray());
             return result;
         }
     }
