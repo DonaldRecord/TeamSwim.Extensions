@@ -41,6 +41,8 @@ namespace Classes.Tests
             AssertGetResult("Hello {world}");
             AssertGetResult("{{Hello}} {{world}}", "Hello", "world");
             AssertGetResult("{{ Dude }}", "Dude");
+            AssertGetResult("{{Dude}}", "Dude");
+            AssertGetResult("{Dude}" /*nothing found*/);
             AssertGetResult("{{Helloworld}}", "Helloworld");
             AssertGetResult("{{ Hello }} {{ world }}", "Hello", "world");
 
@@ -53,6 +55,46 @@ namespace Classes.Tests
         {
             AssertReplaceResult("a{{ b }}c{{ d }}", "aBcD", "B", "D");
             AssertReplaceResult("a{{b}}c{{d     }}", "aBcD", "B", "D");
+        }
+
+        [TestMethod]
+        public void Replace_Contents_By_Name_Returns_Expected_Results()
+        {
+            void AssertValue(string value, string expected, params string[] kvps)
+            {
+                var dict = new Dictionary<string, string>();
+                string idx = null;
+                var zag = false;
+                foreach (var kvp in kvps)
+                {
+                    if (!zag)
+                    {
+                        dict[kvp] = null;
+                        idx = kvp;
+                    }
+                    else
+                    {
+                        dict[idx] = kvp;
+                    }
+
+                    zag = !zag;
+                }
+
+                var actual = Mustache.ReplaceContents(value, dict);
+                Assert.AreEqual(expected, actual);
+            }
+
+            AssertValue("A {{z}} C {{f}} E {{l}} G", "A B C D E F G",
+                "z", "B",
+                "f", "D",
+                "l", "F");
+
+            AssertValue("A {{z}} C {{f}} E {{l}} G", "A {{z}} C D E F G",
+                // "z", "B",
+                "f", "D",
+                "l", "F");
+
+            AssertValue("{{ B }}", "{{ B }}");
         }
     }
 }
