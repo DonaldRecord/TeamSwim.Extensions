@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.Reflection
 {
     [TestClass]
-    public class HasCustomAttributeTests
+    public class TypeHasCustomAttributeTests
     {
         [TestMethod]
         public void Returns_Expected_Single_Results()

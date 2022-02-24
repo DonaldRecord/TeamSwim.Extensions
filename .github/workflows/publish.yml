@@ -36,6 +36,14 @@ jobs:
     # - name: Test
     #   run: dotnet test "Source\TeamSwim.Extensions.Tests\TeamSwim.Extensions.Tests.csproj" --no-restore --verbosity normal
 
+    # https://github.com/codecov/codecov-action
+    # steps:
+    # - uses: codecov/codecov-action@v2
+    #   with:
+    #     token: ${{ secrets.CODECOV_TOKEN }}
+    #     fail_ci_if_error: true
+    #     verbose: true
+
     - name: Publish TeamSwim.Extensions
       id: publish_nuget
       uses: rohith/publish-nuget@v2
