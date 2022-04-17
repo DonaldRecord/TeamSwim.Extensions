@@ -6,6 +6,7 @@ namespace System.Linq
     partial class LinqExt
     {
         /// <summary>
+        ///     (Opinionated)
         ///     Conditionally appends the specified <paramref name="element"/>.
         /// </summary>
         /// <typeparam name="T">Element type.</typeparam>
