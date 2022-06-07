@@ -21,20 +21,20 @@ namespace System.Linq
         /// <typeparam name="TKey">Type of key comparison.</typeparam>
         /// <param name="source">Source collection.</param>
         /// <param name="referenceKey">Function to get an element's key, as it would be referenced by other elements.</param>
-        /// <param name="dependents">Function to get al element's dependencies.</param>
+        /// <param name="dependencies">Function to get al element's dependencies.</param>
         /// <param name="keyComparer">Equality comparer to use for key comparison.</param>
         /// <returns></returns>
         [PublicAPI]
-        [Pure, NotNull, ItemNotNull, LinqTunnel]
+        [Pure, NotNull, ItemNotNull]
         public static IEnumerable<T> OrderByDependency<T, TKey>(
             [NotNull, InstantHandle] this IEnumerable<T> source,
             [NotNull] Func<T, TKey> referenceKey,
-            [NotNull] Func<T, IEnumerable<TKey>> dependents,
+            [NotNull] Func<T, IEnumerable<TKey>> dependencies,
             IEqualityComparer<TKey> keyComparer = null)
         {
             if (source == null) throw Exceptions.ArgumentNull(nameof(source));
             if (referenceKey == null) throw Exceptions.ArgumentNull(nameof(referenceKey));
-            if (dependents == null) throw Exceptions.ArgumentNull(nameof(dependents));
+            if (dependencies == null) throw Exceptions.ArgumentNull(nameof(dependencies));
 
             var clone = new List<T>(source);
             if (!clone.Any()) 
@@ -55,7 +55,7 @@ namespace System.Linq
             {
                 var elem = clone[0];
                 if (!dependencyGraph.ContainsKey(elem))
-                    dependencyGraph[elem] = dependents.Invoke(elem).ToList();
+                    dependencyGraph[elem] = dependencies.Invoke(elem).ToList();
 
                 var dependsOn = dependencyGraph[elem];
                 if (!dependsOn.Any())
