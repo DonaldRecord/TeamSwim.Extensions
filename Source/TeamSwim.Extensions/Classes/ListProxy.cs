@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace System.Collections.Generic
 {
     /// <summary>
-    ///     Facade for building custom IList types.
+    ///     Facade for building custom <see cref="IList{T}"/> types.
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
     [PublicAPI]
@@ -18,7 +18,7 @@ namespace System.Collections.Generic
         ///     Otherwise, errors and unexpected behaviour will occur
         ///     when calling methods such as <see cref="Add(T)"/> or <see cref="Clear"/>.
         /// </para>
-        ///     If that is your intent, use <see cref="ReadOnlyCollectionProxy{T}"/>.
+        ///     If that is your intent, use <see cref="ReadOnlyCollectionProxy{T}"/> or <see cref="ReadOnlyListProxy{T}"/>.
         /// </summary>
         protected abstract IList<T> ProxyReference { get; }
 
