@@ -108,19 +108,12 @@ namespace System.Collections.Generic
                 OnRemoveFailed(item);
             return result;
         }
+        
+        /// <inheritdoc/>
+        void ICollection<T>.Add(T item) => Add(item);
 
         /// <inheritdoc/>
-        void ICollection<T>.Add(T item)
-        {
-            var addSucceeded = ProxyReference.Add(item);
-            if (addSucceeded)
-                OnAddSucceeded(item);
-            else
-                OnAddFailed(item);
-        }
-
-        /// <inheritdoc/>
-        bool ISet<T>.Add(T item)
+        public virtual bool Add(T item)
         {
             var result = ProxyReference.Add(item);
             if (result)
