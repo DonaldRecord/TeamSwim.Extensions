@@ -6,6 +6,7 @@ namespace System
     ///     Facade for building custom convertible types.
     /// </summary>
     [PublicAPI]
+    [Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public abstract class ConvertibleProxy : IConvertible
     {
         /// <summary>
