@@ -12,13 +12,7 @@ namespace System
         /// <returns><paramref name="value"/> with Kind set to <see cref="DateTimeKind.Local"/>.</returns>
         [PublicAPI]
         // TODO: ContractAnnotation
-        [MustUseReturnValue]
-        public static DateTime? AsLocal(this DateTime? value)
-        {
-            if (value.HasValue)
-                return value.Value.AsLocal();
-            else
-                return value;
-        }
+        [CanBeNull, MustUseReturnValue]
+        public static DateTime? AsLocal(this DateTime? value) => value?.AsLocal();
     }
 }
