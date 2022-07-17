@@ -40,7 +40,6 @@
     <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\README.md" Link="README.md" />
-    <None Include="Methods\System.Linq\AverageOrDefault.Int32.cs" />
     <None Include="packageIcon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
