@@ -13,9 +13,9 @@ namespace System
         [PublicAPI]
         [Pure]
         [ExcludeFromCodeCoverage]
-        // TODO: Contract Annotation
+        [ContractAnnotation("null=>true;notnull=>false;true=>value:null;false=>value:notnull")]
         public static bool IsNullOrEmpty(
-            [CanBeNull] this string value) => 
+            [NotNullWhen(false)] this string value) => 
             String.IsNullOrEmpty(value);
     }
 }

@@ -17,7 +17,7 @@ namespace System.Linq.Expressions
         /// <param name="members"></param>
         /// <returns></returns>
         [PublicAPI]
-        // TODO: Contract annotations
+        [ContractAnnotation("members:null=>false;members:notnull=>true")]
         public static bool TryGetMembers<T>(
             [NotNull] this Expression<Func<T, object>> expr,
             out ICollection<MemberInfo> members)

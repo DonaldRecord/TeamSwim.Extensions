@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace System.Linq
 {
@@ -15,10 +16,12 @@ namespace System.Linq
         /// <param name="keySelector">Key selector function for result <see cref="Dictionary{TKey, TValue}"/>.</param>
         /// <param name="valueSelector">Value selector function for result <see cref="Dictionary{TKey, TValue}"/>.</param>
         /// <returns>A <see cref="Dictionary{TKey, TValue}"/> that contains values of type <typeparamref name="T"/> selected from the input sequence.</returns>
+        [PublicAPI]
+        [Pure, NotNull]
         public static Dictionary<TKey, TValue> ToDictionary<T, TKey, TValue>(
-            this IEnumerable<T> source,
-            Func<T, int, TKey> keySelector,
-            Func<T, int, TValue> valueSelector)
+            [NotNull, InstantHandle] this IEnumerable<T> source,
+            [NotNull, InstantHandle] Func<T, int, TKey> keySelector,
+            [NotNull, InstantHandle] Func<T, int, TValue> valueSelector)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));

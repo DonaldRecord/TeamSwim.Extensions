@@ -11,8 +11,8 @@ namespace System
         /// <param name="value">DateTime value to set kind on.</param>
         /// <returns><paramref name="value"/> with Kind set to <see cref="DateTimeKind.Local"/>.</returns>
         [PublicAPI]
-        // TODO: ContractAnnotation
         [CanBeNull, MustUseReturnValue]
+        [ContractAnnotation("value:null=>null;value:notnull=>notnull")]
         public static DateTime? AsLocal(this DateTime? value) => value?.AsLocal();
     }
 }
