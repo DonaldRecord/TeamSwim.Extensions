@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using JetBrains.Annotations;
 
+// TODO: GENERIC VERSION OF 
+
 namespace System
 {
     partial class CharExt
