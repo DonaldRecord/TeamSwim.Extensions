@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using JetBrains.Annotations;
 
@@ -9,6 +11,9 @@ namespace System.Collections.Generic
     ///     Facade for building custom set types.
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
+    [PublicAPI]
+    [DebuggerDisplay("{ProxyReference}")]
+    [ExcludeFromCodeCoverage]
     public abstract class SetProxy<T> : ISet<T>
     {
         /// <summary>
@@ -20,7 +25,7 @@ namespace System.Collections.Generic
         /// </para>
         /// </summary>
         //     UP ONE If that is your intent, use <see cref="ReadOnlyCollectionProxy{T}"/>.
-        [NotNull]
+        [JetBrains.Annotations.NotNull]
         protected abstract ISet<T> ProxyReference { get; }
 
         /// <summary>

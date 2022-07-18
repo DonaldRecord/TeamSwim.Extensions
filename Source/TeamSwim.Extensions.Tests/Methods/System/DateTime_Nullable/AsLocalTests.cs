@@ -37,5 +37,13 @@ namespace System
 
             Assert.AreEqual(DateTimeKind.Local, uut.Value.Kind);
         }
+
+        [TestMethod]
+        public void Null_Data_Returns_Null()
+        {
+            DateTime? dt = null;
+            var uut = dt.AsLocal();
+            Assert.IsNull(uut);
+        }
     }
 }

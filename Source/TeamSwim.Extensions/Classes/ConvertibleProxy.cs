@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Diagnostics;
+using JetBrains.Annotations;
 
 namespace System
 {
@@ -6,6 +7,7 @@ namespace System
     ///     Facade for building custom convertible types.
     /// </summary>
     [PublicAPI]
+    [DebuggerDisplay("{ProxyReference}")]
     [Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public abstract class ConvertibleProxy : IConvertible
     {
@@ -13,57 +15,58 @@ namespace System
         ///     The <see cref="IConvertible"/> instance to proxy.
         /// </summary>
         [NotNull]
-        protected abstract IConvertible GetConvertibleProxy();
+        // protected abstract IConvertible ProxyReference;
+        protected abstract IConvertible ProxyReference { get; }
 
         /// <inheritdoc />
-        public TypeCode GetTypeCode() => GetConvertibleProxy().GetTypeCode();
+        public TypeCode GetTypeCode() => ProxyReference.GetTypeCode();
 
         /// <inheritdoc />
-        public bool ToBoolean(IFormatProvider provider) => GetConvertibleProxy().ToBoolean(provider);
+        public bool ToBoolean(IFormatProvider provider) => ProxyReference.ToBoolean(provider);
         
         /// <inheritdoc />
-        public byte ToByte(IFormatProvider provider) => GetConvertibleProxy().ToByte(provider);
+        public byte ToByte(IFormatProvider provider) => ProxyReference.ToByte(provider);
 
         /// <inheritdoc />
-        public char ToChar(IFormatProvider provider) => GetConvertibleProxy().ToChar(provider);
+        public char ToChar(IFormatProvider provider) => ProxyReference.ToChar(provider);
 
         /// <inheritdoc />
-        public DateTime ToDateTime(IFormatProvider provider) => GetConvertibleProxy().ToDateTime(provider);
+        public DateTime ToDateTime(IFormatProvider provider) => ProxyReference.ToDateTime(provider);
 
         /// <inheritdoc />
-        public decimal ToDecimal(IFormatProvider provider) => GetConvertibleProxy().ToDecimal(provider);
+        public decimal ToDecimal(IFormatProvider provider) => ProxyReference.ToDecimal(provider);
 
         /// <inheritdoc />
-        public double ToDouble(IFormatProvider provider) => GetConvertibleProxy().ToDouble(provider);
+        public double ToDouble(IFormatProvider provider) => ProxyReference.ToDouble(provider);
 
         /// <inheritdoc />
-        public short ToInt16(IFormatProvider provider) => GetConvertibleProxy().ToInt16(provider);
+        public short ToInt16(IFormatProvider provider) => ProxyReference.ToInt16(provider);
 
         /// <inheritdoc />
-        public int ToInt32(IFormatProvider provider) => GetConvertibleProxy().ToInt32(provider);
+        public int ToInt32(IFormatProvider provider) => ProxyReference.ToInt32(provider);
 
         /// <inheritdoc />
-        public long ToInt64(IFormatProvider provider) => GetConvertibleProxy().ToInt64(provider);
+        public long ToInt64(IFormatProvider provider) => ProxyReference.ToInt64(provider);
 
         /// <inheritdoc />
-        public sbyte ToSByte(IFormatProvider provider) => GetConvertibleProxy().ToSByte(provider);
+        public sbyte ToSByte(IFormatProvider provider) => ProxyReference.ToSByte(provider);
 
         /// <inheritdoc />
-        public float ToSingle(IFormatProvider provider) => GetConvertibleProxy().ToSingle(provider);
+        public float ToSingle(IFormatProvider provider) => ProxyReference.ToSingle(provider);
 
         /// <inheritdoc />
-        public string ToString(IFormatProvider provider) => GetConvertibleProxy().ToString(provider);
+        public string ToString(IFormatProvider provider) => ProxyReference.ToString(provider);
 
         /// <inheritdoc />
-        public object ToType(Type conversionType, IFormatProvider provider) => GetConvertibleProxy().ToInt64(provider);
+        public object ToType(Type conversionType, IFormatProvider provider) => ProxyReference.ToInt64(provider);
 
         /// <inheritdoc />
-        public ushort ToUInt16(IFormatProvider provider) => GetConvertibleProxy().ToUInt16(provider);
+        public ushort ToUInt16(IFormatProvider provider) => ProxyReference.ToUInt16(provider);
 
         /// <inheritdoc />
-        public uint ToUInt32(IFormatProvider provider) => GetConvertibleProxy().ToUInt32(provider);
+        public uint ToUInt32(IFormatProvider provider) => ProxyReference.ToUInt32(provider);
 
         /// <inheritdoc />
-        public ulong ToUInt64(IFormatProvider provider) => GetConvertibleProxy().ToUInt64(provider);
+        public ulong ToUInt64(IFormatProvider provider) => ProxyReference.ToUInt64(provider);
     }
 }
