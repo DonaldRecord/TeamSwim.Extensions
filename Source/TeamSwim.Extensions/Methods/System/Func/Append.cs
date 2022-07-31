@@ -2,6 +2,8 @@
 
 namespace System
 {
+    // TODO: Source generation
+
     partial class FuncExt
     {
         /// <summary>

@@ -2,9 +2,10 @@
 
   <!--Project Properties-->
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net50;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net50;net6.0;netstandard2.0</TargetFrameworks>
     <Version>1.1.18</Version>
-    <RootNamespace>TeamSwim.Extensions</RootNamespace>
+	<LangVersion>latest</LangVersion>
+	<RootNamespace>TeamSwim.Extensions</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
