@@ -5,7 +5,7 @@ namespace System
     public static partial class DateTimeExt
     {
         /// <summary>
-        ///     Returns a value indicating that two datetimes are equal, or are within a certain (absolute) <see cref="TimeSpan"/> of each other.
+        ///     Returns a value indicating that two DateTimes are equal, or are within a certain (absolute) <see cref="TimeSpan"/> of each other.
         /// </summary>
         /// <param name="dateTimeA">First <see cref="DateTime"/> of comparison.</param>
         /// <param name="dateTimeB">Second <see cref="DateTime"/> of comparison.</param>

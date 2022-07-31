@@ -23,7 +23,7 @@ namespace System.Linq
         [PublicAPI]
         [Pure, LinqTunnel]
         [ExcludeFromCodeCoverage] // Can't reach 100% in RELEASE config, but this code is trusted and the alternatives are tested.
-        // TODO: Add contract annotation
+        [ContractAnnotation("source:null=>null;source:notnull=>notnull")]
         public static IEnumerable<T> ToListWhenDebugging<T>([CanBeNull] this IEnumerable<T> source)
         {
             if (source == null)

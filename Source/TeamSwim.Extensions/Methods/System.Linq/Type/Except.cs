@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using JetBrains.Annotations;
-using TeamSwim;
 
 namespace System.Linq
 {
@@ -14,6 +11,9 @@ namespace System.Linq
         /// <typeparam name="T">The type to remove from the sequence.</typeparam>
         /// <param name="source">The type sequence to modify.</param>
         /// <returns>The type sequence with the specified type parameter removed from the sequence.</returns>
-        public static IEnumerable<Type> Except<T>(this IEnumerable<Type> source) => source.Except(new[] { typeof(T) });
+        [PublicAPI]
+        [Pure, LinqTunnel]
+        public static IEnumerable<Type> Except<T>([NotNull] this IEnumerable<Type> source) 
+            => source.Except(new[] { typeof(T) });
     }
 }

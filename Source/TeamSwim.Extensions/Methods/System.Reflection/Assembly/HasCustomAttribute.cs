@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace System.Reflection
 {
@@ -15,7 +12,8 @@ namespace System.Reflection
         /// <param name="attribute">The attribute instance, if found.</param>
         /// <returns><see langword="true"/> if the assembly contains the specified attribute. Otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
-        [Pure] // TODO: Contract Annotation
+        [Pure]
+        [ContractAnnotation("attribute:null=>false;attribute:notnull=>true")]
         public static bool HasCustomAttribute<TAttribute>(this Assembly assembly, out TAttribute attribute) where TAttribute : Attribute
         {
             attribute = assembly.GetCustomAttribute<TAttribute>();
@@ -29,7 +27,7 @@ namespace System.Reflection
         /// <param name="assembly">Assembly to check.</param>
         /// <returns><see langword="true"/> if the assembly contains the specified attribute. Otherwise, <see langword="false"/>.</returns>
         [PublicAPI]
-        [Pure] // TODO: Contract Annotation
+        [Pure]
         public static bool HasCustomAttribute<TAttribute>(this Assembly assembly) where TAttribute : Attribute =>
             assembly.HasCustomAttribute<TAttribute>(out _);
     }

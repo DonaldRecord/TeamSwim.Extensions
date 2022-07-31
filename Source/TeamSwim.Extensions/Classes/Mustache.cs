@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using TeamSwim;
 
 namespace System.Text
 {
@@ -130,10 +131,11 @@ namespace System.Text
             var tokens = GetTokens(value).ToList();
 
             if (tokens.Count > replacements.Length)
-                throw new NotImplementedException();
+                throw Exceptions.InvalidOperation("Not enough replacements were passed to account for all tokens.");
 
             if (tokens.Count != replacements.Length && !ignoreExtraReplacements)
-                throw new NotImplementedException();
+                throw Exceptions.InvalidOperation(
+                    "Too many replacement tokens were received. Pass the correct amount or choose to ignore.");
 
             var sb = new StringBuilder();
             var i = 0;

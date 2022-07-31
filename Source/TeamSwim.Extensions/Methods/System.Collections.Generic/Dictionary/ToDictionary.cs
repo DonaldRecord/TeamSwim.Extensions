@@ -14,8 +14,8 @@ namespace System.Collections.Generic
         /// <returns><paramref name="value"/> as <see cref="Dictionary{TKey, TValue}"/>.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is <see langword="null"/>.</exception>
         [PublicAPI]
-        [Pure, NotNull, ItemNotNull]
-        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>(this IDictionary<TKey, TValue> value)
+        [Pure, NotNull]
+        public static Dictionary<TKey, TValue> ToDictionary<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> value)
         {
             if (value == null) 
                 throw new ArgumentNullException(nameof(value));
