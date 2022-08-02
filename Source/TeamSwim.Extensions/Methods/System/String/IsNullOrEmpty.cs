@@ -15,7 +15,7 @@ namespace System
         [ExcludeFromCodeCoverage]
         [ContractAnnotation("null=>true;notnull=>false;true=>value:null;false=>value:notnull")]
         public static bool IsNullOrEmpty(
-            [NotNullWhen(false)] this string value) => 
+            this string value) => 
             String.IsNullOrEmpty(value);
     }
 }
