@@ -13,7 +13,7 @@ namespace System.Reflection
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static IEnumerable<Type> EnumerateAllBaseTypes(this Type type)
+        public static IEnumerable<Type> EnumerateBaseTypes(this Type type)
         {
             if (type == null)
                 throw Exceptions.ArgumentNull(nameof(type));

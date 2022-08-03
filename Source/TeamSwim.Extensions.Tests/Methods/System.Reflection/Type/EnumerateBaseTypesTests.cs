@@ -4,12 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System.Reflection
 {
     [TestClass]
-    public class EnumerateAllBaseTypesTests
+    public class EnumerateBaseTypesTests
     {
         [TestMethod]
         public void Returns_Expected_Values_For_Built_In_Struct_Type()
         {
-            var types = typeof(int).EnumerateAllBaseTypes().ToList();
+            var types = typeof(int).EnumerateBaseTypes().ToList();
             Assert.AreEqual(2, types.Count);
             Assert.AreEqual(typeof(ValueType), types[0]);
             Assert.AreEqual(typeof(object), types[1]);
@@ -18,7 +18,7 @@ namespace System.Reflection
         [TestMethod]
         public void Returns_Expected_Values_For_Built_In_Ref_Type()
         {
-            var types = typeof(string).EnumerateAllBaseTypes().ToList();
+            var types = typeof(string).EnumerateBaseTypes().ToList();
             Assert.AreEqual(1, types.Count);
             Assert.AreEqual(typeof(object), types[0]);
         }
@@ -26,7 +26,7 @@ namespace System.Reflection
         [TestMethod]
         public void Returns_Expected_Values_For_Custom_Type()
         {
-            var types = typeof(Derived).EnumerateAllBaseTypes().ToList();
+            var types = typeof(Derived).EnumerateBaseTypes().ToList();
             Assert.AreEqual(5, types.Count);
             Assert.AreEqual(typeof(Base4), types[0]);
             Assert.AreEqual(typeof(Base3), types[1]);
