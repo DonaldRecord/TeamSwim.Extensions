@@ -6,8 +6,6 @@ namespace TeamSwim.Extensions.SystemDateTime.Tests
     [TestClass]
     public partial class BetweenTests : BaseUnitTest
     {
-        private const string BetweenTest = "DateTime.Between()";
-
         [TestMethod]
         public void Char_Between_Inclusive_Value_Equals_Start_Returns_True()
         {

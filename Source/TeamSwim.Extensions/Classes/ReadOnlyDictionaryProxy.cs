@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
 using JetBrains.Annotations;
 
 namespace System.Collections.Generic
@@ -10,6 +8,9 @@ namespace System.Collections.Generic
     /// </summary>
     /// <typeparam name="TKey">Dictionary key type.</typeparam>
     /// <typeparam name="TValue">Dictionary value element type.</typeparam>
+    [PublicAPI]
+    [DebuggerDisplay("{ProxyReference}")]
+    [Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public abstract class ReadOnlyDictionaryProxy<TKey, TValue> : IReadOnlyDictionary<TKey, TValue>
     {
         /// <summary>

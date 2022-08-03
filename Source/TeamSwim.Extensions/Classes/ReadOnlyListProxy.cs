@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 
 namespace System.Collections.Generic
@@ -9,6 +10,7 @@ namespace System.Collections.Generic
     /// <typeparam name="T">Element type.</typeparam>
     [PublicAPI]
     [DebuggerDisplay("{ProxyReference}")]
+    [ExcludeFromCodeCoverage]
     public abstract class ReadOnlyListProxy<T> : IReadOnlyList<T>
     {
         /// <summary>

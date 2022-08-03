@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace System.Methods.System.Linq
@@ -42,6 +43,19 @@ namespace System.Methods.System.Linq
             var source = new List<int> { 1, 2, 3, 4 };
             var actual = source.Any((i, idx) => idx == 4);
             Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void Any_Bool_Returns_Expected_True()
+        {
+            Assert.IsTrue(new[] { true, true, true, true }.Any());
+            Assert.IsTrue(new[] { true, false, false, false }.Any());
+        }
+
+        [TestMethod]
+        public void Any_Bool_Returns_Expected_False()
+        {
+            Assert.IsFalse(new[] { false, false, false }.Any());
         }
     }
 }

@@ -22,7 +22,7 @@ namespace System
 
             if (failingMethods.Any())
             {
-                var msg = $"The following methods do not have PublicAPI attributes: " +
+                var msg = "The following methods do not have PublicAPI attributes: " +
                           $"{String.Join(Environment.NewLine, failingMethods.Select(m => WriteMethodLine(m.DeclaringType, m.Name)))}";
                 Assert.Fail(msg);
             }

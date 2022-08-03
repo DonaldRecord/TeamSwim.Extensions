@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace System
 {
     [TestClass]
-    public class AsLocalTests
+    public partial class AsLocalTests
     {
         [TestMethod]
         public void Utc_Date_Converts_To_Local()

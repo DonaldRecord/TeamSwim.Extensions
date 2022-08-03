@@ -2,9 +2,10 @@
 
   <!--Project Properties-->
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net50;net6.0</TargetFrameworks>
-    <Version>1.1.18</Version>
-    <RootNamespace>TeamSwim.Extensions</RootNamespace>
+    <TargetFrameworks>netcoreapp3.1;net50;net6.0;netstandard2.0</TargetFrameworks>
+    <Version>1.1.19</Version>
+	<LangVersion>latest</LangVersion>
+	<RootNamespace>TeamSwim.Extensions</RootNamespace>
     <Configurations>Debug;Release;Code Analysis;Annotations</Configurations>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
@@ -40,7 +41,6 @@
     <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\README.md" Link="README.md" />
-    <None Include="Methods\System.Linq\AverageOrDefault.Int32.cs" />
     <None Include="packageIcon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 

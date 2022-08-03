@@ -93,6 +93,7 @@ namespace System
         /// <returns>Formatted type name string.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="t"/> is <see langword="null"/></exception>
         //TODO: Implement "dynamic" tests
+        [PublicAPI]
         [Pure, NotNull]
         // ReSharper disable once CyclomaticComplexity
         public static string GetName([NotNull] Type t, TypeNameFormattingOptions options)

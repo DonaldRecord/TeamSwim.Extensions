@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace System.Collections.Generic
 {
@@ -7,12 +8,13 @@ namespace System.Collections.Generic
     /// </summary>
     /// <typeparam name="T">Element type.</typeparam>
     [PublicAPI]
+    [ExcludeFromCodeCoverage]
     public abstract class ReadOnlyCollectionProxy<T> : IReadOnlyCollection<T>
     {
         /// <summary>
         ///     The underlying referenced collection that is being proxied.
         /// </summary>
-        [NotNull]
+        [JetBrains.Annotations.NotNull]
         protected abstract IReadOnlyCollection<T> ProxyReference { get; }
 
         /// <summary>Returns an enumerator that iterates through the collection.</summary>

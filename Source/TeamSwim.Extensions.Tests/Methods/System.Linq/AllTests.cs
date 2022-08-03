@@ -46,5 +46,18 @@ namespace System.Linq
             var result = list.All((i1, i2) => i1 == i2);
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void All_Bool_Returns_Expected_True()
+        {
+            Assert.IsTrue(new[] { true, true, true, true }.All());
+        }
+
+        [TestMethod]
+        public void All_Bool_Returns_Expected_False()
+        {
+            Assert.IsFalse(new[] { true, true, true, false }.All());
+            Assert.IsFalse(new[] { false, false, false, false }.All());
+        }
     }
 }

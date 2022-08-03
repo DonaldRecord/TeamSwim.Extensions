@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using TeamSwim;
 
 namespace System
@@ -10,7 +7,7 @@ namespace System
     {
         /// <summary>
         ///     (Opinionated)
-        ///     Short-hand of writing a fluent method.
+        ///     Short-hand of writing a fluent method [with a self-reference].
         /// </summary>
         /// <typeparam name="T">Object type.</typeparam>
         /// <param name="obj">Target object.</param>

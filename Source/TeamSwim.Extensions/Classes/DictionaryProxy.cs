@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Diagnostics;
+using JetBrains.Annotations;
 
 namespace System.Collections.Generic
 {
@@ -7,6 +8,9 @@ namespace System.Collections.Generic
     /// </summary>
     /// <typeparam name="TKey">Dictionary key type.</typeparam>
     /// <typeparam name="TValue">Dictionary value element type.</typeparam>
+    [PublicAPI]
+    [DebuggerDisplay("{ProxyReference}")]
+    [Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public abstract class DictionaryProxy<TKey, TValue> : IDictionary<TKey, TValue>
     {
         /// <summary>

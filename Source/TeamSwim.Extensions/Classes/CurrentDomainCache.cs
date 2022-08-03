@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
 namespace System.Reflection
 {
     /// <summary>
-    ///     Provides a cache for <see cref="Type"/> and <see cref="Assembly"/> information from <see cref="AppDomain.CurrentDomain"/>.
+    ///     Provides a read-only cache for <see cref="Type"/> and <see cref="Assembly"/>
+    ///     information from <see cref="AppDomain.CurrentDomain"/>.
     /// </summary>
     public static class CurrentDomainCache
     {
+        // TODO: Use a WeakReference?
+
         private static readonly object _lock = new object();
         private static HashSet<Type> _types;
         private static HashSet<Assembly> _assemblies;
