@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using JetBrains.Annotations;
 using TeamSwim;
 
 namespace System.Reflection
@@ -13,7 +14,9 @@ namespace System.Reflection
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static IEnumerable<Type> EnumerateBaseTypes(this Type type)
+        [PublicAPI]
+        [NotNull, ItemNotNull, LinqTunnel]
+        public static IEnumerable<Type> EnumerateBaseTypes([NotNull] this Type type)
         {
             if (type == null)
                 throw Exceptions.ArgumentNull(nameof(type));

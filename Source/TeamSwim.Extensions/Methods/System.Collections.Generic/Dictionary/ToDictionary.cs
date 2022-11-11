@@ -22,5 +22,24 @@ namespace System.Collections.Generic
 
             return value.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
+
+        /// <summary>
+        ///     Creates a <see cref="Dictionary{TKey, TValue}"/> from an sequence of <see cref="IGrouping{TKey, TElement}"/>.
+        /// </summary>
+        /// <typeparam name="TKey">Group Key Type.</typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        [PublicAPI]
+        [Pure, NotNull]
+        public static Dictionary<TKey, IEnumerable<TValue>> ToDictionary<TKey, TValue>(
+            [NotNull] this IEnumerable<IGrouping<TKey, TValue>> value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+
+            return value.ToDictionary(g => g.Key, g => g.AsEnumerable());
+        }
     }
 }

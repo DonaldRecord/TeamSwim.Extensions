@@ -85,7 +85,8 @@ namespace System.Methods.System.Linq.Expressions
                 .TestRecursiveProperty;
             var actual = uut.TryGetProperties(out var infos);
 
-            Assert.AreEqual(10, infos.Count());
+            Assert.AreEqual(10, infos.Count);
+            Assert.AreEqual(2, infos.Distinct().Count());
             Assert.IsTrue(actual);
         }
 
