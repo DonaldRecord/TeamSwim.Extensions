@@ -6,8 +6,10 @@ partial class StringExt
 {
     /// <summary>
     ///     (Opinionated)
-    ///     Return a string's value if it is not null or white space. Otherwise, return a <paramref name="default"/>.
-    ///     If you want whitespace only values not to coalesce to default, use <paramref name="replaceOnlyWhiteSpaceString"/> parameter.
+    ///     Return a string's value if it is not <see langword="null"/> or white space.
+    ///     Otherwise, return a <paramref name="default"/>.
+    ///     If you want whitespace only values not to coalesce to default,
+    ///     use <paramref name="replaceOnlyWhiteSpaceString"/> parameter.
     /// </summary>
     /// <param name="value">String to check/return value for.</param>
     /// <param name="default">Default value to coalesce to when string is null/empty/whitespace.</param>
