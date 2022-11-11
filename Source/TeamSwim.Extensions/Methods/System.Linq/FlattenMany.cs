@@ -32,7 +32,7 @@ namespace System.Linq
         }
 
         //IMPLEMENTATION
-        private static IEnumerable<T> FlattenManyImpl<T>(this T parent, Func<T, IEnumerable<T>> getChildren)
+        private static IEnumerable<T> FlattenManyImpl<T>(T parent, Func<T, IEnumerable<T>> getChildren)
         {
             if (parent == null) 
                 yield break;

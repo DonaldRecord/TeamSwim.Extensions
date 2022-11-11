@@ -25,7 +25,7 @@ namespace System.Linq
             [CanBeNull] Exception manyError = null)
         {
             if (source == null) throw Exceptions.ArgumentNull(nameof(source));
-
+            
             var elems = source.Take(2).ToList();
             if (elems.Count == 0)
                 throw noneError ?? Exceptions.ErrorNoMatch();
