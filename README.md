@@ -1,6 +1,6 @@
 # TeamSwim.Extensions
 
-Growing collection of practical .NET extension methods, classes, and facades to boost productivity.
+Growing collection of practical .NET extension methods, classes, and facades to boost productivity and provide additional functionality.
 
 - No outer dependencies
 - JetBrains.Annotations support.
