@@ -19,14 +19,14 @@ namespace TeamSwim.Features.RelativeOrdering
 
             // forced first flag
             if (x.FirstFlagForce && y.FirstFlagForce)
-                throw RelativeOrderException.ForceFirstError(x, y);
+                throw RelativeOrderException.ForceFirstError(x, y).WithSource();
 
             if (x.FirstFlagForce ^ y.FirstFlagForce)
                 return x.FirstFlagForce ? Before : After;
 
             // forced last flag
             if (x.LastFlagForce && y.LastFlagForce)
-                throw RelativeOrderException.ForceLastError(x, y);
+                throw RelativeOrderException.ForceLastError(x, y).WithSource();
 
             if (x.LastFlagForce ^ y.LastFlagForce)
                 return x.LastFlagForce ? After : Before;
@@ -50,7 +50,7 @@ namespace TeamSwim.Features.RelativeOrdering
             var yBefore = y.BeforeInstructions.Any(i => i == x.CurrentType);
 
             if (xBefore && yBefore)
-                throw RelativeOrderException.CircularBefore(x, y);
+                throw RelativeOrderException.CircularBefore(x, y).WithSource();
 
             if (xBefore ^ yBefore)
                 return xBefore ? Before : After;
@@ -60,7 +60,7 @@ namespace TeamSwim.Features.RelativeOrdering
             var yAfter = y.AfterInstructions.Any(i => i == x.CurrentType);
 
             if (xAfter && yAfter)
-                throw RelativeOrderException.CircularAfter(x, y);
+                throw RelativeOrderException.CircularAfter(x, y).WithSource();
 
             if (xAfter ^ yAfter)
                 return xAfter ? After : Before;
