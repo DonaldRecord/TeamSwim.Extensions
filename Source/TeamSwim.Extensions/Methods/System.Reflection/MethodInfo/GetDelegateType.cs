@@ -47,88 +47,54 @@ namespace System.Reflection
 
         private static Type GetFuncType(int length)
         {
-            switch (length)
+            return length switch
             {
-                case 1:
-                    return typeof(Func<>);
-                case 2:
-                    return typeof(Func<,>);
-                case 3:
-                    return typeof(Func<,,>);
-                case 4:
-                    return typeof(Func<,,,>);
-                case 5:
-                    return typeof(Func<,,,,>);
-                case 6:
-                    return typeof(Func<,,,,,>);
-                case 7:
-                    return typeof(Func<,,,,,,>);
-                case 8:
-                    return typeof(Func<,,,,,,,>);
-                case 9:
-                    return typeof(Func<,,,,,,,,>);
-                case 10:
-                    return typeof(Func<,,,,,,,,,>);
-                case 11:
-                    return typeof(Func<,,,,,,,,,,>);
-                case 12:
-                    return typeof(Func<,,,,,,,,,,,>);
-                case 13:
-                    return typeof(Func<,,,,,,,,,,,,>);
-                case 14:
-                    return typeof(Func<,,,,,,,,,,,,,>);
-                case 15:
-                    return typeof(Func<,,,,,,,,,,,,,,>);
-                case 16:
-                    return typeof(Func<,,,,,,,,,,,,,,,>);
-                case 17:
-                    return typeof(Func<,,,,,,,,,,,,,,,,>);
-                default:
-                    throw new InvalidOperationException("Delegate type cannot be built for a method with more than 16 parameters.");
-            }
+                1 => typeof(Func<>),
+                2 => typeof(Func<,>),
+                3 => typeof(Func<,,>),
+                4 => typeof(Func<,,,>),
+                5 => typeof(Func<,,,,>),
+                6 => typeof(Func<,,,,,>),
+                7 => typeof(Func<,,,,,,>),
+                8 => typeof(Func<,,,,,,,>),
+                9 => typeof(Func<,,,,,,,,>),
+                10 => typeof(Func<,,,,,,,,,>),
+                11 => typeof(Func<,,,,,,,,,,>),
+                12 => typeof(Func<,,,,,,,,,,,>),
+                13 => typeof(Func<,,,,,,,,,,,,>),
+                14 => typeof(Func<,,,,,,,,,,,,,>),
+                15 => typeof(Func<,,,,,,,,,,,,,,>),
+                16 => typeof(Func<,,,,,,,,,,,,,,,>),
+                17 => typeof(Func<,,,,,,,,,,,,,,,,>),
+                _ => throw new InvalidOperationException(
+                    "Delegate type cannot be built for a method with more than 16 parameters.")
+            };
         }
 
         private static Type GetActionType(int length)
         {
-            switch (length)
+            return length switch
             {
-                case 0:
-                    return typeof(Action);
-                case 1:
-                    return typeof(Action<>);
-                case 2:
-                    return typeof(Action<,>);
-                case 3:
-                    return typeof(Action<,,>);
-                case 4:
-                    return typeof(Action<,,,>);
-                case 5:
-                    return typeof(Action<,,,,>);
-                case 6:
-                    return typeof(Action<,,,,,>);
-                case 7:
-                    return typeof(Action<,,,,,,>);
-                case 8:
-                    return typeof(Action<,,,,,,,>);
-                case 9:
-                    return typeof(Action<,,,,,,,,>);
-                case 10:
-                    return typeof(Action<,,,,,,,,,>);
-                case 11:
-                    return typeof(Action<,,,,,,,,,,>);
-                case 12:
-                    return typeof(Action<,,,,,,,,,,,>);
-                case 13:
-                    return typeof(Action<,,,,,,,,,,,,>);
-                case 14:
-                    return typeof(Action<,,,,,,,,,,,,,>);
-                case 15:
-                    return typeof(Action<,,,,,,,,,,,,,,>);
-                case 16:
-                    return typeof(Action<,,,,,,,,,,,,,,,>);
-                default:
-                    throw new InvalidOperationException("Delegate type cannot be built for a method with more than 16 parameters.");
-            }
+                0 => typeof(Action),
+                1 => typeof(Action<>),
+                2 => typeof(Action<,>),
+                3 => typeof(Action<,,>),
+                4 => typeof(Action<,,,>),
+                5 => typeof(Action<,,,,>),
+                6 => typeof(Action<,,,,,>),
+                7 => typeof(Action<,,,,,,>),
+                8 => typeof(Action<,,,,,,,>),
+                9 => typeof(Action<,,,,,,,,>),
+                10 => typeof(Action<,,,,,,,,,>),
+                11 => typeof(Action<,,,,,,,,,,>),
+                12 => typeof(Action<,,,,,,,,,,,>),
+                13 => typeof(Action<,,,,,,,,,,,,>),
+                14 => typeof(Action<,,,,,,,,,,,,,>),
+                15 => typeof(Action<,,,,,,,,,,,,,,>),
+                16 => typeof(Action<,,,,,,,,,,,,,,,>),
+                _ => throw new InvalidOperationException(
+                    "Delegate type cannot be built for a method with more than 16 parameters.")
+            };
         }
     }
 }
