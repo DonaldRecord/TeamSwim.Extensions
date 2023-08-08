@@ -18,11 +18,11 @@ jobs:
       with:
         dotnet-version: 3.1.301
 
-    - name: Setup .NET Framework 6.0
+    - name: Setup .NET Version
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.100-preview.4.21255.9'
-        include-prerelease: true
+        dotnet-version: '7.x'
+        include-prerelease: false
 
     - name: Install dependencies for Source
       run: dotnet restore "Source\TeamSwim.Extensions\TeamSwim.Extensions.csproj"
