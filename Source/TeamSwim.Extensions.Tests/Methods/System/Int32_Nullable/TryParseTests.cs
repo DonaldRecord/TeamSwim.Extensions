@@ -22,7 +22,7 @@ namespace TeamSwim.Extensions.SystemInt32.Tests
         [TestMethod]
         public void Invalid_String_Returns_True()
         {
-            string input = "abc";
+            var input = "abc";
 
             var actual = Int32Ext.TryParseNullable(input, out var i);
 
@@ -33,7 +33,7 @@ namespace TeamSwim.Extensions.SystemInt32.Tests
         [TestMethod]
         public void Valid_String_Returns_True()
         {
-            string input = "12";
+            var input = "12";
 
             var actual = Int32Ext.TryParseNullable(input, out var i);
 

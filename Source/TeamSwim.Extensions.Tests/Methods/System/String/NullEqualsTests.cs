@@ -21,7 +21,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void Null_Strings_Return_False_When_B_Is_Null()
         {
-            string a = Utility.RandomString();
+            var a = Utility.RandomString();
             string b = null;
 
             var result = a.NullEquals(b, StringComparison.CurrentCulture);
@@ -33,7 +33,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         public void Null_Strings_Return_False_When_A_Is_Null()
         {
             string a = null;
-            string b = Utility.RandomString();
+            var b = Utility.RandomString();
 
             var result = a.NullEquals(b, StringComparison.CurrentCulture);
 
@@ -45,8 +45,8 @@ namespace TeamSwim.Extensions.SystemString.Tests
         {
             var value = Utility.RandomString();
 
-            string a = value;
-            string b = value;
+            var a = value;
+            var b = value;
 
             var result = a.NullEquals(b, StringComparison.CurrentCulture);
 

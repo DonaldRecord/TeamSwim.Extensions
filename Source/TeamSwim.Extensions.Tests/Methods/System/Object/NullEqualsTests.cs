@@ -45,8 +45,8 @@ namespace TeamSwim.Extensions.SystemInt64.Tests
         public void Assert_Equal_Objects_Returns_True()
         {
             object c = Utility.RandomString();
-            object a = c;
-            object b = c;
+            var a = c;
+            var b = c;
 
             var retVal = a.NullEquals(b);
 

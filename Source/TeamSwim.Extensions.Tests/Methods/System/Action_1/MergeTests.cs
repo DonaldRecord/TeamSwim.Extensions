@@ -9,7 +9,7 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge0_Merges_Several_Actions()
         {
-            int result = 0;
+            var result = 0;
 
             Action plusOne = () => result += 1;
             Action plusTwo = () => result += 2;
@@ -23,7 +23,7 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge0_Null_Item()
         {
-            int result = 0;
+            var result = 0;
 
             Action plusOne = () => result += 1;
             Action plusTwo = null;
@@ -37,7 +37,7 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge1_Merges_Several_Actions()
         {
-            int result = 0;
+            var result = 0;
 
             Action<int> plusOne = i => result += 1;
             Action<int> plusTwo = i => result += 2;
@@ -51,7 +51,7 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge1_Null_Item()
         {
-            int result = 0;
+            var result = 0;
 
             Action<int> plusOne = i => result += 1;
             Action<int> plusTwo = null;
@@ -65,8 +65,8 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge2_Merges_Several_Actions()
         {
-            int r1 = 0;
-            int r2 = 0;
+            var r1 = 0;
+            var r2 = 0;
 
             Func<int, Action<int, int>> createAction = i =>
                 (i1, i2) =>
@@ -84,8 +84,8 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge2_Null_Item()
         {
-            int r1 = 0;
-            int r2 = 0;
+            var r1 = 0;
+            var r2 = 0;
 
             Func<int, Action<int, int>> createAction = i =>
                 (i1, i2) =>
@@ -103,9 +103,9 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge3_Merges_Several_Actions()
         {
-            int r1 = 0;
-            int r2 = 0;
-            int r3 = 0;
+            var r1 = 0;
+            var r2 = 0;
+            var r3 = 0;
 
             Func<int, Action<int, int, int>> createAction = i =>
                 (i1, i2, i3) =>
@@ -125,9 +125,9 @@ namespace TeamSwim.Extensions.SystemAction.MethodTests
         [TestMethod]
         public void Merge3_Null_Item()
         {
-            int r1 = 0;
-            int r2 = 0;
-            int r3 = 0;
+            var r1 = 0;
+            var r2 = 0;
+            var r3 = 0;
 
             Action<int, int, int> CreateAction(int i) =>
                 (i1, i2, i3) =>

@@ -24,7 +24,7 @@ namespace System.Methods.System.Linq
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Func1_Throws_Exception()
         {
-            List<int> source = new List<int> {1, 2, 3};
+            var source = new List<int> {1, 2, 3};
             Func<int, string> func1 = null;
             Func<int, string> func2 = i => i.ToString();
 
@@ -36,7 +36,7 @@ namespace System.Methods.System.Linq
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Func2_Throws_Exception()
         {
-            List<int> source = new List<int> { 1, 2, 3 };
+            var source = new List<int> { 1, 2, 3 };
             Func<int, string> func1 = i => i.ToString();
             Func<int, string> func2 = null;
 
@@ -72,7 +72,7 @@ namespace System.Methods.System.Linq
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Func1_Throws_Exception_2()
         {
-            List<int> source = new List<int> { 1, 2, 3 };
+            var source = new List<int> { 1, 2, 3 };
             Func<int, string> func1 = null;
             Func<int, string, string> func2 = (i, item1) => item1.ToString();
 
@@ -84,7 +84,7 @@ namespace System.Methods.System.Linq
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Func2_Throws_Exception_2()
         {
-            List<int> source = new List<int> { 1, 2, 3 };
+            var source = new List<int> { 1, 2, 3 };
             Func<int, string> func1 = i => i.ToString();
             Func<int, string, string> func2 = null;
 

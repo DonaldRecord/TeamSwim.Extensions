@@ -11,6 +11,7 @@ namespace System.Linq
         /// <param name="source">Source collection to iterate.</param>
         /// <returns>Set of elements that are not null or empty.</returns>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="source"/> is <see langword="null"/>.</exception>
+        [PublicAPI]
         [NotNull, ItemNotNull, LinqTunnel]
         public static IEnumerable<string> NotNullOrEmpty([NotNull, ItemCanBeNull] this IEnumerable<string> source)
         {

@@ -12,7 +12,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         public void Null_Value_Throws_Exception()
         {
             string value = null;
-            string appendText = Utility.RandomString();
+            var appendText = Utility.RandomString();
 
             Assert.IsNull(value.Prepend(appendText, false));
         }
@@ -21,7 +21,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Null_Prepend_Text_Throws_Argument_Null_Exception()
         {
-            string value = Utility.RandomString();
+            var value = Utility.RandomString();
             string appendText = null;
 
             value.Prepend(appendText, false);
@@ -30,11 +30,11 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void String_Is_Not_Prepended_When_Bool_Is_True_And_Value_Starts_With()
         {
-            string value = "abc";
-            string append = "a";
-            string expected = value;
+            var value = "abc";
+            var append = "a";
+            var expected = value;
 
-            string actual = value.Prepend(append, true);
+            var actual = value.Prepend(append, true);
 
             Assert.AreEqual(expected, actual);
         }
@@ -42,11 +42,11 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void String_Is_Prepended_When_Bool_Is_True_And_Value_Doesnt_Start_With()
         {
-            string value = "abc";
-            string append = "d";
-            string expected = "dabc";
+            var value = "abc";
+            var append = "d";
+            var expected = "dabc";
 
-            string actual = value.Prepend(append, true);
+            var actual = value.Prepend(append, true);
 
             Assert.AreEqual(expected, actual);
         }
@@ -54,11 +54,11 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void String_Is_Prepended_When_Bool_Is_False()
         {
-            string value = "abc";
-            string append = "a";
-            string expected = "aabc";
+            var value = "abc";
+            var append = "a";
+            var expected = "aabc";
 
-            string actual = value.Prepend(append, false);
+            var actual = value.Prepend(append, false);
 
             Assert.AreEqual(expected, actual);
         }
@@ -125,10 +125,10 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void String_Is_Prepended_When_No_Bool_Is_Specified()
         {
-            string actual = Utility.RandomString();
-            string appendText = Utility.RandomString(exclusion: actual);
+            var actual = Utility.RandomString();
+            var appendText = Utility.RandomString(exclusion: actual);
 
-            string expected = actual.Prepend(appendText);
+            var expected = actual.Prepend(appendText);
 
             Assert.AreNotEqual(actual, expected);
         }
@@ -148,10 +148,10 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void Char_Is_Prepended_When_Bool_Is_False()
         {
-            string actual = Utility.RandomString();
+            var actual = Utility.RandomString();
             var appendChar = Utility.RandomString(exclusion: actual.Substring(0, 1)).First();
 
-            string expected = actual.Prepend(appendChar, false);
+            var expected = actual.Prepend(appendChar, false);
 
             Assert.AreNotEqual(actual, expected);
         }

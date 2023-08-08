@@ -12,7 +12,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         public void ContainsAny_Throws_Exception_When_Value_Is_Null()
         {
             string value = null;
-            List<string> checks = new List<string>();
+            var checks = new List<string>();
 
             var actual = value.ContainsAny(checks);
 
@@ -24,7 +24,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         public void ContainsAny_Throws_Exception_When_Value_Is_Null_Comparison_Ordinal()
         {
             string value = null;
-            List<string> checks = new List<string>();
+            var checks = new List<string>();
 
             var actual = value.ContainsAny(StringComparison.OrdinalIgnoreCase, checks);
 
@@ -37,7 +37,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         {
             var scope = new Scope();
 
-            string value = scope.DefaultValue;
+            var value = scope.DefaultValue;
             var checks = scope.NullChecks;
 
             var actual = value.ContainsAny(checks);
@@ -51,7 +51,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         {
             var scope = new Scope();
 
-            string value = scope.DefaultValue;
+            var value = scope.DefaultValue;
             var checks = scope.NullChecks;
 
             var actual = value.ContainsAny(StringComparison.OrdinalIgnoreCase, checks);
@@ -65,7 +65,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         {
             var scope = new Scope();
 
-            string value = scope.DefaultValue;
+            var value = scope.DefaultValue;
             var checks = scope.NullCheckArray;
 
             var actual = value.ContainsAny(checks);
@@ -79,7 +79,7 @@ namespace TeamSwim.Extensions.SystemString.Tests
         {
             var scope = new Scope();
 
-            string value = scope.DefaultValue;
+            var value = scope.DefaultValue;
             var checks = scope.NullCheckArray;
 
             var actual = value.ContainsAny(StringComparison.OrdinalIgnoreCase, checks);
@@ -90,8 +90,8 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void ContainsAny_Returns_True()
         {
-            string value = "Value";
-            List<string> checks = new List<string> {"u", "x"};
+            var value = "Value";
+            var checks = new List<string> {"u", "x"};
 
             var actual = value.ContainsAny(checks);
             var expected = true;
@@ -105,8 +105,8 @@ namespace TeamSwim.Extensions.SystemString.Tests
         [TestMethod]
         public void ContainsAny_Returns_True_Comparison_Overload()
         {
-            string value = "Value";
-            List<string> checks = new List<string> { "u", "x" };
+            var value = "Value";
+            var checks = new List<string> { "u", "x" };
 
             var actual = value.ContainsAny(StringComparison.OrdinalIgnoreCase, checks);
             var expected = true;

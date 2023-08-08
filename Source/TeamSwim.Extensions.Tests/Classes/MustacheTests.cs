@@ -15,7 +15,7 @@ namespace Classes.Tests
 
             Assert.AreEqual(expectedGroups.Length, results.Count);
 
-            for (int i = 0; i < expectedGroups.Length; i++)
+            for (var i = 0; i < expectedGroups.Length; i++)
             {
                 var expected = expectedGroups[i];
                 var actual = results[i];

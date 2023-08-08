@@ -13,9 +13,9 @@ namespace System.Methods.System.Threading.Tasks
         [TestMethod]
         public async Task Returns_Expected_Value()
         {
-            string str = Utility.RandomString();
-
+            var str = Utility.RandomString();
             var actual = str.AsTask();
+
             Assert.IsNotNull(actual);
             Assert.IsInstanceOfType(actual, typeof(Task<string>));
             Assert.AreEqual(str, await actual);
@@ -25,8 +25,8 @@ namespace System.Methods.System.Threading.Tasks
         public async Task Returns_Expected_Null()
         {
             string str = null;
-            
             var actual = str.AsTask();
+
             Assert.IsNotNull(actual);
             Assert.IsInstanceOfType(actual, typeof(Task<string>));
             Assert.IsNull(await actual);
@@ -36,7 +36,7 @@ namespace System.Methods.System.Threading.Tasks
         public async Task Returns_Expected_Value_With_Cancellation_Token()
         {
             var cts = new CancellationTokenSource();
-            string str = Utility.RandomString();
+            var str = Utility.RandomString();
 
             var actual = str.AsTask(cts.Token);
             Assert.IsNotNull(actual);
@@ -49,7 +49,7 @@ namespace System.Methods.System.Threading.Tasks
         public async Task Throws_Expected_Exception_With_Cancellation_Token()
         {
             var cts = new CancellationTokenSource();
-            string str = Utility.RandomString();
+            var str = Utility.RandomString();
             cts.Cancel();
 
             Assert.ThrowsException<OperationCanceledException>(() => str.AsTask(cts.Token));
